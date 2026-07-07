@@ -506,7 +506,7 @@ export function GrowthSystem({ limit }: { limit?: number }) {
         {limit && (
           <div className="mt-14 text-center">
             <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
-              Let's Solve Your Challenges
+              Let's Fix Your Challenges
             </a>
           </div>
         )}
@@ -1018,7 +1018,7 @@ export function PainPoints() {
         
         <div className="mt-14 text-center">
           <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
-            Let's Solve Your Challenges
+            Let's Fix Your Challenges
           </a>
         </div>
       </div>
