@@ -138,6 +138,14 @@
     animation-play-state: paused;
   }
   
+  @keyframes slide-left {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .animate-slide-left {
+    animation: slide-left 0.4s ease-out forwards;
+  }
+  
   p { text-wrap: pretty; }
   :focus-visible {
     outline: 2px solid var(--gold);

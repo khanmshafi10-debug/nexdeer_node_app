@@ -833,15 +833,17 @@ export function Testimonials() {
         <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:items-stretch">
           <div className="lg:col-span-8 rounded-3xl bg-[var(--ink-deep)] p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute right-8 top-6 text-[10rem] leading-none font-serif text-[var(--gold)]/15 select-none">"</div>
-            <div className="flex gap-1 text-[var(--gold)]">
-              {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
-            </div>
-            <p className="mt-6 text-xl md:text-2xl leading-relaxed font-medium">"{t.quote}"</p>
-            <div className="mt-8 flex items-center gap-4">
-              <img src={t.avatar} alt={t.name} loading="lazy" decoding="async" className="h-12 w-12 rounded-full object-cover" />
-              <div>
-                <div className="font-semibold">{t.name}</div>
-                <div className="text-sm text-white/65">{t.role}</div>
+            <div key={idx} className="animate-slide-left">
+              <div className="flex gap-1 text-[var(--gold)]">
+                {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+              </div>
+              <p className="mt-6 text-xl md:text-2xl leading-relaxed font-medium">"{t.quote}"</p>
+              <div className="mt-8 flex items-center gap-4">
+                <img src={t.avatar} alt={t.name} loading="lazy" decoding="async" className="h-12 w-12 rounded-full object-cover" />
+                <div>
+                  <div className="font-semibold">{t.name}</div>
+                  <div className="text-sm text-white/65">{t.role}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -1293,16 +1295,16 @@ const row3 = filteredLogos.slice(third * 2);
 
 export function TechStack() {
   return (
-    <section className="section-y bg-gray-50 overflow-hidden">
+    <section className="section-y bg-[var(--ink-deep)] overflow-hidden">
       <div className="container-x">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end mb-16">
           <div className="lg:col-span-7">
             <span className="eyebrow">Technology stack</span>
-            <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">
+            <h2 className="headline-lg mt-4 text-white">
               Modern Tools. Battle-Tested Stack.
             </h2>
           </div>
-          <p className="lg:col-span-5 text-[color:var(--muted-foreground)] leading-relaxed">
+          <p className="lg:col-span-5 text-white/70 leading-relaxed">
             We standardize on the platforms trusted by the fastest-growing companies in the world —
             and integrate them into one accountable system.
           </p>
