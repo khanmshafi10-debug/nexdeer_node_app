@@ -79,12 +79,8 @@ function PortfolioDetail() {
             <div className="grid lg:grid-cols-12 gap-16">
               {/* LEFT COLUMN: Main content */}
               <div className="lg:col-span-8">
-                <div className="w-full aspect-video overflow-hidden rounded-3xl mb-16 shadow-2xl border border-[var(--border)] fade-up relative" style={{ animationDelay: '300ms' }}>
-                  <img src={project.img} alt={project.title} className="w-full h-full object-cover scale-[1.07]" />
-                  {/* Gold Sparkle badge to cover Gemini watermark */}
-                  <div className="absolute bottom-0 right-0 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-[#0a1128] border border-[var(--gold)]/30 shadow-lg">
-                    <Sparkles size={20} className="fill-[var(--gold)] text-[var(--gold)]" />
-                  </div>
+                <div className="w-full aspect-video overflow-hidden rounded-3xl mb-16 shadow-2xl border border-[var(--border)] fade-up" style={{ animationDelay: '300ms' }}>
+                  <img src={project.img} alt={project.title} className="w-full h-full object-cover" />
                 </div>
                 
                 <div className="space-y-16">

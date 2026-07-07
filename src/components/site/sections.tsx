@@ -516,59 +516,55 @@ export function GrowthSystem({ limit }: { limit?: number }) {
 }
 
 const PROJECT_IMAGES = [
-  "/projects/Gemini_Generated_Image_13hi3d13hi3d13hi.webp",
-  "/projects/Gemini_Generated_Image_1u617a1u617a1u61.webp",
-  "/projects/Gemini_Generated_Image_1up1o81up1o81up1.webp",
-  "/projects/Gemini_Generated_Image_2ctiig2ctiig2cti (1).webp",
-  "/projects/Gemini_Generated_Image_2ctiig2ctiig2cti.webp",
-  "/projects/Gemini_Generated_Image_2fld0r2fld0r2fld.webp",
-  "/projects/Gemini_Generated_Image_3cg6g93cg6g93cg6.webp",
-  "/projects/Gemini_Generated_Image_3vy67q3vy67q3vy6.webp",
-  "/projects/Gemini_Generated_Image_3xg39h3xg39h3xg3.webp",
-  "/projects/Gemini_Generated_Image_3zgcax3zgcax3zgc.webp",
-  "/projects/Gemini_Generated_Image_4x439h4x439h4x43.webp",
-  "/projects/Gemini_Generated_Image_5dnt5k5dnt5k5dnt.webp",
-  "/projects/Gemini_Generated_Image_5rs4e75rs4e75rs4.webp",
-  "/projects/Gemini_Generated_Image_6jw8jo6jw8jo6jw8.webp",
-  "/projects/Gemini_Generated_Image_7qhssy7qhssy7qhs.webp",
-  "/projects/Gemini_Generated_Image_7vc5d27vc5d27vc5.webp",
-  "/projects/Gemini_Generated_Image_81qmsx81qmsx81qm.webp",
-  "/projects/Gemini_Generated_Image_ak7u6iak7u6iak7u.webp",
-  "/projects/Gemini_Generated_Image_al1s8hal1s8hal1s.webp",
-  "/projects/Gemini_Generated_Image_ap7awrap7awrap7a.webp",
-  "/projects/Gemini_Generated_Image_aqhkeaaqhkeaaqhk.webp",
-  "/projects/Gemini_Generated_Image_chqyp1chqyp1chqy.webp",
-  "/projects/Gemini_Generated_Image_ddidhtddidhtddid.webp",
-  "/projects/Gemini_Generated_Image_e7694be7694be769.webp",
-  "/projects/Gemini_Generated_Image_ebta1uebta1uebta.webp",
-  "/projects/Gemini_Generated_Image_f1qmrof1qmrof1qm.webp",
-  "/projects/Gemini_Generated_Image_fpjvuefpjvuefpjv.webp",
-  "/projects/Gemini_Generated_Image_gz6iyqgz6iyqgz6i (1).webp",
-  "/projects/Gemini_Generated_Image_gz6iyqgz6iyqgz6i.webp",
-  "/projects/Gemini_Generated_Image_ha4gofha4gofha4g.webp",
-  "/projects/Gemini_Generated_Image_iis5rhiis5rhiis5.webp",
-  "/projects/Gemini_Generated_Image_j2tg82j2tg82j2tg.webp",
-  "/projects/Gemini_Generated_Image_kmensvkmensvkmen.webp",
-  "/projects/Gemini_Generated_Image_knznjiknznjiknzn.webp",
-  "/projects/Gemini_Generated_Image_nruc3vnruc3vnruc.webp",
-  "/projects/Gemini_Generated_Image_onwp18onwp18onwp.webp",
-  "/projects/Gemini_Generated_Image_p1ncf7p1ncf7p1nc.webp",
-  "/projects/Gemini_Generated_Image_pc5zccpc5zccpc5z.webp",
-  "/projects/Gemini_Generated_Image_qfpe4uqfpe4uqfpe (1).webp",
-  "/projects/Gemini_Generated_Image_qfpe4uqfpe4uqfpe.webp",
-  "/projects/Gemini_Generated_Image_qlu04jqlu04jqlu0.webp",
-  "/projects/Gemini_Generated_Image_s563tbs563tbs563.webp",
-  "/projects/Gemini_Generated_Image_t1oi1at1oi1at1oi.webp",
-  "/projects/Gemini_Generated_Image_th54afth54afth54.webp",
-  "/projects/Gemini_Generated_Image_xa9olhxa9olhxa9o.webp",
-  "/projects/Gemini_Generated_Image_ycwa7uycwa7uycwa.webp",
-  "/projects/Gemini_Generated_Image_z655r5z655r5z655.webp",
+  "/projects/Untitled design (6).png",
+  "/projects/Untitled design (7).png",
+  "/projects/Untitled design (8).png",
+  "/projects/Untitled design (9).png",
+  "/projects/Untitled design (10).png",
+  "/projects/Untitled design (11).png",
+  "/projects/Untitled design (12).png",
+  "/projects/Untitled design (13).png",
+  "/projects/Untitled design (14).png",
+  "/projects/Untitled design (15).png",
+  "/projects/Untitled design (16).png",
+  "/projects/Untitled design (17).png",
+  "/projects/Untitled design (18).png",
+  "/projects/Untitled design (19).png",
+  "/projects/Untitled design (20).png",
+  "/projects/Untitled design (21).png",
+  "/projects/Untitled design (22).png",
+  "/projects/Untitled design (23).png",
+  "/projects/Untitled design (24).png",
+  "/projects/Untitled design (25).png",
+  "/projects/Untitled design (26).png",
+  "/projects/Untitled design (27).png",
+  "/projects/Untitled design (28).png",
+  "/projects/Untitled design (29).png",
+  "/projects/Untitled design (30).png",
+  "/projects/Untitled design (31).png",
+  "/projects/Untitled design (32).png",
+  "/projects/Untitled design (33).png",
+  "/projects/Untitled design (34).png",
+  "/projects/Untitled design (35).png",
+  "/projects/Untitled design (36).png",
+  "/projects/Untitled design (37).png",
+  "/projects/Untitled design (38).png",
+  "/projects/Untitled design (39).png",
+  "/projects/Untitled design (40).png",
+  "/projects/Untitled design (41).png",
+  "/projects/Untitled design (42).png",
+  "/projects/Untitled design (43).png",
+  "/projects/Untitled design (44).png",
+  "/projects/Untitled design (45).png",
+  "/projects/Untitled design (46).png",
+  "/projects/Untitled design (47).png",
+  "/projects/Untitled design (48).png",
 ];
 
 const REAL_PROJECT_DATA = [
-  { title: "Booyaa Fashion", tag: "E-Commerce · CRO", externalUrl: "https://www.boohoo.com" },
+  { title: "Elite Couture", tag: "Fashion · Boutique", externalUrl: "https://www.boohoo.com" },
   { title: "Asset Vantage", tag: "Finance · SEO", externalUrl: "https://www.assetvantage.com/?utm_source=chatgpt.com" },
-  { title: "Booyaa Fashion", tag: "E-Commerce · CRO", externalUrl: "https://www.boohoo.com" },
+  { title: "Luxe Boutique", tag: "Fashion · Boutique", externalUrl: "https://www.boohoo.com" },
   { title: "Grant Cardone", tag: "Consulting · Ads", externalUrl: "https://grantcardone.com/?utm_source=chatgpt.com" },
   { title: "Grant Cardone", tag: "Consulting · Ads", externalUrl: "https://grantcardone.com/?utm_source=chatgpt.com" },
   { title: "IAC Group", tag: "B2B · Automation", externalUrl: "https://www.iacgroup.com" },
@@ -625,7 +621,7 @@ export const ALL_PORTFOLIO_PROJECTS = REAL_PROJECT_DATA.map((data, i) => {
     id,
     title: data.title,
     tag: data.tag,
-    img: PROJECT_IMAGES[i],
+    img: PROJECT_IMAGES[i % PROJECT_IMAGES.length],
     externalUrl: data.externalUrl,
     challenge: `The client was struggling with legacy systems and poor conversion rates. Despite high traffic, their cost per acquisition was unsustainable, leading to stagnant growth.`,
     solution: `We implemented a full-stack growth system including a new high-converting funnel, targeted paid campaigns, and CRM automation to qualify leads instantly.`,
@@ -670,41 +666,18 @@ export function Portfolio({ limit }: { limit?: number }) {
 
         <div className={`mt-14 grid gap-6 ${limit ? 'md:grid-cols-2 lg:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
           {displayCards.map((c, i) => {
-            if (limit) {
-              return (
-                <div
-                  key={c.id}
-                  className="group relative overflow-hidden rounded-3xl fade-up border border-[var(--border)] shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700"
-                  style={{ animationDelay: `${500 + (i * 100)}ms` }}
-                >
-                  <img
-                    src={c.img}
-                    alt={c.title}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out scale-[1.07] group-hover:scale-[1.15]"
-                  />
-                  {/* Gold Sparkle badge to cover Gemini watermark */}
-                  <div className="absolute bottom-0 right-0 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-[#0a1128] border border-[var(--gold)]/30 shadow-lg">
-                    <Sparkles size={20} className="fill-[var(--gold)] text-[var(--gold)]" />
-                  </div>
-                </div>
-              );
-            }
             return (
               <div
                 onClick={() => navigate({ to: `/portfolio/${c.id}` })}
                 key={c.id}
                 className="group relative overflow-hidden rounded-3xl fade-up border border-[var(--border)] shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700 cursor-pointer"
-                style={{ animationDelay: '0ms' }}
+                style={{ animationDelay: limit ? `${500 + (i * 100)}ms` : '0ms' }}
               >
                 <img
                   src={c.img}
                   alt={c.title}
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out scale-[1.07] group-hover:scale-[1.15]"
+                  className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
                 />
-                {/* Gold Sparkle badge to cover Gemini watermark */}
-                <div className="absolute bottom-0 right-0 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-[#0a1128] border border-[var(--gold)]/30 shadow-lg group-hover:opacity-0 transition-opacity duration-500">
-                  <Sparkles size={20} className="fill-[var(--gold)] text-[var(--gold)]" />
-                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)] via-[var(--ink-deep)]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
                 <div className="absolute inset-x-0 bottom-0 p-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                   <div className="text-xs uppercase tracking-[0.18em] text-[var(--gold)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">{c.tag}</div>
