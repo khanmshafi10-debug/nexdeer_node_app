@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { INDUSTRIES } from "@/data/industries";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -229,7 +229,7 @@ export function Trusted() {
         <div className="lg:col-span-5 fade-up">
           <div className="relative group/img cursor-default">
             <div className="overflow-hidden rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-700 group-hover/img:shadow-[0_25px_50px_rgba(232,181,4,0.15)] group-hover/img:-translate-y-2">
-              <img src="/process.png" alt="Growth Process: Plan, Analyze, Execute, Review, Optimize" loading="lazy" decoding="async" className="aspect-[4/5] object-cover w-full transition-transform duration-[2s] ease-out group-hover/img:scale-105" />
+              <img src="/process.webp" alt="Growth Process: Plan, Analyze, Execute, Review, Optimize" loading="lazy" decoding="async" className="aspect-[4/5] object-cover w-full transition-transform duration-[2s] ease-out group-hover/img:scale-105" />
             </div>
             <div className="absolute -bottom-6 -right-6 hidden md:block max-w-[260px] rounded-2xl bg-[var(--ink-deep)] p-5 text-white shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_50px_rgba(232,181,4,0.3)] z-10 float">
               <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none" />
@@ -516,82 +516,117 @@ export function GrowthSystem({ limit }: { limit?: number }) {
 }
 
 const PROJECT_IMAGES = [
-  "/projects/Gemini_Generated_Image_13hi3d13hi3d13hi.png",
-  "/projects/Gemini_Generated_Image_1u617a1u617a1u61.png",
-  "/projects/Gemini_Generated_Image_1up1o81up1o81up1.png",
-  "/projects/Gemini_Generated_Image_2ctiig2ctiig2cti (1).png",
-  "/projects/Gemini_Generated_Image_2ctiig2ctiig2cti.png",
-  "/projects/Gemini_Generated_Image_2fld0r2fld0r2fld.png",
-  "/projects/Gemini_Generated_Image_3cg6g93cg6g93cg6.png",
-  "/projects/Gemini_Generated_Image_3vy67q3vy67q3vy6.png",
-  "/projects/Gemini_Generated_Image_3xg39h3xg39h3xg3.png",
-  "/projects/Gemini_Generated_Image_3zgcax3zgcax3zgc.png",
-  "/projects/Gemini_Generated_Image_4x439h4x439h4x43.png",
-  "/projects/Gemini_Generated_Image_5dnt5k5dnt5k5dnt.png",
-  "/projects/Gemini_Generated_Image_5rs4e75rs4e75rs4.png",
-  "/projects/Gemini_Generated_Image_6jw8jo6jw8jo6jw8.png",
-  "/projects/Gemini_Generated_Image_7qhssy7qhssy7qhs.png",
-  "/projects/Gemini_Generated_Image_7vc5d27vc5d27vc5.png",
-  "/projects/Gemini_Generated_Image_81qmsx81qmsx81qm.png",
-  "/projects/Gemini_Generated_Image_ak7u6iak7u6iak7u.png",
-  "/projects/Gemini_Generated_Image_al1s8hal1s8hal1s.png",
-  "/projects/Gemini_Generated_Image_ap7awrap7awrap7a.png",
-  "/projects/Gemini_Generated_Image_aqhkeaaqhkeaaqhk.png",
-  "/projects/Gemini_Generated_Image_chqyp1chqyp1chqy.png",
-  "/projects/Gemini_Generated_Image_ddidhtddidhtddid.png",
-  "/projects/Gemini_Generated_Image_e7694be7694be769.png",
-  "/projects/Gemini_Generated_Image_ebta1uebta1uebta.png",
-  "/projects/Gemini_Generated_Image_f1qmrof1qmrof1qm.png",
-  "/projects/Gemini_Generated_Image_fpjvuefpjvuefpjv.png",
-  "/projects/Gemini_Generated_Image_gz6iyqgz6iyqgz6i (1).png",
-  "/projects/Gemini_Generated_Image_gz6iyqgz6iyqgz6i.png",
-  "/projects/Gemini_Generated_Image_ha4gofha4gofha4g.png",
-  "/projects/Gemini_Generated_Image_iis5rhiis5rhiis5.png",
-  "/projects/Gemini_Generated_Image_j2tg82j2tg82j2tg.png",
-  "/projects/Gemini_Generated_Image_kmensvkmensvkmen.png",
-  "/projects/Gemini_Generated_Image_knznjiknznjiknzn.png",
-  "/projects/Gemini_Generated_Image_nruc3vnruc3vnruc.png",
-  "/projects/Gemini_Generated_Image_onwp18onwp18onwp.png",
-  "/projects/Gemini_Generated_Image_p1ncf7p1ncf7p1nc.png",
-  "/projects/Gemini_Generated_Image_pc5zccpc5zccpc5z.png",
-  "/projects/Gemini_Generated_Image_qfpe4uqfpe4uqfpe (1).png",
-  "/projects/Gemini_Generated_Image_qfpe4uqfpe4uqfpe.png",
-  "/projects/Gemini_Generated_Image_qlu04jqlu04jqlu0.png",
-  "/projects/Gemini_Generated_Image_s563tbs563tbs563.png",
-  "/projects/Gemini_Generated_Image_t1oi1at1oi1at1oi.png",
-  "/projects/Gemini_Generated_Image_th54afth54afth54.png",
-  "/projects/Gemini_Generated_Image_xa9olhxa9olhxa9o.png",
-  "/projects/Gemini_Generated_Image_ycwa7uycwa7uycwa.png",
-  "/projects/Gemini_Generated_Image_z655r5z655r5z655.png",
+  "/projects/Gemini_Generated_Image_13hi3d13hi3d13hi.webp",
+  "/projects/Gemini_Generated_Image_1u617a1u617a1u61.webp",
+  "/projects/Gemini_Generated_Image_1up1o81up1o81up1.webp",
+  "/projects/Gemini_Generated_Image_2ctiig2ctiig2cti (1).webp",
+  "/projects/Gemini_Generated_Image_2ctiig2ctiig2cti.webp",
+  "/projects/Gemini_Generated_Image_2fld0r2fld0r2fld.webp",
+  "/projects/Gemini_Generated_Image_3cg6g93cg6g93cg6.webp",
+  "/projects/Gemini_Generated_Image_3vy67q3vy67q3vy6.webp",
+  "/projects/Gemini_Generated_Image_3xg39h3xg39h3xg3.webp",
+  "/projects/Gemini_Generated_Image_3zgcax3zgcax3zgc.webp",
+  "/projects/Gemini_Generated_Image_4x439h4x439h4x43.webp",
+  "/projects/Gemini_Generated_Image_5dnt5k5dnt5k5dnt.webp",
+  "/projects/Gemini_Generated_Image_5rs4e75rs4e75rs4.webp",
+  "/projects/Gemini_Generated_Image_6jw8jo6jw8jo6jw8.webp",
+  "/projects/Gemini_Generated_Image_7qhssy7qhssy7qhs.webp",
+  "/projects/Gemini_Generated_Image_7vc5d27vc5d27vc5.webp",
+  "/projects/Gemini_Generated_Image_81qmsx81qmsx81qm.webp",
+  "/projects/Gemini_Generated_Image_ak7u6iak7u6iak7u.webp",
+  "/projects/Gemini_Generated_Image_al1s8hal1s8hal1s.webp",
+  "/projects/Gemini_Generated_Image_ap7awrap7awrap7a.webp",
+  "/projects/Gemini_Generated_Image_aqhkeaaqhkeaaqhk.webp",
+  "/projects/Gemini_Generated_Image_chqyp1chqyp1chqy.webp",
+  "/projects/Gemini_Generated_Image_ddidhtddidhtddid.webp",
+  "/projects/Gemini_Generated_Image_e7694be7694be769.webp",
+  "/projects/Gemini_Generated_Image_ebta1uebta1uebta.webp",
+  "/projects/Gemini_Generated_Image_f1qmrof1qmrof1qm.webp",
+  "/projects/Gemini_Generated_Image_fpjvuefpjvuefpjv.webp",
+  "/projects/Gemini_Generated_Image_gz6iyqgz6iyqgz6i (1).webp",
+  "/projects/Gemini_Generated_Image_gz6iyqgz6iyqgz6i.webp",
+  "/projects/Gemini_Generated_Image_ha4gofha4gofha4g.webp",
+  "/projects/Gemini_Generated_Image_iis5rhiis5rhiis5.webp",
+  "/projects/Gemini_Generated_Image_j2tg82j2tg82j2tg.webp",
+  "/projects/Gemini_Generated_Image_kmensvkmensvkmen.webp",
+  "/projects/Gemini_Generated_Image_knznjiknznjiknzn.webp",
+  "/projects/Gemini_Generated_Image_nruc3vnruc3vnruc.webp",
+  "/projects/Gemini_Generated_Image_onwp18onwp18onwp.webp",
+  "/projects/Gemini_Generated_Image_p1ncf7p1ncf7p1nc.webp",
+  "/projects/Gemini_Generated_Image_pc5zccpc5zccpc5z.webp",
+  "/projects/Gemini_Generated_Image_qfpe4uqfpe4uqfpe (1).webp",
+  "/projects/Gemini_Generated_Image_qfpe4uqfpe4uqfpe.webp",
+  "/projects/Gemini_Generated_Image_qlu04jqlu04jqlu0.webp",
+  "/projects/Gemini_Generated_Image_s563tbs563tbs563.webp",
+  "/projects/Gemini_Generated_Image_t1oi1at1oi1at1oi.webp",
+  "/projects/Gemini_Generated_Image_th54afth54afth54.webp",
+  "/projects/Gemini_Generated_Image_xa9olhxa9olhxa9o.webp",
+  "/projects/Gemini_Generated_Image_ycwa7uycwa7uycwa.webp",
+  "/projects/Gemini_Generated_Image_z655r5z655r5z655.webp",
 ];
 
-export const ALL_PORTFOLIO_PROJECTS = Array.from({ length: 100 }).map((_, i) => {
-  const templates = [
-    { name: "Realty", tag: "Real Estate · Lead Gen", img: IMG.portfolio1 },
-    { name: "Care", tag: "Healthcare · Branding", img: IMG.portfolio2 },
-    { name: "Co.", tag: "E-Commerce · CRO", img: IMG.portfolio3 },
-    { name: "Tech", tag: "SaaS · Performance", img: IMG.portfolio4 },
-    { name: "Solutions", tag: "B2B · Automation", img: IMG.portfolio1 },
-    { name: "Group", tag: "Finance · SEO", img: IMG.portfolio2 },
-    { name: "Studios", tag: "Creative · Web Design", img: IMG.portfolio3 },
-    { name: "Partners", tag: "Consulting · Ads", img: IMG.portfolio4 },
-  ];
-  const template = templates[i % templates.length];
-  const prefixes = ["Aurora", "Meridian", "Sandstone", "BluePeak", "Vertex", "Lumen", "Orbit", "Nexus", "Helio", "Nova", "Zenith", "Apex", "Quantum", "Pulse", "Vanguard", "Stratos", "Horizon", "Ascend", "Crest", "Pinnacle"];
-  const prefix = prefixes[i % prefixes.length];
+const REAL_PROJECT_DATA = [
+  { title: "Booyaa Fashion", tag: "E-Commerce · CRO", externalUrl: "https://www.boohoo.com" },
+  { title: "Asset Vantage", tag: "Finance · SEO", externalUrl: "https://www.assetvantage.com/?utm_source=chatgpt.com" },
+  { title: "Booyaa Fashion", tag: "E-Commerce · CRO", externalUrl: "https://www.boohoo.com" },
+  { title: "Grant Cardone", tag: "Consulting · Ads", externalUrl: "https://grantcardone.com/?utm_source=chatgpt.com" },
+  { title: "Grant Cardone", tag: "Consulting · Ads", externalUrl: "https://grantcardone.com/?utm_source=chatgpt.com" },
+  { title: "IAC Group", tag: "B2B · Automation", externalUrl: "https://www.iacgroup.com" },
+  { title: "Prisa Go", tag: "Creative · Web Design", externalUrl: "https://www.prisa.com" },
+  { title: "Bulls & Finch", tag: "B2B · Automation", externalUrl: "https://www.bullsfinch.com" },
+  { title: "Daily U", tag: "Healthcare · Branding", externalUrl: "https://www.dailyu.ch/?utm_source=chatgpt.com" },
+  { title: "NYC Premium Properties", tag: "Real Estate · Lead Gen", externalUrl: "https://www.elliman.com" },
+  { title: "Aristo Group", tag: "B2B · Automation", externalUrl: "https://www.aristo.in" },
+  { title: "Agriturismo Discover", tag: "Creative · Web Design", externalUrl: "https://www.agriturismo.it" },
+  { title: "XAN Systems", tag: "SaaS · Performance", externalUrl: "https://xansystems.com/?utm_source=chatgpt.com" },
+  { title: "Infinity Terrace Rentals", tag: "Real Estate · Lead Gen", externalUrl: "https://infinityterracerentals.com/?utm_source=chatgpt.com" },
+  { title: "SunEnergy", tag: "Energy · Web Design", externalUrl: "https://sunenergy.com.au/?utm_source=chatgpt.com" },
+  { title: "Plus 2 Clothing", tag: "E-Commerce · CRO", externalUrl: "https://plus2clothing.com/?srsltid=AfmBOopozpb7MCu2rZAqMbZ3FqokWrGvXrnwLBMOI0KO2xCcShMvVb0k&utm_source=chatgpt.com" },
+  { title: "Forever Red Soles", tag: "E-Commerce · CRO", externalUrl: "https://www.christianlouboutin.com" },
+  { title: "Premium Golf Club", tag: "Creative · Web Design", externalUrl: "https://www.golfpass.com" },
+  { title: "Sundae Kitchen", tag: "Real Estate · Lead Gen", externalUrl: "https://sundae.com" },
+  { title: "Spartan", tag: "Creative · Web Design", externalUrl: "https://www.spartan.com/?utm_source=chatgpt.com" },
+  { title: "TotalBooking", tag: "B2B · Automation", externalUrl: "https://www.booking.com" },
+  { title: "New Steps Physical Therapy", tag: "Healthcare · Branding", externalUrl: "https://newstepspt.com/?utm_source=chatgpt.com" },
+  { title: "CinouedDta Agency", tag: "Creative · Web Design", externalUrl: "https://www.digitalagency.com" },
+  { title: "Latasha's Kitchen", tag: "E-Commerce · CRO", externalUrl: "https://latashaskitchen.com/?utm_source=chatgpt.com" },
+  { title: "Viva Healthcare", tag: "Healthcare · Branding", externalUrl: "https://www.vivahealth.com" },
+  { title: "Luxury Apartments", tag: "Real Estate · Lead Gen", externalUrl: "https://www.apartments.com" },
+  { title: "HONU Watersports", tag: "E-Commerce · CRO", externalUrl: "https://www.honuboards.com" },
+  { title: "Parvisor", tag: "Consulting · Ads", externalUrl: "https://parvisor.com/?utm_source=chatgpt.com" },
+  { title: "Parvisor", tag: "Consulting · Ads", externalUrl: "https://parvisor.com/?utm_source=chatgpt.com" },
+  { title: "BEC + BRIDGE", tag: "E-Commerce · CRO", externalUrl: "https://becandbridge.com/?utm_source=chatgpt.com" },
+  { title: "Lavishway", tag: "E-Commerce · CRO", externalUrl: "https://lavishway.co.uk/?utm_source=chatgpt.com" },
+  { title: "Zinn Health & Wellness", tag: "Healthcare · Branding", externalUrl: "https://www.zinnhealth.com" },
+  { title: "Calypso Lemonade", tag: "E-Commerce · CRO", externalUrl: "https://drinkcalypso.com/?utm_source=chatgpt.com" },
+  { title: "YourTax Solutions", tag: "Finance · SEO", externalUrl: "https://www.yourtax.com.au" },
+  { title: "New York Francophone Real Estate", tag: "Real Estate · Lead Gen", externalUrl: "https://www.sothebysrealty.com" },
+  { title: "Quay Restaurant", tag: "Creative · Web Design", externalUrl: "https://www.quay.com.au" },
+  { title: "Weisenburger", tag: "B2B · Automation", externalUrl: "https://www.weisenburger.de/?utm_source=chatgpt.com" },
+  { title: "Redefine Healthcare", tag: "Healthcare · Branding", externalUrl: "https://redefinehealthcare.com" },
+  { title: "Body Better Weight Loss", tag: "Healthcare · Branding", externalUrl: "https://www.bodybetterweightloss.com" },
+  { title: "Body Better Weight Loss", tag: "Healthcare · Branding", externalUrl: "https://www.bodybetterweightloss.com" },
+  { title: "Havergal College", tag: "Education · Web Design", externalUrl: "https://www.havergal.on.ca/?utm_source=chatgpt.com" },
+  { title: "Plus 2 Clothing", tag: "E-Commerce · CRO", externalUrl: "https://plus2clothing.com/?srsltid=AfmBOopozpb7MCu2rZAqMbZ3FqokWrGvXrnwLBMOI0KO2xCcShMvVb0k&utm_source=chatgpt.com" },
+  { title: "Havergal College", tag: "Education · Web Design", externalUrl: "https://www.havergal.on.ca/?utm_source=chatgpt.com" },
+  { title: "Plus 2 Clothing", tag: "E-Commerce · CRO", externalUrl: "https://plus2clothing.com/?srsltid=AfmBOopozpb7MCu2rZAqMbZ3FqokWrGvXrnwLBMOI0KO2xCcShMvVb0k&utm_source=chatgpt.com" },
+  { title: "RU Connected", tag: "E-Commerce · CRO", externalUrl: "https://www.ruconnected.nl/hdmi-2-1-kabels/?utm_source=chatgpt.com" },
+  { title: "BWell Lounge", tag: "Healthcare · Branding", externalUrl: "https://bwell.ca/?utm_source=chatgpt.com" },
+  { title: "Anglo Pacific", tag: "B2B · Automation", externalUrl: "https://www.anglopacific.co.uk/?utm_source=chatgpt.com" },
+];
+
+export const ALL_PORTFOLIO_PROJECTS = REAL_PROJECT_DATA.map((data, i) => {
+  // Keep exact original IDs for first 4 to preserve link integrity, generate clean unique IDs for others
   const id = i < 4 
     ? ["aurora-realty", "meridian-care", "sandstone-co", "bluepeak-tech"][i]
-    : `${prefix.toLowerCase()}-${template.name.toLowerCase().replace(/[^a-z0-9]/g, '')}-${i}`;
-
-  const title = i < 4 
-    ? ["Aurora Realty", "MeridianCare", "Sandstone Co.", "BluePeak Tech"][i]
-    : `${prefix} ${template.name}`;
-
+    : data.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") + `-${i}`;
+    
   return {
     id,
-    title,
-    tag: template.tag,
-    img: i < PROJECT_IMAGES.length ? PROJECT_IMAGES[i] : template.img,
+    title: data.title,
+    tag: data.tag,
+    img: PROJECT_IMAGES[i],
+    externalUrl: data.externalUrl,
     challenge: `The client was struggling with legacy systems and poor conversion rates. Despite high traffic, their cost per acquisition was unsustainable, leading to stagnant growth.`,
     solution: `We implemented a full-stack growth system including a new high-converting funnel, targeted paid campaigns, and CRM automation to qualify leads instantly.`,
     results: [
@@ -605,6 +640,7 @@ export const ALL_PORTFOLIO_PROJECTS = Array.from({ length: 100 }).map((_, i) => 
 });
 
 export function Portfolio({ limit }: { limit?: number }) {
+  const navigate = useNavigate();
   const displayCards = limit ? ALL_PORTFOLIO_PROJECTS.slice(0, limit) : ALL_PORTFOLIO_PROJECTS;
   return (
     <section id="portfolio" className="section-y bg-slate-50">
@@ -613,7 +649,7 @@ export function Portfolio({ limit }: { limit?: number }) {
           <div className="max-w-2xl">
             <span className="eyebrow mx-auto fade-up" style={{ animationDelay: '100ms' }}>Our work</span>
             <h2 className="headline-lg mt-4 text-[var(--ink-deep)] fade-up" style={{ animationDelay: '200ms' }}>
-              Built for Real Businesses
+              Done for Real Businesses
             </h2>
             <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed fade-up" style={{ animationDelay: '300ms' }}>
               Every business is different, which is why every solution we build is tailored to
@@ -629,34 +665,63 @@ export function Portfolio({ limit }: { limit?: number }) {
         </div>
 
         <div className={`mt-14 grid gap-6 ${limit ? 'md:grid-cols-2 lg:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
-          {displayCards.map((c, i) => (
-            <Link
-              to={`/portfolio/${c.id}`}
-              key={c.id}
-              className="group relative overflow-hidden rounded-3xl fade-up border border-[var(--border)] shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700"
-              style={{ animationDelay: limit ? `${500 + (i * 100)}ms` : '0ms' }}
-            >
-              <img
-                src={c.img}
-                alt={c.title}
-                className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)] via-[var(--ink-deep)]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
-              <div className="absolute inset-x-0 bottom-0 p-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
-                <div className="text-xs uppercase tracking-[0.18em] text-[var(--gold)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">{c.tag}</div>
-                <div className="mt-2 flex items-center justify-between gap-4">
-                  <h3 className="text-xl md:text-3xl font-bold">{c.title}</h3>
-                  <ArrowUpRight className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 scale-125" />
+          {displayCards.map((c, i) => {
+            if (limit) {
+              return (
+                <div
+                  key={c.id}
+                  className="group relative overflow-hidden rounded-3xl fade-up border border-[var(--border)] shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700"
+                  style={{ animationDelay: `${500 + (i * 100)}ms` }}
+                >
+                  <img
+                    src={c.img}
+                    alt={c.title}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
+                  />
+                </div>
+              );
+            }
+            return (
+              <div
+                onClick={() => navigate({ to: `/portfolio/${c.id}` })}
+                key={c.id}
+                className="group relative overflow-hidden rounded-3xl fade-up border border-[var(--border)] shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700 cursor-pointer"
+                style={{ animationDelay: '0ms' }}
+              >
+                <img
+                  src={c.img}
+                  alt={c.title}
+                  className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)] via-[var(--ink-deep)]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
+                <div className="absolute inset-x-0 bottom-0 p-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                  <div className="text-xs uppercase tracking-[0.18em] text-[var(--gold)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">{c.tag}</div>
+                  <div className="mt-2 flex items-center justify-between gap-4">
+                    <h3 className="text-xl md:text-3xl font-bold">{c.title}</h3>
+                    {c.externalUrl ? (
+                      <a
+                        href={c.externalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-1 rounded-full hover:bg-[var(--gold)] hover:text-black transition-colors"
+                      >
+                        <ArrowUpRight className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 scale-125" />
+                      </a>
+                    ) : (
+                      <ArrowUpRight className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 scale-125" />
+                    )}
+                  </div>
                 </div>
               </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
 
         {limit && (
           <div className="mt-14 text-center">
             <Link to="/portfolio" className="btn-ghost text-[var(--ink-deep)] group">
-              <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View All 100 Projects <ArrowRight size={16} /></span>
+              <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View All Projects <ArrowRight size={16} /></span>
             </Link>
           </div>
         )}

@@ -201,7 +201,7 @@ function About() {
                 <div className="absolute -inset-4 bg-gradient-to-tr from-[var(--gold)] to-transparent opacity-30 blur-2xl animate-pulse"></div>
                 <div className="relative rounded-[2rem] overflow-hidden border border-white/20 shadow-[0_0_50px_rgba(255,215,0,0.15)] group">
                   <img 
-                    src="/innovation_hub.png" 
+                    src="/innovation_hub.webp" 
                     alt="NEXDEER Innovation Hub" 
                     className="w-full h-auto aspect-square object-cover transform transition-transform duration-[3s] group-hover:scale-110"
                   />

@@ -3,7 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FinalCTA } from "@/components/site/sections";
 import { ALL_PORTFOLIO_PROJECTS } from "@/components/site/sections";
-import { ArrowLeft, CheckCircle2, Calendar, Target, ArrowRight } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Calendar, Target, ArrowRight, ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/portfolio/$projectId")({
   component: PortfolioDetail,
@@ -124,6 +124,19 @@ function PortfolioDetail() {
                       </div>
                     ))}
                   </div>
+                  
+                  {project.externalUrl && (
+                    <div className="mt-8 pt-8 border-t border-white/10">
+                      <a
+                        href={project.externalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-gold w-full flex justify-center py-3 bg-[var(--gold)] text-black hover:bg-white hover:text-black transition-colors"
+                      >
+                        <span className="flex items-center gap-2 font-semibold">Visit Live Website <ArrowUpRight size={16} /></span>
+                      </a>
+                    </div>
+                  )}
                   
                   <div className="mt-10 pt-8 border-t border-white/10">
                     <p className="text-sm text-white/80 mb-6">Want to achieve similar growth for your business?</p>

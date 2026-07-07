@@ -179,7 +179,7 @@ function IndustriesPage() {
                   </p>
                 </div>
                 <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3] fade-up">
-                  <img src="/enterprise_strategy.png" alt="Team strategy planning" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                  <img src="/enterprise_strategy.webp" alt="Team strategy planning" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)]/40 to-transparent pointer-events-none" />
                 </div>
                 
