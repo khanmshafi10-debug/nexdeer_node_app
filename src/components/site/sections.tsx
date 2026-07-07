@@ -633,9 +633,6 @@ export function Industries() {
               opportunities within each industry.
             </p>
           </div>
-          <Link to="/industries" className="btn-ghost text-[var(--ink-deep)] self-start md:self-auto group fade-up" style={{ animationDelay: '400ms' }}>
-            <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View All 60 Industries <ArrowRight size={16} /></span>
-          </Link>
         </div>
 
         <div className="mt-12 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
@@ -652,6 +649,12 @@ export function Industries() {
               <div className="text-sm font-bold text-[var(--ink-deep)] transition-colors duration-300 group-hover:text-[var(--gold)] relative z-10">{label}</div>
             </div>
           ))}
+        </div>
+        
+        <div className="mt-14 text-center">
+          <Link to="/industries" className="btn-gold">
+            View All Industries
+          </Link>
         </div>
       </div>
     </section>
@@ -1494,7 +1497,7 @@ export function ContactStrip() {
       <div className="container-x py-14 grid gap-8 md:grid-cols-3 md:items-center">
         {[
           { icon: Mail, label: "Email us", value: "hello@nexdeer.com" },
-          { icon: Phone, label: "Call us", value: <><span className="block">+44 7537 171506</span><span className="block mt-0.5">+92 318 6662360</span><span className="block mt-0.5">+92 306 2999700 (HR)</span></> },
+          { icon: Phone, label: "Call us", value: <><span className="block">+44 7537 171506</span><span className="block mt-0.5">+92 318 6662360</span></> },
           { icon: MapPin, label: "Visit us", value: "Multan, Pakistan" },
         ].map(({ icon: Icon, label, value }, idx) => (
           <div key={idx} className="flex items-center gap-4">

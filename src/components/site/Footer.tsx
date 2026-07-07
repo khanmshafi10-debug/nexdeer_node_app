@@ -26,7 +26,7 @@ export function Footer() {
     <footer className="bg-[var(--ink-deep)] text-white/80">
       <div className="container-x py-20">
         <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-3">
             <div className="flex items-center gap-2">
               <img src="/logo.png" alt="NEXDEER Logo" className="h-10 w-auto" />
             </div>
@@ -35,40 +35,35 @@ export function Footer() {
               marketing, websites, SEO, and AI-powered automation across Pakistan, UAE, KSA, and
               globally.
             </p>
-            <div className="mt-8">
-              <h3 className="mb-6 text-xl font-bold text-white tracking-wide">Contact</h3>
-              <ul className="space-y-4">
-                <li>
-                  <a href="mailto:hello@nexdeer.com" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
-                    <Mail size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
-                    hello@nexdeer.com
-                  </a>
-                </li>
-                <li>
-                  <a href="https://wa.me/447537171506" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
-                    <MessageCircle size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
-                    +44 7537 171506
-                  </a>
-                </li>
-                <li>
-                  <a href="tel:+923186662360" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
-                    <Phone size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
-                    +92 318 6662360
-                  </a>
-                </li>
-                <li>
-                  <a href="tel:+923062999700" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
-                    <Phone size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
-                    +92 306 2999700 (HR)
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
 
           <FooterCol title="Quick Links" items={QUICK} />
           <FooterCol title="Services" items={SERVICES} />
           <FooterCol title="Industries" items={INDUSTRIES} />
+
+          <div className="lg:col-span-3">
+            <h4 className="mb-6 text-sm font-semibold uppercase tracking-[0.18em] text-white">Contact</h4>
+            <ul className="space-y-4">
+              <li>
+                <a href="mailto:hello@nexdeer.com" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
+                  <Mail size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
+                  hello@nexdeer.com
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/447537171506" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
+                  <MessageCircle size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
+                  +44 7537 171506
+                </a>
+              </li>
+              <li>
+                <a href="tel:+923186662360" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
+                  <Phone size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
+                  +92 318 6662360
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
