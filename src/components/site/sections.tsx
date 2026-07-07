@@ -1290,7 +1290,7 @@ const row3 = filteredLogos.slice(third * 2);
 
 export function TechStack() {
   return (
-    <section className="section-y bg-white overflow-hidden">
+    <section className="section-y bg-gray-50 overflow-hidden">
       <div className="container-x">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end mb-16">
           <div className="lg:col-span-7">
@@ -1305,9 +1305,9 @@ export function TechStack() {
           </p>
         </div>
 
-        <div className="relative flex flex-col gap-6 group overflow-hidden py-4">
+        <div className="relative flex flex-col gap-6 overflow-hidden py-4">
           {/* Row 1: Moves Left */}
-          <div className="flex w-max animate-marquee-left gap-6 px-4">
+          <div className="group flex w-max animate-marquee-left gap-6 px-4">
             {[...row1, ...row1].map((filename, idx) => {
               const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
               const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
@@ -1328,7 +1328,7 @@ export function TechStack() {
           </div>
 
           {/* Row 2: Moves Right */}
-          <div className="flex w-max animate-marquee-right gap-6 px-4">
+          <div className="group flex w-max animate-marquee-right gap-6 px-4">
             {[...row2, ...row2].map((filename, idx) => {
               const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
               const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
@@ -1349,7 +1349,7 @@ export function TechStack() {
           </div>
 
           {/* Row 3: Moves Left */}
-          <div className="flex w-max animate-marquee-left gap-6 px-4">
+          <div className="group flex w-max animate-marquee-left gap-6 px-4">
             {[...row3, ...row3].map((filename, idx) => {
               const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
               const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
@@ -1409,7 +1409,7 @@ export function CeoMessage() {
                 </p>
                 
                 <div className="flex flex-col">
-                  <div className="text-gray-400 tracking-wide select-none" style={{ fontFamily: "'Qwitcher Grypen', cursive", fontSize: "4.5rem", lineHeight: "1" }}>
+                  <div className="text-gray-400 tracking-wide select-none" style={{ fontFamily: "'Qwitcher Grypen', cursive", fontSize: "3.5rem", lineHeight: "1" }}>
                     Shahzad Rando
                   </div>
                   <div className="text-[color:var(--muted-foreground)] text-sm font-sans tracking-wide mt-2">
