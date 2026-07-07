@@ -273,7 +273,7 @@ function ServiceContactStrip() {
         {[
           { icon: Mail, label: "Email us", value: "hello@nexdeer.com" },
           { icon: Phone, label: "Call us", value: <><span className="block">+44 7537 171506</span><span className="block mt-0.5">+92 318 6662360</span><span className="block mt-0.5">+92 306 2999700 (HR)</span></> },
-          { icon: MapPin, label: "Visit us", value: "Multan, Pakistan" },
+          { icon: MapPin, label: "Our Office", value: "Bosan road Multan" },
         ].map(({ icon: Icon, label, value }, idx) => (
           <div key={idx} className="flex items-center gap-4">
             <span className="grid h-12 w-12 place-items-center rounded-full bg-[var(--gold)] text-[var(--ink-deep)]"><Icon size={18} /></span>

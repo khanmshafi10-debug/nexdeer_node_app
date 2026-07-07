@@ -811,7 +811,7 @@ export function Testimonials() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIdx((curr) => (curr + 1) % TESTIMONIALS.length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
@@ -967,7 +967,7 @@ export function FinalCTA() {
 
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
           {[
-            ["Pakistan", "Lahore HQ"],
+            ["Pakistan", "Multan"],
             ["UAE", "Dubai"],
             ["Saudi Arabia", "Riyadh"],
             ["Global", "Remote teams"],
@@ -1050,10 +1050,14 @@ export function SolutionIntro() {
             ["Nurture", "AI + CRM automation that follows up while you sleep."],
             ["Scale", "Compound optimization across every channel, every month."],
           ].map(([k, v], i) => (
-            <div key={k} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-              <div className="text-xs font-mono text-[var(--gold)]">0{i + 1}</div>
-              <h3 className="mt-3 text-xl font-semibold">{k}</h3>
-              <p className="mt-3 text-sm text-white/70 leading-relaxed">{v}</p>
+            <div 
+              key={k} 
+              className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-300 hover:-translate-y-2 hover:border-[var(--gold)]/50 hover:bg-white/[0.08] hover:shadow-[0_15px_30px_rgba(232,181,4,0.1)] group cursor-default fade-up"
+              style={{ animationDelay: `${i * 150}ms` }}
+            >
+              <div className="text-xs font-mono text-[var(--gold)] transition-transform duration-300 group-hover:scale-110 origin-left inline-block">0{i + 1}</div>
+              <h3 className="mt-3 text-xl font-semibold transition-colors duration-300 group-hover:text-[var(--gold)]">{k}</h3>
+              <p className="mt-3 text-sm text-white/70 leading-relaxed group-hover:text-white transition-colors duration-300">{v}</p>
             </div>
           ))}
         </div>
@@ -1493,9 +1497,9 @@ export function ContactStrip() {
     <section className="bg-[var(--ink)] text-white">
       <div className="container-x py-14 grid gap-8 md:grid-cols-3 md:items-center">
         {[
-          { icon: Mail, label: "Email us", value: "hello@nexdeer.com" },
+          { icon: Mail, label: "Email us", value: "growth@nexdeer.com" },
           { icon: Phone, label: "Call us", value: <><span className="block">+44 7537 171506</span><span className="block mt-0.5">+92 318 6662360</span></> },
-          { icon: MapPin, label: "Visit us", value: "Multan, Pakistan" },
+          { icon: MapPin, label: "Our Office", value: "Bosan road Multan" },
         ].map(({ icon: Icon, label, value }, idx) => (
           <div key={idx} className="flex items-center gap-4">
             <span className="grid h-12 w-12 place-items-center rounded-full bg-[var(--gold)] text-[var(--ink-deep)]"><Icon size={18} /></span>
