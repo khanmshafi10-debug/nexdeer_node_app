@@ -77,10 +77,17 @@ export function Footer() {
             © {new Date().getFullYear()} NEXDEER. All rights reserved.
           </p>
           <div className="flex items-center gap-3">
-            {[Linkedin, Instagram, Facebook, Twitter].map((Icon, i) => (
+            {[
+              { Icon: Linkedin, href: "https://www.linkedin.com/company/nexdeer/" },
+              { Icon: Instagram, href: "https://www.instagram.com/nexdeer?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
+              { Icon: Facebook, href: "https://www.facebook.com/nexdeer/" },
+              { Icon: Twitter, href: "https://x.com/nexdeer" }
+            ].map(({ Icon, href }, i) => (
               <a
                 key={i}
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="social"
                 className="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-white/75 hover:border-[var(--gold)] hover:text-[var(--gold)] transition"
               >
