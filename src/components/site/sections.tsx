@@ -557,7 +557,7 @@ export const ALL_PORTFOLIO_PROJECTS = Array.from({ length: 100 }).map((_, i) => 
 export function Portfolio({ limit }: { limit?: number }) {
   const displayCards = limit ? ALL_PORTFOLIO_PROJECTS.slice(0, limit) : ALL_PORTFOLIO_PROJECTS;
   return (
-    <section id="portfolio" className="section-y bg-white">
+    <section id="portfolio" className="section-y bg-slate-50">
       <div className="container-x">
         <div className="flex flex-col gap-8 items-center text-center fade-up">
           <div className="max-w-2xl">
