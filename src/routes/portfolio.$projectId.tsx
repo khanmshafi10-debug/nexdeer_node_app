@@ -77,10 +77,11 @@ function PortfolioDetail() {
         <section className="section-y bg-[var(--surface)]">
           <div className="container-x">
             <div className="grid lg:grid-cols-12 gap-16">
-              
               {/* LEFT COLUMN: Main content */}
               <div className="lg:col-span-8">
-                <img src={project.img} alt={project.title} className="w-full aspect-video object-cover rounded-3xl mb-16 shadow-2xl border border-[var(--border)] fade-up" style={{ animationDelay: '300ms' }} />
+                <div className="w-full aspect-video overflow-hidden rounded-3xl mb-16 shadow-2xl border border-[var(--border)] fade-up" style={{ animationDelay: '300ms' }}>
+                  <img src={project.img} alt={project.title} className="w-full h-full object-cover scale-[1.07]" />
+                </div>
                 
                 <div className="space-y-16">
                   <div className="fade-up">

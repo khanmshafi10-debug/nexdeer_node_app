@@ -680,7 +680,7 @@ export function Portfolio({ limit }: { limit?: number }) {
                   <img
                     src={c.img}
                     alt={c.title}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out scale-[1.07] group-hover:scale-[1.15]"
                   />
                 </div>
               );
@@ -695,7 +695,7 @@ export function Portfolio({ limit }: { limit?: number }) {
                 <img
                   src={c.img}
                   alt={c.title}
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
+                  className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out scale-[1.07] group-hover:scale-[1.15]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)] via-[var(--ink-deep)]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
                 <div className="absolute inset-x-0 bottom-0 p-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
