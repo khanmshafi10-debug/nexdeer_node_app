@@ -282,9 +282,9 @@ export function Trusted() {
           </div>
           
           <div className="mt-10">
-            <Link to="/about" className="btn-ghost text-[var(--ink-deep)] group">
-              Learn More About Us <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </Link>
+            <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
+              Discuss Your Project on WhatsApp
+            </a>
           </div>
         </div>
       </div>
@@ -379,9 +379,9 @@ export function Problem() {
           </div>
 
           <div className="mt-8 fade-up" style={{ animationDelay: '1300ms' }}>
-            <Link to="/services" className="btn-ghost text-white group">
-              <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">See How We Solve This <ArrowRight size={16} /></span>
-            </Link>
+            <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
+              Get Your Free Consultation
+            </a>
           </div>
         </div>
       </div>
@@ -1007,9 +1007,9 @@ export function PainPoints() {
         </div>
         
         <div className="mt-14 text-center">
-          <Link to="/services" className="btn-ghost text-[var(--ink-deep)] group">
-            <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">Discover The Solution <ArrowRight size={16} /></span>
-          </Link>
+          <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
+            Discuss Your Challenges on WhatsApp
+          </a>
         </div>
       </div>
     </section>
@@ -1049,9 +1049,9 @@ export function SolutionIntro() {
         </div>
         
         <div className="mt-14 text-center">
-          <Link to="/services" className="btn-ghost text-white group">
-            <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">Explore The System <ArrowRight size={16} /></span>
-          </Link>
+          <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
+            Build Your Custom Growth Plan
+          </a>
         </div>
       </div>
     </section>
