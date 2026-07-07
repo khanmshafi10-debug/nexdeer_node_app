@@ -645,25 +645,27 @@ export function Portfolio({ limit }: { limit?: number }) {
   return (
     <section id="portfolio" className="section-y bg-slate-50">
       <div className="container-x">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 fade-up">
-          <div className="max-w-2xl text-left">
-            <span className="eyebrow fade-up" style={{ animationDelay: '100ms' }}>Our work</span>
-            <h2 className="headline-lg mt-4 text-[var(--ink-deep)] fade-up" style={{ animationDelay: '200ms' }}>
-              Done for Real Businesses
-            </h2>
-            <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed fade-up" style={{ animationDelay: '300ms' }}>
-              Every business is different, which is why every solution we build is tailored to
-              specific goals, audiences, and growth objectives — across websites, branding,
-              campaigns, SEO, social, automation, and lead generation.
-            </p>
-          </div>
-          {limit && (
-            <div className="flex-shrink-0">
-              <Link to="/portfolio" className="btn-ghost text-[var(--ink-deep)] fade-up group" style={{ animationDelay: '400ms' }}>
-                <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View Portfolio <ArrowRight size={16} /></span>
-              </Link>
+        <div className="fade-up">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="text-left">
+              <span className="eyebrow fade-up" style={{ animationDelay: '100ms' }}>Our work</span>
+              <h2 className="headline-lg mt-4 text-[var(--ink-deep)] fade-up" style={{ animationDelay: '200ms' }}>
+                Done for Real Businesses
+              </h2>
             </div>
-          )}
+            {limit && (
+              <div className="flex-shrink-0 mb-1">
+                <Link to="/portfolio" className="btn-ghost text-[var(--ink-deep)] fade-up group" style={{ animationDelay: '400ms' }}>
+                  <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View Portfolio <ArrowRight size={16} /></span>
+                </Link>
+              </div>
+            )}
+          </div>
+          <p className="mt-5 max-w-2xl text-left text-[color:var(--muted-foreground)] leading-relaxed fade-up" style={{ animationDelay: '300ms' }}>
+            Every business is different, which is why every solution we build is tailored to
+            specific goals, audiences, and growth objectives — across websites, branding,
+            campaigns, SEO, social, automation, and lead generation.
+          </p>
         </div>
 
         <div className={`mt-14 grid gap-6 ${limit ? 'md:grid-cols-2 lg:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
