@@ -1381,14 +1381,11 @@ export function TechStack() {
 /* ---------- CEO MESSAGE ---------- */
 export function CeoMessage() {
   return (
-    <section className="section-y bg-[#090429] relative overflow-hidden">
+    <section className="section-y bg-white relative overflow-hidden">
       <div className="container-x">
         <div className="fade-up" style={{ animationDelay: '100ms' }}>
-          <div className="text-center mb-8">
-            <span className="eyebrow mx-auto justify-center text-white/80">A MESSAGE FROM THE FOUNDER</span>
-          </div>
           
-          <div className="rounded-[2.5rem] bg-gray-100 p-8 md:p-16 lg:p-20 text-[var(--ink-deep)] relative overflow-hidden shadow-2xl">
+          <div className="rounded-[2.5rem] bg-gray-100 p-8 md:p-16 lg:p-20 text-[var(--ink-deep)] relative overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-[0_20px_50px_rgba(9,4,41,0.3)]">
             <div className="absolute right-12 top-16 text-[20rem] leading-none font-serif text-[var(--gold)]/15 select-none pointer-events-none hidden md:block">"</div>
             <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-[var(--gold)]/10 rounded-full blur-3xl pointer-events-none" />
             
@@ -1402,6 +1399,7 @@ export function CeoMessage() {
               </div>
               
               <div className="md:col-span-9 lg:col-span-9 flex flex-col justify-center">
+                <span className="eyebrow text-[var(--ink-deep)]/70 mb-3">A MESSAGE FROM THE FOUNDER</span>
                 <h2 className="text-3xl md:text-5xl font-bold leading-tight text-[var(--ink-deep)] mb-6">
                   We Built The Agency
                 </h2>
