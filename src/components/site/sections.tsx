@@ -837,7 +837,7 @@ export function WhyNexdeer() {
                 </div>
                 <div className="h-16 w-px bg-white/10" />
                 <div>
-                  <div className="text-5xl font-bold text-white">$50<span className="text-[var(--gold)]">M+</span></div>
+                  <div className="text-5xl font-bold text-white">99<span className="text-[var(--gold)]">+</span></div>
                   <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Revenue Gen</div>
                 </div>
                 <div className="h-16 w-px bg-white/10" />
@@ -888,12 +888,6 @@ export function Process() {
               </div>
             );
           })}
-        </div>
-        
-        <div className="mt-10 text-center fade-up" style={{ animationDelay: '800ms' }}>
-          <Link to="/services" className="btn-ghost text-[var(--ink-deep)] group">
-            <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View All Services <ArrowRight size={16} /></span>
-          </Link>
         </div>
       </div>
     </section>
