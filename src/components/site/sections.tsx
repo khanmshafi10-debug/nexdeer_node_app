@@ -683,8 +683,8 @@ export function Portfolio({ limit }: { limit?: number }) {
                     className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out scale-[1.07] group-hover:scale-[1.15]"
                   />
                   {/* Gold Sparkle badge to cover Gemini watermark */}
-                  <div className="absolute bottom-1 right-1 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-[#0a1128] border border-[var(--gold)]/30 shadow-lg">
-                    <Sparkles size={16} className="fill-[var(--gold)] text-[var(--gold)]" />
+                  <div className="absolute bottom-0 right-0 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-[#0a1128] border border-[var(--gold)]/30 shadow-lg">
+                    <Sparkles size={20} className="fill-[var(--gold)] text-[var(--gold)]" />
                   </div>
                 </div>
               );
@@ -702,8 +702,8 @@ export function Portfolio({ limit }: { limit?: number }) {
                   className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out scale-[1.07] group-hover:scale-[1.15]"
                 />
                 {/* Gold Sparkle badge to cover Gemini watermark */}
-                <div className="absolute bottom-1 right-1 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-[#0a1128] border border-[var(--gold)]/30 shadow-lg group-hover:opacity-0 transition-opacity duration-500">
-                  <Sparkles size={16} className="fill-[var(--gold)] text-[var(--gold)]" />
+                <div className="absolute bottom-0 right-0 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-[#0a1128] border border-[var(--gold)]/30 shadow-lg group-hover:opacity-0 transition-opacity duration-500">
+                  <Sparkles size={20} className="fill-[var(--gold)] text-[var(--gold)]" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)] via-[var(--ink-deep)]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
                 <div className="absolute inset-x-0 bottom-0 p-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
