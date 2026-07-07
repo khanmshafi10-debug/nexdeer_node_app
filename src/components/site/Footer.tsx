@@ -62,6 +62,12 @@ export function Footer() {
                   +92 318 6662360
                 </a>
               </li>
+              <li>
+                <a href="tel:+923062999700" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
+                  <Phone size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
+                  +92 306 2999700 (HR)
+                </a>
+              </li>
             </ul>
           </div>
         </div>
