@@ -25,6 +25,7 @@ import {
   FAQ,
   FinalCTA,
   ContactStrip,
+  ServicesCTAStrip,
 } from "@/components/site/sections";
 
 export const Route = createFileRoute("/")({
@@ -75,6 +76,7 @@ function Index() {
         <ServiceWebsite />
         <ServiceSEO />
         <ServiceAI />
+        <ServicesCTAStrip />
         <Portfolio limit={4} />
         <CaseStudies />
         <Industries />

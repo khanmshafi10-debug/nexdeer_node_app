@@ -704,14 +704,6 @@ export function Portfolio({ limit }: { limit?: number }) {
             );
           })}
         </div>
-
-        {limit && (
-          <div className="mt-14 text-center">
-            <Link to="/portfolio" className="btn-ghost text-[var(--ink-deep)] group">
-              <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View All Projects <ArrowRight size={16} /></span>
-            </Link>
-          </div>
-        )}
       </div>
     </section>
   );
@@ -1607,6 +1599,26 @@ export function ContactStrip() {
             </div>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------- SERVICES CTA STRIP ---------- */
+export function ServicesCTAStrip() {
+  return (
+    <section className="bg-[var(--ink-deep)] text-white py-12 relative overflow-hidden border-y border-white/5">
+      <div className="absolute inset-0 -z-10 grid-noise opacity-30" />
+      <div className="container-x flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 className="text-xl md:text-2xl font-bold">Ready to see our growth systems in action?</h3>
+          <p className="text-sm text-white/70 mt-1">Explore our latest case studies and real-world results.</p>
+        </div>
+        <div>
+          <Link to="/contact" className="btn-gold inline-flex items-center gap-2">
+            Book a Strategy Call <ArrowRight size={16} />
+          </Link>
+        </div>
       </div>
     </section>
   );
