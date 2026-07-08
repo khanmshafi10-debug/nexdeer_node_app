@@ -46,8 +46,12 @@ function Contact() {
                       <MessageCircle size={20} />
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-[var(--ink-deep)] transition-colors duration-300 group-hover:text-[var(--gold)]">WhatsApp</h4>
-                      <a href="https://wa.me/" className="mt-1 block text-sm text-[color:var(--muted-foreground)] transition-colors duration-300">Click to chat with our team</a>
+                      <h4 className="text-sm font-semibold text-[var(--ink-deep)] transition-colors duration-300 group-hover:text-[var(--gold)]">WhatsApp / Call</h4>
+                      <div className="mt-1 space-y-1.5">
+                        <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="block text-sm text-[color:var(--muted-foreground)] transition-colors duration-300 hover:text-[var(--gold)]">+44 7537 171506 (Global)</a>
+                        <a href="https://wa.me/923186662360" target="_blank" rel="noopener noreferrer" className="block text-sm text-[color:var(--muted-foreground)] transition-colors duration-300 hover:text-[var(--gold)]">+92 318 6662360 (Pakistan)</a>
+                        <a href="https://wa.me/923062999700" target="_blank" rel="noopener noreferrer" className="block text-sm text-[color:var(--muted-foreground)] transition-colors duration-300 hover:text-[var(--gold)]">+92 306 2999700 (HR)</a>
+                      </div>
                     </div>
                   </div>
 
@@ -66,8 +70,8 @@ function Contact() {
                       <MapPin size={20} />
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-[var(--ink-deep)] transition-colors duration-300 group-hover:text-[var(--gold)]">Global Offices</h4>
-                      <p className="mt-1 text-sm text-[color:var(--muted-foreground)]">Dubai, UAE | New York, USA | Lahore, PK</p>
+                      <h4 className="text-sm font-semibold text-[var(--ink-deep)] transition-colors duration-300 group-hover:text-[var(--gold)]">Our Office</h4>
+                      <p className="mt-1 text-sm text-[color:var(--muted-foreground)]">Bosan Road, Multan, Pakistan</p>
                     </div>
                   </div>
                 </div>
