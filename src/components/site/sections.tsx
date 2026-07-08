@@ -820,7 +820,7 @@ export function WhyNexdeer() {
                 </div>
                 <div className="h-16 w-px bg-white/10" />
                 <div>
-                  <div className="text-5xl font-bold text-white">99<span className="text-[var(--gold)]">+</span></div>
+                  <div className="text-5xl font-bold text-white">99<span className="text-[var(--gold)]">%</span></div>
                   <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Revenue Gen</div>
                 </div>
                 <div className="h-16 w-px bg-white/10" />
@@ -1631,9 +1631,9 @@ export function ServicesCTAStrip() {
           <p className="text-sm text-white/70 mt-1">Explore our latest case studies and real-world results.</p>
         </div>
         <div>
-          <Link to="/contact" className="btn-gold inline-flex items-center gap-2">
+          <a href="https://wa.me/923186662360" target="_blank" rel="noreferrer" className="btn-gold inline-flex items-center gap-2">
             Book a Strategy Call <ArrowRight size={16} />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

@@ -70,7 +70,7 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <a href="#contact" className="btn-gold !py-2.5 !px-5 text-sm">
+          <a href="https://wa.me/923186662360" target="_blank" rel="noreferrer" className="btn-gold !py-2.5 !px-5 text-sm">
             Book Strategy Call
           </a>
         </div>
@@ -99,9 +99,9 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
-            <a href="#contact" onClick={() => setOpen(false)} className="btn-gold mt-3">
-              Book Strategy Call
-            </a>
+             <a href="https://wa.me/923186662360" target="_blank" rel="noreferrer" onClick={() => setOpen(false)} className="btn-gold mt-3">
+               Book Strategy Call
+             </a>
           </div>
         </div>
       )}
