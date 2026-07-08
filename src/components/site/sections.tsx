@@ -1491,7 +1491,7 @@ export function CeoMessage() {
       <div className="container-x relative z-10">
         <div className="fade-up" style={{ animationDelay: '100ms' }}>
           
-          <div className="max-w-5xl mx-auto rounded-2xl bg-gray-100 py-16 px-10 md:py-24 md:px-16 lg:py-28 lg:px-20 text-[var(--ink-deep)] relative overflow-hidden">
+          <div className="rounded-2xl bg-gray-100 p-8 md:p-16 lg:p-20 text-[var(--ink-deep)] relative overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-[0_20px_50px_rgba(9,4,41,0.3)]">
             <div className="absolute right-12 top-16 text-[15rem] leading-none font-serif text-[var(--gold)]/10 select-none pointer-events-none hidden md:block">"</div>
             <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-[var(--gold)]/5 rounded-full blur-3xl pointer-events-none" />
             
@@ -1500,7 +1500,7 @@ export function CeoMessage() {
                 <img 
                   src="/ceo image.png" 
                   alt="Shahzad Rando" 
-                  className="w-full aspect-[4/5] rounded-xl object-cover"
+                  className="w-full aspect-[4/5] rounded-2xl object-cover object-top"
                 />
               </div>
               
@@ -1510,7 +1510,7 @@ export function CeoMessage() {
                   We Built The Agency
                 </h2>
                 
-                <p className="text-gray-600 text-sm md:text-[17px] leading-relaxed mb-5 font-normal">
+                <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-5 font-normal">
                   "For years, I watched businesses burn capital on disconnected marketing efforts. They would hire an SEO agency, a web developer, and a media buyer—only to realize that nobody was looking at the bigger picture: <span className="text-gray-800 font-semibold">Predictable Revenue</span>."
                 </p>
                 
