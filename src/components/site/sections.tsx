@@ -1491,28 +1491,31 @@ export function CeoMessage() {
       <div className="container-x relative z-10">
         <div className="fade-up" style={{ animationDelay: '100ms' }}>
           
-          <div className="rounded-2xl bg-gray-100 p-8 md:p-12 lg:p-16 text-[var(--ink-deep)] relative overflow-hidden">
+          <div className="rounded-2xl bg-gray-100 p-10 md:p-16 lg:p-20 text-[var(--ink-deep)] relative overflow-hidden">
             <div className="absolute right-12 top-16 text-[15rem] leading-none font-serif text-[var(--gold)]/10 select-none pointer-events-none hidden md:block">"</div>
             <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-[var(--gold)]/5 rounded-full blur-3xl pointer-events-none" />
             
-            <div className="relative z-10 w-full flex flex-col justify-center">
-              <span className="eyebrow text-[var(--ink-deep)]/70 mb-3">A MESSAGE FROM THE FOUNDER</span>
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight text-[var(--ink-deep)] mb-5">
-                We Built The Agency
-              </h2>
-              
-              <p className="text-gray-600 text-lg md:text-2xl leading-relaxed mb-6 font-normal">
-                "For years, I watched businesses burn capital on disconnected marketing efforts. They would hire an SEO agency, a web developer, and a media buyer—only to realize that nobody was looking at the bigger picture: <span className="text-gray-800 font-semibold">Predictable Revenue</span>."
-              </p>
-              
-              <div className="flex items-center gap-4">
+            <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div className="md:col-span-3 lg:col-span-3">
                 <img 
                   src="/ceo image.png" 
                   alt="Shahzad Rando" 
-                  className="w-16 h-16 rounded-xl object-cover"
+                  className="w-full aspect-[4/5] rounded-xl object-cover"
                 />
+              </div>
+              
+              <div className="md:col-span-9 lg:col-span-9 flex flex-col justify-center">
+                <span className="eyebrow text-[var(--ink-deep)]/70 mb-3">A MESSAGE FROM THE FOUNDER</span>
+                <h2 className="text-3xl md:text-5xl font-bold leading-tight text-[var(--ink-deep)] mb-4">
+                  We Built The Agency
+                </h2>
+                
+                <p className="text-gray-600 text-base md:text-xl leading-relaxed mb-5 font-normal">
+                  "For years, I watched businesses burn capital on disconnected marketing efforts. They would hire an SEO agency, a web developer, and a media buyer—only to realize that nobody was looking at the bigger picture: <span className="text-gray-800 font-semibold">Predictable Revenue</span>."
+                </p>
+                
                 <div className="flex flex-col">
-                  <div className="text-gray-400 tracking-wide select-none" style={{ fontFamily: "'Qwitcher Grypen', cursive", fontSize: "2.5rem", lineHeight: "1" }}>
+                  <div className="text-gray-400 tracking-wide select-none" style={{ fontFamily: "'Qwitcher Grypen', cursive", fontSize: "3rem", lineHeight: "1" }}>
                     Shahzad Rando
                   </div>
                   <div className="text-[color:var(--muted-foreground)] text-xs font-sans tracking-wide mt-1">
