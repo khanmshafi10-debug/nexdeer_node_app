@@ -61,7 +61,7 @@ const IMG = {
   portfolio1: "/projects/real estate website.webp",
   portfolio2: "/projects/Healthcare Clinics.webp",
   portfolio3: "/projects/branding.png",
-  portfolio4: "/projects/SaaS Businesses.webp",
+  portfolio4: "/projects/collage.png",
 };
 
 const GoogleIcon = ({ size, className }: any) => (
@@ -519,7 +519,7 @@ const PROJECT_IMAGES = [
   "/projects/real estate website.webp",
   "/projects/travel website.webp",
   "/projects/branding.png",
-  "/projects/Architecture Firms.webp",
+  "/projects/collage.png",
   "/projects/Automotive Dealerships.webp",
   "/projects/Beauty Salons.webp",
   "/projects/Cafés.webp",
@@ -575,8 +575,8 @@ const PROJECT_IMAGES = [
 const REAL_PROJECT_DATA = [
   { title: "Real Estate Website", tag: "Real Estate · Web Design", externalUrl: "https://www.boohoo.com" },
   { title: "Travel Agency Website", tag: "Travel · Web Design", externalUrl: "https://www.assetvantage.com/?utm_source=chatgpt.com" },
-  { title: "Accounting Firms", tag: "Finance · SEO", externalUrl: "https://www.assetvantage.com" },
-  { title: "Architecture Firms", tag: "Creative · Web Design", externalUrl: "https://www.prisa.com" },
+  { title: "Fashion Brand Branding", tag: "Branding & Identity", externalUrl: "https://www.assetvantage.com" },
+  { title: "Social Media Creatives", tag: "Performance Marketing", externalUrl: "https://www.prisa.com" },
   { title: "Automotive Dealerships", tag: "B2B · Automation", externalUrl: "https://www.iacgroup.com" },
   { title: "Beauty Salons", tag: "E-Commerce · CRO", externalUrl: "https://www.boohoo.com" },
   { title: "Cafés", tag: "E-Commerce · CRO", externalUrl: "https://latashaskitchen.com" },
