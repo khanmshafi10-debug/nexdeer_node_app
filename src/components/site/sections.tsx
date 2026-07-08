@@ -575,7 +575,7 @@ const PROJECT_IMAGES = [
 const REAL_PROJECT_DATA = [
   { title: "Real Estate Website", tag: "Real Estate · Web Design", externalUrl: "https://www.boohoo.com" },
   { title: "Travel Agency Website", tag: "Travel · Web Design", externalUrl: "https://www.assetvantage.com/?utm_source=chatgpt.com" },
-  { title: "Fashion Brand Branding", tag: "Branding & Identity", externalUrl: "https://www.assetvantage.com" },
+  { title: "Brand Identity Design", tag: "Branding & Identity", externalUrl: "https://www.assetvantage.com" },
   { title: "Social Media Creatives", tag: "Performance Marketing", externalUrl: "https://www.prisa.com" },
   { title: "Automotive Dealerships", tag: "B2B · Automation", externalUrl: "https://www.iacgroup.com" },
   { title: "Beauty Salons", tag: "E-Commerce · CRO", externalUrl: "https://www.boohoo.com" },
