@@ -815,18 +815,23 @@ export function WhyNexdeer() {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--gold)]/10 to-transparent -translate-x-full group-hover:animate-[nx-marquee_3s_linear_infinite]" />
               <div className="relative z-10 flex items-center justify-between">
                 <div>
-                  <div className="text-5xl font-bold text-white">98<span className="text-[var(--gold)]">%</span></div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Client Retention</div>
+                  <div className="text-5xl font-bold text-white">15<span className="text-[var(--gold)]">+</span></div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Team Members</div>
                 </div>
                 <div className="h-16 w-px bg-white/10" />
                 <div>
-                  <div className="text-5xl font-bold text-white">99<span className="text-[var(--gold)]">%</span></div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Revenue Gen</div>
+                  <div className="text-5xl font-bold text-white">170<span className="text-[var(--gold)]">+</span></div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Businesses Served</div>
                 </div>
                 <div className="h-16 w-px bg-white/10" />
                 <div>
-                  <div className="text-5xl font-bold text-white">100<span className="text-[var(--gold)]">%</span></div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">In-House Team</div>
+                  <div className="text-5xl font-bold text-white">250<span className="text-[var(--gold)]">+</span></div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Projects Completed</div>
+                </div>
+                <div className="h-16 w-px bg-white/10" />
+                <div>
+                  <div className="text-5xl font-bold text-white">6<span className="text-[var(--gold)]">+</span></div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Years Driving Growth</div>
                 </div>
               </div>
             </div>
