@@ -58,10 +58,10 @@ const IMG = {
   ai: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80",
   exec: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80",
   city: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1600&q=80",
-  portfolio1: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=80",
-  portfolio2: "https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=1200&q=80",
+  portfolio1: "/projects/real estate website.webp",
+  portfolio2: "/projects/Healthcare Clinics.webp",
   portfolio3: "/projects/branding.png",
-  portfolio4: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1200&q=80",
+  portfolio4: "/projects/SaaS Businesses.webp",
 };
 
 const GoogleIcon = ({ size, className }: any) => (
@@ -518,7 +518,7 @@ export function GrowthSystem({ limit }: { limit?: number }) {
 const PROJECT_IMAGES = [
   "/projects/real estate website.webp",
   "/projects/travel website.webp",
-  "/projects/Accounting Firms.webp",
+  "/projects/branding.png",
   "/projects/Architecture Firms.webp",
   "/projects/Automotive Dealerships.webp",
   "/projects/Beauty Salons.webp",
