@@ -810,29 +810,21 @@ export function WhyNexdeer() {
             ))}
           </div>
 
-          <div className="mt-8 hidden lg:block fade-up" style={{ animationDelay: '800ms' }}>
-            <div className="relative w-full rounded-2xl border border-white/10 bg-white/[0.02] p-8 overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--gold)]/10 to-transparent -translate-x-full group-hover:animate-[nx-marquee_3s_linear_infinite]" />
-              <div className="relative z-10 flex items-center justify-between">
-                <div>
-                  <div className="text-5xl font-bold text-white">15<span className="text-[var(--gold)]">+</span></div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Team Members</div>
-                </div>
-                <div className="h-16 w-px bg-white/10" />
-                <div>
-                  <div className="text-5xl font-bold text-white">170<span className="text-[var(--gold)]">+</span></div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Businesses Served</div>
-                </div>
-                <div className="h-16 w-px bg-white/10" />
-                <div>
-                  <div className="text-5xl font-bold text-white">250<span className="text-[var(--gold)]">+</span></div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Projects Completed</div>
-                </div>
-                <div className="h-16 w-px bg-white/10" />
-                <div>
-                  <div className="text-5xl font-bold text-white">6<span className="text-[var(--gold)]">+</span></div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Years Driving Growth</div>
-                </div>
+          <div className="mt-12 hidden lg:block fade-up" style={{ animationDelay: '800ms' }}>
+            <div className="flex items-center justify-between w-full">
+              <div>
+                <div className="text-5xl font-bold text-white">250<span className="text-[var(--gold)]">+</span></div>
+                <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Projects Completed</div>
+              </div>
+              <div className="h-16 w-px bg-white/10" />
+              <div>
+                <div className="text-5xl font-bold text-white">6<span className="text-[var(--gold)]">+</span></div>
+                <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Years Driving Growth</div>
+              </div>
+              <div className="h-16 w-px bg-white/10" />
+              <div>
+                <div className="text-5xl font-bold text-white">15<span className="text-[var(--gold)]">+</span></div>
+                <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Team Members</div>
               </div>
             </div>
           </div>
@@ -1495,8 +1487,8 @@ export function TechStack() {
 /* ---------- CEO MESSAGE ---------- */
 export function CeoMessage() {
   return (
-    <section className="section-y bg-white relative overflow-hidden">
-      <div className="container-x">
+    <section className="section-y relative overflow-hidden" style={{ background: "linear-gradient(to right, #ffffff 30%, var(--ink-deep) 30%)" }}>
+      <div className="container-x relative z-10">
         <div className="fade-up" style={{ animationDelay: '100ms' }}>
           
           <div className="rounded-[2.5rem] bg-gray-100 p-8 md:p-16 lg:p-20 text-[var(--ink-deep)] relative overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-[0_20px_50px_rgba(9,4,41,0.3)]">
@@ -1608,7 +1600,7 @@ export function ContactStrip() {
     <section className="bg-[var(--ink)] text-white">
       <div className="container-x py-14 grid gap-8 md:grid-cols-3 md:items-center">
         {[
-          { icon: Mail, label: "Email us", value: "growth@nexdeer.com" },
+          { icon: Mail, label: "Email us", value: <a href="mailto:hello@nexdeer.com" className="hover:text-[var(--gold)] transition-colors">hello@nexdeer.com</a> },
           { icon: Phone, label: "Call us", value: <><span className="block">+44 7537 171506</span><span className="block mt-0.5">+92 318 6662360</span></> },
           { icon: MapPin, label: "Our Office", value: "Bosan road Multan" },
         ].map(({ icon: Icon, label, value }, idx) => (
