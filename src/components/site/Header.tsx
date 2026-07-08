@@ -41,7 +41,7 @@ export function Header() {
     >
       <div className="container-x flex h-18 items-center justify-between py-4 text-white">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.png" alt="NEXDEER Logo" className="h-8 md:h-10 w-auto" />
+          <img src="/logo.png" alt="NEXDEER Logo" className="h-6 md:h-8 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
