@@ -8,7 +8,9 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { apiPlugin } from "./vite-plugin-api";
 
 export default defineConfig({
-  nitro: true,
+  nitro: {
+    preset: 'vercel',
+  },
   vite: {
     plugins: [apiPlugin()],
   },
