@@ -155,7 +155,8 @@ function IndustriesPage() {
             <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6">
               {INDUSTRIES.map((ind, i) => (
                 <Link 
-                  to={`/industries/${slugify(ind.label)}`}
+                  to="/industries/$industryId"
+                  params={{ industryId: slugify(ind.label) }}
                   key={ind.label} 
                   className="group flex flex-col items-center justify-center rounded-[20px] bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-gray-100 fade-up text-center h-full min-h-[180px]" 
                   style={{ animationDelay: `${(i % 8) * 50}ms` }}

@@ -800,7 +800,8 @@ export function Portfolio({ limit, hideHeader, darkTheme }: { limit?: number; hi
           {displayCards.map((c, i) => {
             return (
               <Link
-                to={`/portfolio/${c.id}`}
+                to="/portfolio/$projectId"
+                params={{ projectId: c.id }}
                 key={c.id}
                 className={`group relative overflow-hidden rounded-3xl border ${darkTheme ? 'border-white/10' : 'border-[var(--border)]'} shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700 block`}
                 data-reveal="scale"
@@ -1365,9 +1366,15 @@ function ServiceDetail({
             ))}
           </ul>
           <div className="mt-10" data-reveal="up" style={{ '--reveal-delay': '450' } as React.CSSProperties}>
-            <Link to={slug ? `/services/${slug}` : "/contact"} className="btn-ghost text-[var(--ink-deep)] group">
-              <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">Learn More <ArrowRight size={16} /></span>
-            </Link>
+            {slug ? (
+              <Link to="/services/$serviceId" params={{ serviceId: slug }} className="btn-ghost text-[var(--ink-deep)] group">
+                <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">Learn More <ArrowRight size={16} /></span>
+              </Link>
+            ) : (
+              <Link to="/contact" className="btn-ghost text-[var(--ink-deep)] group">
+                <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">Learn More <ArrowRight size={16} /></span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -1528,7 +1535,8 @@ export function CaseStudies() {
           {CASES.map((c, i) => {
             return (
               <Link 
-                to={`/portfolio/${c.id}`} 
+                to="/portfolio/$projectId" 
+                params={{ projectId: c.id }} 
                 key={c.brand} 
                 className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:p-8 lg:p-10 transition-all duration-500 hover:border-[var(--gold)]/40 hover:bg-white/[0.05] hover:shadow-[0_0_50px_rgba(212,175,55,0.05)] flex flex-col justify-between min-h-[320px] md:min-h-[380px] cursor-pointer"
               >

@@ -49,7 +49,8 @@ function OurWorkPage() {
             {CASES.map((c, i) => {
               return (
                 <Link 
-                  to={`/portfolio/${c.id}`} 
+                  to="/portfolio/$projectId"
+                  params={{ projectId: c.id }}
                   key={c.brand} 
                   className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[var(--ink-deep)] p-6 md:p-8 lg:p-10 transition-all duration-500 hover:border-[var(--gold)]/40 hover:shadow-[0_20px_50px_rgba(212,175,55,0.08)] flex flex-col justify-between min-h-[300px] md:min-h-[380px] cursor-pointer text-white"
                 >
