@@ -13,7 +13,7 @@ function PortfolioDetail() {
   const { projectId } = useParams({ from: "/portfolio_/$projectId" });
   const project = ALL_PORTFOLIO_PROJECTS.find(p => p.id === projectId);
 
-  if (projectId === "aurora-realty") {
+  if (projectId === "home-improvement") {
     return (
       <div className="min-h-screen bg-white text-[var(--ink-deep)]">
         <Header />
@@ -21,7 +21,7 @@ function PortfolioDetail() {
           {/* HERO SECTION */}
           <section className="relative pt-32 pb-20 overflow-hidden bg-[var(--ink-deep)] text-white">
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--ink-deep)] via-[var(--ink-deep)]/95 to-[var(--ink-deep)]" />
-            <img src="/projects/image-1.jpeg" alt="Aurora Realty" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-20 blur-sm" />
+            <img src="/projects/image-1.jpeg" alt="Home Improvement" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-20 blur-sm" />
             
             <div className="container-x">
               <Link to="/our-work" className="inline-flex items-center gap-2 text-sm text-[var(--gold)] hover:text-white transition-colors mb-10 fade-up">
@@ -33,7 +33,7 @@ function PortfolioDetail() {
                   Local SEO Case Study
                 </div>
                 <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-                  Aurora Realty
+                  Home Improvement
                 </h1>
               </div>
               
@@ -65,7 +65,7 @@ function PortfolioDetail() {
                 {/* LEFT COLUMN: Main content */}
                 <div className="lg:col-span-8">
                   <div className="w-full aspect-video overflow-hidden rounded-3xl mb-16 shadow-2xl border border-[var(--border)] fade-up" style={{ animationDelay: '300ms' }}>
-                    <img src="/projects/image-1.jpeg" alt="Aurora Realty Overview" className="w-full h-full object-cover" />
+                    <img src="/projects/image-1.jpeg" alt="Home Improvement Overview" className="w-full h-full object-cover" />
                   </div>
                   
                   <div className="space-y-16">
@@ -217,7 +217,7 @@ function PortfolioDetail() {
     );
   }
 
-  if (projectId === "sandstone-co") {
+  if (projectId === "local-seo") {
     return (
       <div className="min-h-screen bg-white text-[var(--ink-deep)]">
         <Header />
@@ -225,7 +225,7 @@ function PortfolioDetail() {
           {/* HERO SECTION */}
           <section className="relative pt-32 pb-20 overflow-hidden bg-[var(--ink-deep)] text-white">
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--ink-deep)] via-[var(--ink-deep)]/95 to-[var(--ink-deep)]" />
-            <img src="/projects/image-5.jpeg" alt="Sandstone Co." className="absolute inset-0 -z-20 h-full w-full object-cover opacity-20 blur-sm" />
+            <img src="/projects/image-5.jpeg" alt="Local SEO" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-20 blur-sm" />
             
             <div className="container-x">
               <Link to="/our-work" className="inline-flex items-center gap-2 text-sm text-[var(--gold)] hover:text-white transition-colors mb-10 fade-up">
@@ -269,7 +269,7 @@ function PortfolioDetail() {
                 {/* LEFT COLUMN: Main content */}
                 <div className="lg:col-span-8">
                   <div className="w-full aspect-video overflow-hidden rounded-3xl mb-16 shadow-2xl border border-[var(--border)] fade-up" style={{ animationDelay: '300ms' }}>
-                    <img src="/projects/image-5.jpeg" alt="Sandstone Co. Local SEO Dominance" className="w-full h-full object-cover" />
+                    <img src="/projects/image-5.jpeg" alt="Local SEO Dominance" className="w-full h-full object-cover" />
                   </div>
                   
                   <div className="space-y-16">

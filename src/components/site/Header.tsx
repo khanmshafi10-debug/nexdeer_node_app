@@ -36,24 +36,24 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-xl bg-[color-mix(in_oklab,var(--ink-deep)_75%,transparent)] border-b border-white/10"
-          : "bg-transparent"
+          ? "bg-[color-mix(in_oklab,var(--ink-deep)_92%,transparent)] border-b border-white/10 shadow-[0_18px_50px_rgba(2,0,42,0.35)] backdrop-blur-xl"
+          : "bg-[color-mix(in_oklab,var(--ink-deep)_78%,transparent)] border-b border-white/10 shadow-[0_12px_36px_rgba(2,0,42,0.22)] backdrop-blur-xl"
       }`}
     >
-      <div className="container-x flex h-18 items-center justify-between py-4 text-white">
+      <div className="container-x flex h-20 items-center justify-between text-white">
         <Link to="/" className="flex items-center gap-2">
           <img src="/logo.png" alt="NEXDEER Logo" className="h-6 md:h-8 w-auto" />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
+        <nav className="hidden lg:flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.055] px-2 py-2 text-sm font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
           {NAV.map((n) => (
             n.label === "Services" ? (
               <div key={n.label} className="relative group">
                 <Link
                   to={n.href}
-                  activeProps={{ className: "text-[var(--gold)] font-semibold" }}
-                  inactiveProps={{ className: "text-white/80 hover:text-white" }}
-                  className="transition-colors py-4"
+                  activeProps={{ className: "text-[var(--gold)] bg-white/10 font-semibold" }}
+                  inactiveProps={{ className: "text-white/78 hover:text-white hover:bg-white/[0.075]" }}
+                  className="rounded-full px-4 py-2 transition-colors"
                 >
                   {n.label}
                 </Link>
@@ -77,9 +77,9 @@ export function Header() {
               <Link
                 key={n.label}
                 to={n.href}
-                activeProps={{ className: "text-[var(--gold)] font-semibold" }}
-                inactiveProps={{ className: "text-white/80 hover:text-white" }}
-                className="transition-colors py-4"
+                activeProps={{ className: "text-[var(--gold)] bg-white/10 font-semibold" }}
+                inactiveProps={{ className: "text-white/78 hover:text-white hover:bg-white/[0.075]" }}
+                className="rounded-full px-4 py-2 transition-colors"
               >
                 {n.label}
               </Link>
@@ -97,7 +97,7 @@ export function Header() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="lg:hidden grid h-11 w-11 place-items-center rounded-full border border-white/15 active:scale-95 transition-transform"
+          className="lg:hidden grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/[0.06] active:scale-95 transition-transform"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={18} /> : <Menu size={18} />}

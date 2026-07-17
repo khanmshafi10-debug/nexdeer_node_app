@@ -149,22 +149,28 @@ const AVATARS = [
 /* ---------- HERO ---------- */
 export function Hero() {
   return (
-    <section id="top" className="relative isolate overflow-hidden grid-noise text-white">
+    <section id="top" className="relative isolate overflow-hidden grid-noise bg-[var(--ink-deep)] text-white">
       {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink-deep)]/80 via-[var(--ink-deep)]/90 to-[var(--ink-deep)]" />
-        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:64px_64px]" />
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=70"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-luminosity"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink-deep)]/95 via-[var(--ink-deep)]/85 to-[var(--ink-deep)]" />
       </div>
-      {/* Pulsing gradient orb for depth */}
-      <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[min(600px,100vw)] h-[min(400px,60vw)] rounded-full bg-[var(--gold)]/10 blur-[120px] pointer-events-none" style={{ animation: 'nx-orb-pulse 8s ease-in-out infinite' }} />
 
       <div className="container-x pt-20 pb-16 md:pt-32 md:pb-32">
         <div className="mx-auto max-w-4xl text-center px-2">
-          <span className="eyebrow mx-auto"><Sparkles size={14} /> Full-Stack Digital Growth Agency</span>
+          <span className="eyebrow mx-auto border border-[color:var(--gold)]/30 bg-[color:var(--gold)]/10 px-4 py-1.5 rounded-full text-[var(--gold)]"><Sparkles size={14} className="animate-heartbeat" /> Full-Stack Digital Growth Agency</span>
           <h1 className="text-[clamp(1.8rem,5vw+0.5rem,4.25rem)] font-bold leading-[1.08] tracking-tight mt-5 text-white hero-animate">
             Stop Wasting Money on <span className="text-white">Marketing</span> That <span className="text-[var(--gold)]">Doesn't Generate Revenue</span>
           </h1>
-          <p className="mt-7 mx-auto max-w-2xl text-base md:text-lg leading-relaxed text-white/75 hero-animate" style={{ animationDelay: '150ms' } as React.CSSProperties}>
+          <p className="mt-7 mx-auto max-w-2xl text-base md:text-lg leading-relaxed text-slate-100/85 hero-animate" style={{ animationDelay: '150ms' } as React.CSSProperties}>
             NEXDEER helps businesses scale faster through performance marketing, high-converting
             websites, SEO, local search optimization, and AI-powered automation — bringing your
             marketing, sales, and growth systems together under one roof.
@@ -682,13 +688,13 @@ const REAL_PROJECT_DATA = [
 export const ALL_PORTFOLIO_PROJECTS = REAL_PROJECT_DATA.map((data, i) => {
   // Keep exact original IDs for first 4 to preserve link integrity, generate clean unique IDs for others
   const id = i < 4 
-    ? ["aurora-realty", "meridian-care", "sandstone-co", "bluepeak-tech"][i]
+    ? ["home-improvement", "meridian-care", "local-seo", "bluepeak-tech"][i]
     : data.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") + `-${i}`;
     
-  if (id === "aurora-realty") {
+  if (id === "home-improvement") {
     return {
       id,
-      title: "Aurora Realty",
+      title: "Home Improvement",
       tag: "Local SEO · Case Study",
       img: "/projects/image-1.jpeg",
       externalUrl: "",
@@ -720,10 +726,10 @@ No aged domain. No huge team. Just a solid strategy and consistent execution.`,
     };
   }
 
-  if (id === "sandstone-co") {
+  if (id === "local-seo") {
     return {
       id,
-      title: "Sandstone Co.",
+      title: "Local SEO",
       tag: "Local SEO · Case Study",
       img: "/projects/image-5.jpeg",
       externalUrl: "",
@@ -812,13 +818,15 @@ export function Portfolio({ limit, hideHeader, darkTheme }: { limit?: number; hi
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)]/98 via-[var(--ink-deep)]/92 to-[var(--ink-deep)]/45 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-gold/90 group-hover:text-gold transition-colors duration-300 block mb-1.5">
-                    {c.tag}
-                  </span>
                   <div className="flex items-end justify-between gap-4">
-                    <h3 className="text-lg md:text-[22px] font-bold tracking-tight text-white leading-snug group-hover:text-white transition-colors duration-300">
-                      {c.title}
-                    </h3>
+                    <div className="flex-1 min-w-0 text-left">
+                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-gold/90 group-hover:text-gold transition-colors duration-300 block mb-1">
+                        {c.tag}
+                      </span>
+                      <h3 className="text-lg md:text-[22px] font-bold tracking-tight text-white leading-snug group-hover:text-white transition-colors duration-300">
+                        {c.title}
+                      </h3>
+                    </div>
                     <div className="h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white flex items-center justify-center transition-all duration-500 group-hover:bg-gold group-hover:border-gold group-hover:text-ink-deep group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(232,181,4,0.3)] shrink-0">
                       <ArrowUpRight className="h-4 w-4 md:h-5 md:w-5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
@@ -1119,51 +1127,52 @@ const FAQS = [
 ];
 
 export function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <RevealSection>
-    <section className="section-y bg-white">
-      <div className="container-x grid gap-14 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <span className="eyebrow" data-reveal="up">FAQ</span>
-          <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>Frequently Asked Questions</h2>
-          <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed max-w-sm" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
-            Everything you need to know before partnering with NEXDEER. Still curious? Reach out
-            anytime — we respond fast.
-          </p>
-        </div>
-        <div className="lg:col-span-7" data-reveal="right" style={{ '--reveal-delay': '150' } as React.CSSProperties}>
-          <div className="divide-y divide-[var(--border)] border-y border-[var(--border)]">
-            {FAQS.map((f, i) => {
-              const isOpen = open === i;
-              return (
-                <div key={f.q}>
-                  <button
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
-                  >
-                    <span className="text-lg font-semibold text-[var(--ink-deep)]">{f.q}</span>
-                    <ChevronDown
-                      size={20}
-                      className={`shrink-0 text-[var(--ink-deep)] transition ${isOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                  <div
-                    className={`grid transition-all duration-300 ${
-                      isOpen ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]"
-                    }`}
-                  >
-                    <div className="overflow-hidden text-[color:var(--muted-foreground)] leading-relaxed">
-                      {f.a}
+      <section className="section-y faq-blue-section text-white relative overflow-hidden border-t border-white/5">
+        <div className="absolute inset-0 -z-10 grid-noise opacity-30" />
+        <div className="container-x grid gap-14 lg:grid-cols-12 relative z-10">
+          <div className="lg:col-span-5">
+            <span className="eyebrow" data-reveal="up">FAQ</span>
+            <h2 className="headline-lg mt-4 text-white" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>Frequently Asked Questions</h2>
+            <p className="mt-5 text-white/70 leading-relaxed max-w-sm" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
+              Everything you need to know before partnering with NEXDEER. Still curious? Reach out
+              anytime — we respond fast.
+            </p>
+          </div>
+          <div className="lg:col-span-7" data-reveal="right" style={{ '--reveal-delay': '150' } as React.CSSProperties}>
+            <div className="divide-y divide-white/10 border-y border-white/10">
+              {FAQS.map((f, i) => {
+                const isOpen = open === i;
+                return (
+                  <div key={f.q}>
+                    <button
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      className="flex w-full items-center justify-between gap-6 py-6 text-left faq-item-button text-white"
+                    >
+                      <span className="text-lg font-semibold">{f.q}</span>
+                      <ChevronDown
+                        size={20}
+                        className={`shrink-0 text-white/70 transition ${isOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <div
+                      className={`grid transition-all duration-300 ${
+                        isOpen ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden text-white/70 leading-relaxed">
+                        {f.a}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </RevealSection>
   );
 }
@@ -1484,8 +1493,8 @@ export const ServiceAnalytics = () => (
 
 /* ---------- CASE STUDIES ---------- */
 export const CASES = [
-  { id: "aurora-realty", brand: "Home Improvement", metric: "10 Days", label: "To First Qualified Lead", desc: "Local SEO case study on a fresh .ca domain: ranking in AI Overviews, 18.4K impressions, and phone calls coming in." },
-  { id: "sandstone-co", brand: "Local SEO", metric: "31%", label: "In Top 3 Rankings (Map Pack)", desc: "From ranking struggles to dominating the Map Pack: average rank improved from 13.40 to 8.20 in just 3 weeks." },
+  { id: "home-improvement", brand: "Home Improvement", metric: "10 Days", label: "To First Qualified Lead", desc: "Local SEO case study on a fresh .ca domain: ranking in AI Overviews, 18.4K impressions, and phone calls coming in." },
+  { id: "local-seo", brand: "Local SEO", metric: "31%", label: "In Top 3 Rankings (Map Pack)", desc: "From ranking struggles to dominating the Map Pack: average rank improved from 13.40 to 8.20 in just 3 weeks." },
   { id: "bluepeak-tech", brand: "BluePeak Tech", metric: "-47%", label: "Cost per acquisition", desc: "CRO + new landing system + AI lead qualification reduced wasted spend." },
 ];
 
@@ -1844,5 +1853,571 @@ export function ServicesCTAStrip() {
         </div>
       </div>
     </section>
+  );
+}
+
+import { Cloud } from "lucide-react";
+
+/* ---------- LOGO SVG COMPONENTS ---------- */
+
+const FbrLogo = () => (
+  <svg viewBox="0 0 120 120" className="w-24 h-24 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="fbrGreenArch" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#1B7337" />
+        <stop offset="50%" stopColor="#8DC63F" />
+        <stop offset="100%" stopColor="#1B7337" />
+      </linearGradient>
+      <radialGradient id="fbrGoldStar" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#FFF3A1" />
+        <stop offset="25%" stopColor="#F9DF16" />
+        <stop offset="100%" stopColor="#D97706" />
+      </radialGradient>
+      <linearGradient id="fbrBlueText" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#00B4F2" />
+        <stop offset="35%" stopColor="#0066EB" />
+        <stop offset="100%" stopColor="#002A7F" />
+      </linearGradient>
+    </defs>
+    <path d="M 5,65 Q 60,35 115,65 Q 60,43 5,65 Z" fill="url(#fbrGreenArch)" />
+    <g transform="translate(60, 50)">
+      <path d="M 0,-32 L 2.2,-8 L 0,0 L -2.2,-8 Z" fill="url(#fbrGoldStar)" />
+      <path d="M 0,32 L 2.2,8 L 0,0 L -2.2,8 Z" fill="url(#fbrGoldStar)" />
+      <path d="M -24,0 L -6,-2.2 L 0,0 L -6,2.2 Z" fill="url(#fbrGoldStar)" />
+      <path d="M 24,0 L 6,-2.2 L 0,0 L 6,2.2 Z" fill="url(#fbrGoldStar)" />
+      <path d="M -11,-11 L -4,-3 L 0,0 L -3,-4 Z" fill="url(#fbrGoldStar)" />
+      <path d="M 11,-11 L 4,-3 L 0,0 L 3,-4 Z" fill="url(#fbrGoldStar)" />
+      <path d="M -11,11 L -4,3 L 0,0 L -3,4 Z" fill="url(#fbrGoldStar)" />
+      <path d="M 11,11 L 4,3 L 0,0 L 3,4 Z" fill="url(#fbrGoldStar)" />
+      <circle cx="0" cy="0" r="3.2" fill="#FFE066" />
+    </g>
+    <text x="60" y="85" textAnchor="middle" fill="url(#fbrBlueText)" className="font-extrabold text-[32px] tracking-wide" style={{ fontFamily: "'Outfit', 'Inter', system-ui, sans-serif", fontWeight: 900 }}>FBR</text>
+    <text x="60" y="99" textAnchor="middle" fill="#003E7E" className="font-bold text-[8.5px] tracking-[0.16em]" style={{ fontFamily: "'Outfit', 'Inter', system-ui, sans-serif", fontWeight: 700 }}>PAKISTAN</text>
+  </svg>
+);
+
+/*
+//
+    // Outer Green Ring with Gold Border
+    <circle cx="60" cy="60" r="54" fill="#006633" stroke="#E9B804" strokeWidth="2.5" />
+    
+    // Inner White Ring with Gold Border
+    <circle cx="60" cy="60" r="40" fill="#FFFFFF" stroke="#E9B804" strokeWidth="1.5" />
+
+    // Text Path Definitions
+    <defs>
+      // Top half arc
+      <path id="fbrTopTextArc" d="M 18,60 A 42,42 0 0,1 102,60" fill="none" />
+      // Bottom half arc
+      <path id="fbrBottomTextArc" d="M 102,60 A 42,42 0 0,1 18,60" fill="none" />
+    </defs>
+
+    // Outer Text Elements in Gold
+    <text className="font-black fill-[#E9B804]" textAnchor="middle" style={{ fontSize: "6.2px", fontFamily: "system-ui, sans-serif", fontWeight: 900, letterSpacing: "0.08em" }}>
+      <textPath href="#fbrTopTextArc" startOffset="50%">FEDERAL BOARD OF REVENUE</textPath>
+    </text>
+    <text className="font-black fill-[#E9B804]" textAnchor="middle" style={{ fontSize: "6.2px", fontFamily: "system-ui, sans-serif", fontWeight: 900, letterSpacing: "0.08em" }}>
+      <textPath href="#fbrBottomTextArc" startOffset="50%">GOVERNMENT OF PAKISTAN</textPath>
+    </text>
+
+    // Inner Circle Details (Emblem Elements in Green)
+    // Wreath wrapping around the sides
+    <g stroke="#006633" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" transform="translate(0, 3)">
+      // Left branch
+      <path d="M 32,60 C 32,74 44,83 60,83" />
+      <path d="M 32,70 C 29,69 28,71 29,74 C 30,77 32,75 32,70" fill="#006633" />
+      <path d="M 34,76 C 31,75 30,77 31,80 C 32,83 34,81 34,76" fill="#006633" />
+      <path d="M 38,81 C 36,80 35,82 36,85 C 37,87 39,85 38,81" fill="#006633" />
+      
+      // Right branch
+      <path d="M 88,60 C 88,74 76,83 60,83" />
+      <path d="M 88,70 C 91,69 92,71 91,74 C 90,77 88,75 88,70" fill="#006633" />
+      <path d="M 86,76 C 89,75 90,77 89,80 C 88,83 86,81 86,76" fill="#006633" />
+      <path d="M 82,81 C 84,80 85,82 84,85 C 83,87 81,85 82,81" fill="#006633" />
+    </g>
+
+    // Star and Crescent at the top inside
+    <g transform="translate(60, 36)" fill="#006633">
+      <path d="M -4,-2.5 A 5.5,5.5 0 1,0 5.5,6 A 4.6,4.6 0 0,1 -4,-2.5 Z" />
+      <polygon points="5,-3.5 5.5,-1 7.5,-1 6,-0.2 6.5,2.3 5,1.1 3.5,2.3 4,-0.2 2.5,-1 4.5,-1" />
+    </g>
+
+    // Scales of Justice in the center
+    <g transform="translate(60, 60)" stroke="#006633" strokeWidth="1.2" strokeLinecap="round" fill="none">
+      // Pillar
+      <line x1="0" y1="-8" x2="0" y2="8" />
+      // Balance beam
+      <line x1="-12" y1="-5" x2="12" y2="-5" />
+      <circle cx="0" cy="-8" r="1" fill="#006633" />
+      // Left Pan
+      <path d="M -12,-5 L -15,2 L -9,2 Z" fill="#006633" strokeWidth="0.8" />
+      // Right Pan
+      <path d="M 12,-5 L 15,2 L 9,2 Z" fill="#006633" strokeWidth="0.8" />
+      // Base
+      <rect x="-6" y="8" width="12" height="1.6" rx="0.5" fill="#006633" stroke="none" />
+    </g>
+
+    // FBR label at the bottom of the inner circle
+    <rect x="42" y="74" width="36" height="10" rx="3.5" fill="#006633" />
+    <text x="60" y="82" textAnchor="middle" fill="#FFFFFF" style={{ fontFamily: "system-ui, sans-serif", fontWeight: 900, fontSize: "7.5px", letterSpacing: "0.08em" }}>FBR</text>
+//
+*/
+
+
+
+
+
+
+
+
+
+
+
+const SecpLogo = () => (
+  <svg viewBox="0 0 120 120" className="w-20 h-20 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      {/* Left quadrant: Green */}
+      <path d="M 60,60 L 37.37,37.37 A 32,32 0 0,0 37.37,82.63 Z" fill="#599E34" />
+      {/* Bottom quadrant: Deep Blue */}
+      <path d="M 60,60 L 37.37,82.63 A 32,32 0 0,0 82.63,82.63 Z" fill="#0B6FA9" />
+      {/* Right quadrant: Light Blue */}
+      <path d="M 60,60 L 82.63,82.63 A 32,32 0 0,0 82.63,37.37 Z" fill="#2E9DB9" />
+      {/* Top quadrant: Teal */}
+      <path d="M 60,60 L 82.63,37.37 A 32,32 0 0,0 37.37,37.37 Z" fill="#067A6B" />
+
+      {/* White border ring */}
+      <circle cx="60" cy="60" r="32" stroke="#FFFFFF" strokeWidth="1.5" fill="none" />
+
+      {/* Top: Crescent and Star */}
+      <g transform="translate(60, 44)">
+        <path d="M-3,-6 A6,6 0 1,0 3,6 A5,5 0 0,1 -3,-6 Z" fill="#FFFFFF" />
+        <polygon points="7,-2 8.2,1.2 11.6,1.2 8.9,3.2 9.9,6.4 7,4.4 4.1,6.4 5.1,3.2 2.4,1.2 5.8,1.2" fill="#FFFFFF" />
+      </g>
+
+      {/* Right: Trendline and Coins */}
+      <g transform="translate(75, 60)">
+        <path d="M-8,-4 L-3,1 L2,-4 L9,3" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <polygon points="9,3 4,3 9,-2" fill="#FFFFFF" />
+        <ellipse cx="-3" cy="8" rx="5" ry="1.6" fill="#FFFFFF" />
+        <ellipse cx="2" cy="6" rx="5" ry="1.6" fill="#FFFFFF" />
+        <ellipse cx="0" cy="10.5" rx="5" ry="1.6" fill="#FFFFFF" />
+      </g>
+
+      {/* Bottom: Scales of justice */}
+      <g transform="translate(60, 78)">
+        <line x1="0" y1="-8" x2="0" y2="6" stroke="#FFFFFF" strokeWidth="1.4" />
+        <line x1="-10" y1="-5" x2="10" y2="-5" stroke="#FFFFFF" strokeWidth="1.4" />
+        <circle cx="0" cy="-8" r="1.3" fill="#FFFFFF" />
+        <path d="M-10,-5 L-13,1 L-7,1 Z" fill="#FFFFFF" />
+        <path d="M10,-5 L13,1 L7,1 Z" fill="#FFFFFF" />
+        <rect x="-5" y="6" width="10" height="1.6" rx="0.5" fill="#FFFFFF" />
+      </g>
+
+      {/* Left: Open book */}
+      <g transform="translate(45, 60)">
+        <path d="M-9,-4 Q0,-1.5 9,-4 L9,5 Q0,7.5 -9,5 Z" fill="#FFFFFF" />
+        <path d="M-9,-4 Q0,-1.5 9,-4 M-9,0.5 Q0,3 9,0.5 M-9,5 Q0,7.5 9,5" stroke="#599E34" strokeWidth="0.9" fill="none" />
+        <line x1="0" y1="-3" x2="0" y2="6.3" stroke="#599E34" strokeWidth="1.1" />
+      </g>
+    </g>
+
+    {/* Silver wreath */}
+    <g stroke="#A0AEC0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none">
+      <path d="M 60,98 C 42,98 24,84 24,60 C 24,46 30,36 36,30" />
+      <path d="M 24,84 C 20,82 18,84 20,88 C 22,92 24,90 24,84" fill="#A0AEC0" />
+      <path d="M 24,72 C 18,70 16,72 18,78 C 20,82 24,78 24,72" fill="#A0AEC0" />
+      <path d="M 25,60 C 19,56 18,58 20,64 C 22,68 25,64 25,60" fill="#A0AEC0" />
+      <path d="M 28,48 C 22,44 22,46 24,52 C 26,56 28,52 28,48" fill="#A0AEC0" />
+      <path d="M 33,38 C 28,34 28,36 30,42 C 32,46 33,42 33,38" fill="#A0AEC0" />
+
+      <path d="M 60,98 C 78,98 96,84 96,60 C 96,46 90,36 84,30" />
+      <path d="M 96,84 C 100,82 102,84 100,88 C 98,92 96,90 96,84" fill="#A0AEC0" />
+      <path d="M 96,72 C 102,70 104,72 102,78 C 100,82 96,78 96,72" fill="#A0AEC0" />
+      <path d="M 95,60 C 101,56 102,58 100,64 C 98,68 95,64 95,60" fill="#A0AEC0" />
+      <path d="M 92,48 C 98,44 98,46 96,52 C 94,56 92,52 92,48" fill="#A0AEC0" />
+      <path d="M 87,38 C 92,34 92,36 90,42 C 88,46 87,42 87,38" fill="#A0AEC0" />
+
+      <path d="M 52,98 Q 60,104 68,98" strokeWidth="1.5" />
+      <path d="M 55,98 Q 50,105 46,103 M 65,98 Q 70,105 74,103" />
+    </g>
+
+    {/* Curved Urdu text */}
+    <path id="urduPath" d="M 26,36 A 34,34 0 0,1 94,36" fill="none" />
+    <text textAnchor="middle" style={{ fontFamily: "system-ui, sans-serif", fontWeight: 700, fontSize: "4.8px", fill: "#718096" }}>
+      <textPath href="#urduPath" startOffset="50%">سیکیورٹیز اینڈ ایکسچینج کمیشن آف پاکستان</textPath>
+    </text>
+
+    {/* SECP wordmark */}
+    <text x="60" y="112" textAnchor="middle" style={{ fontFamily: "system-ui, sans-serif", fontWeight: 900, fontSize: "11px", letterSpacing: "0.25em", fill: "#718096" }}>SECP</text>
+  </svg>
+);
+
+const PsebLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Horizontal separator lines */}
+    <line x1="4" y1="6" x2="116" y2="6" stroke="#1E293B" strokeWidth="0.8" />
+    <line x1="4" y1="12" x2="116" y2="12" stroke="#1E293B" strokeWidth="0.8" />
+    <line x1="4" y1="36" x2="116" y2="36" stroke="#1E293B" strokeWidth="0.8" />
+    <line x1="4" y1="42" x2="116" y2="42" stroke="#1E293B" strokeWidth="0.8" />
+    
+    {/* Top Text: PAKISTAN */}
+    <text x="60" y="10.5" textAnchor="middle" fill="#1E293B" className="font-bold text-[6px] tracking-[0.55em]" style={{ fontFamily: "system-ui, sans-serif" }}>PAKISTAN</text>
+    
+    {/* Main Text: PSEB */}
+    <g transform="translate(6, 12)">
+      {/* Letters P, E, B */}
+      <text x="12" y="21" fill="#1F2937" className="font-black text-[22px]" style={{ fontFamily: "system-ui, sans-serif" }}>P</text>
+      <text x="58" y="21" fill="#1F2937" className="font-black text-[22px] tracking-[0.1em]" style={{ fontFamily: "system-ui, sans-serif" }}>EB</text>
+      
+      {/* The Purple S-Curve representing S */}
+      <path d="M40,3 C44,3 48,7 44,12 C38,17 46,22 49,21" stroke="#5B21B6" strokeWidth="4.5" strokeLinecap="round" fill="none" />
+    </g>
+    
+    {/* Bottom Text: SOFTWARE EXPORT BOARD */}
+    <text x="60" y="40.5" textAnchor="middle" fill="#475569" className="font-semibold text-[5.2px] tracking-[0.18em]" style={{ fontFamily: "system-ui, sans-serif" }}>SOFTWARE EXPORT BOARD</text>
+  </svg>
+);
+
+const PaflaLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(36, 1) scale(0.95)">
+      {/* Hexagonal Shield Border */}
+      <polygon points="25,2 47,10 47,34 25,44 3,34 3,10" stroke="#00B574" strokeWidth="1" fill="none" />
+      <polygon points="25,4 45,11 45,33 25,42 5,33 5,11" stroke="#00B574" strokeWidth="0.6" fill="none" />
+      
+      {/* Top Bird Wings icon */}
+      <path d="M15,9 Q20,12 25,10 Q30,12 35,9 Q29,6 25,8 Q21,6 15,9 Z" fill="#00B574" />
+      <path d="M25,8 L25,12 L24,10 Z" fill="#00B574" />
+      
+      {/* Two small stars */}
+      <polygon points="12,12 12.8,12.8 14,12.8 13.2,13.6 13.5,14.8 12.5,14 11.5,14.8 11.8,13.6 11,12.8 12.2,12.8" fill="#00B574" />
+      <polygon points="38,12 38.8,12.8 40,12.8 39.2,13.6 39.5,14.8 38.5,14 37.5,14.8 37.8,13.6 37,12.8 38.2,12.8" fill="#00B574" />
+      
+      {/* Middle Ribbon Banner */}
+      <rect x="7" y="16" width="36" height="6" fill="#00B574" rx="1" />
+      <text x="25" y="21" textAnchor="middle" fill="#FFFFFF" className="font-bold text-[4.5px] tracking-[0.15em]" style={{ fontFamily: "system-ui, sans-serif" }}>PAKISTAN</text>
+      
+      {/* FREELANCERS text */}
+      <text x="25" y="29" textAnchor="middle" fill="#00B574" className="font-black text-[5.8px] tracking-[0.05em]" style={{ fontFamily: "system-ui, sans-serif" }}>FREELANCERS</text>
+      
+      {/* ASSOCIATION text */}
+      <text x="25" y="35" textAnchor="middle" fill="#00B574" className="font-bold text-[4.2px] tracking-[0.15em]" style={{ fontFamily: "system-ui, sans-serif" }}>ASSOCIATION</text>
+      
+      {/* Bottom Star */}
+      <polygon points="25,38 25.8,38.8 27,38.8 26.2,39.6 26.5,40.8 25.5,40 24.5,40.8 24.8,39.6 24,38.8 25.2,38.8" fill="#00B574" />
+    </g>
+    
+    {/* Left and Right Chevron badges */}
+    <path d="M30,20 L27,24 L30,28 M25,20 L22,24 L25,28" stroke="#00B574" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M90,20 L93,24 L90,28 M95,20 L98,24 L95,28" stroke="#00B574" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const GoogleCertifiedLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(8, 12)">
+      <path d="M22.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.4h5.9c-.3 1.3-1 2.4-2.1 3.2v2.6h3.4c2-1.9 3.3-4.7 3.3-7.9z" fill="#4285F4"/>
+      <path d="M12 23c3 0 5.5-1 7.3-2.7l-3.4-2.6c-1 .6-2.2 1-3.9 1-3 0-5.5-2-6.4-4.8H2v2.7C3.9 20 7.7 23 12 23z" fill="#34A853"/>
+      <path d="M5.6 13.9c-.2-.6-.4-1.3-.4-2s.2-1.4.4-2V7.2H2v2.7C1.2 11.6 1.2 14.4 2 16.1l3.6-2.2z" fill="#FBBC05"/>
+      <path d="M12 5.8c1.6 0 3.1.6 4.2 1.7l3.2-3.2C17.4 2.4 14.8 1.5 12 1.5 7.7 1.5 3.9 4.5 2 8.7l3.6 2.7c.9-2.7 3.4-4.7 6.4-4.7z" fill="#EA4335"/>
+    </g>
+    <g transform="translate(38, 14)">
+      <text x="0" y="11" fill="#1E293B" className="font-extrabold text-[15px] tracking-tight" style={{ fontFamily: "system-ui, sans-serif" }}>Google</text>
+      <text x="0" y="21" fill="#4285F4" className="font-bold text-[7px] tracking-[0.2em]" style={{ fontFamily: "system-ui, sans-serif" }}>CERTIFIED</text>
+    </g>
+  </svg>
+);
+
+const MetaCertifiedLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(6, 12)">
+      <path d="M12 6.2c-2.6 0-4.8 1.9-6 4.1-1.2 2.2-1.9 4.9-1.9 7.4 0 2.5.7 5.2 1.9 7.4 1.2 2.2 3.4 4.1 6 4.1 2.2 0 4-1.3 5.5-3.2 1.5-1.9 2.8-4.6 4.1-7.4 1.3 2.8 2.7 5.5 4.1 7.4 1.5 1.9 3.3 3.2 5.5 3.2 2.6 0 4.8-1.9 6-4.1 1.2-2.2 1.9-4.9 1.9-7.4 0-2.5-.7-5.2-1.9-7.4-1.2-2.2-3.4-4.1-6-4.1-2.2 0-4 1.3-5.5 3.2-1.5 1.9-2.8 4.6-4.1 7.4-1.3-2.8-2.7-5.5-4.1-7.4-1.5-1.9-3.3-3.2-5.5-3.2z" stroke="#0064E0" strokeWidth="2.5" fill="none" />
+    </g>
+    <g transform="translate(56, 14)">
+      <text x="0" y="11" fill="#1E293B" className="font-extrabold text-[15px] tracking-tight" style={{ fontFamily: "system-ui, sans-serif" }}>Meta</text>
+      <text x="0" y="21" fill="#0064E0" className="font-bold text-[7px] tracking-[0.2em]" style={{ fontFamily: "system-ui, sans-serif" }}>CERTIFIED</text>
+    </g>
+  </svg>
+);
+
+const ShopifyPartnerLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(8, 8)">
+      <path d="M19.5 5.25h-3c0-2.9-2.35-5.25-5.25-5.25S6 2.35 6 5.25H3c-.83 0-1.5.67-1.5 1.5l1.5 15c0 .83.67 1.5 1.5 1.5h15c.83 0 1.5-.67 1.5-1.5l1.5-15c0-.83-.67-1.5-1.5-1.5zM11.25 1.5c2.07 0 3.75 1.68 3.75 3.75h-7.5c0-2.07 1.68-3.75 3.75-3.75zM19.5 21.75H3l-1.35-13.5h19.2L19.5 21.75z" fill="#96BF48" />
+      <path d="M10.2 9.6c-.6 0-1.1.2-1.5.5s-.6.8-.6 1.4c0 .5.2.9.6 1.2s1.1.5 2.1.8c1.3.4 2.2.9 2.8 1.5.6.6.9 1.4.9 2.3 0 1.1-.4 2-1.3 2.7-.9.7-2.1 1-3.6 1-1.3 0-2.4-.3-3.2-.8s-1.3-1.3-1.5-2.2l2.4-.6c.1.6.4 1 .8 1.3.4.3.9.4 1.5.4.7 0 1.2-.2 1.6-.5.4-.3.6-.7.6-1.2 0-.4-.2-.8-.6-1.1-.4-.3-1-.5-1.9-.8-1.4-.4-2.3-.9-2.9-1.5S7.2 12 7.2 11c0-1 .4-1.9 1.2-2.5.8-.6 1.9-.9 3.2-.9 1.1 0 2.1.3 2.9.8s1.2 1.1 1.4 1.9l-2.3.6c-.1-.5-.3-.9-.6-1.1-.4-.1-.8-.2-.2-.2z" fill="#96BF48" />
+    </g>
+    <g transform="translate(36, 14)">
+      <text x="0" y="11" fill="#1E293B" className="font-extrabold text-[15px] tracking-tight" style={{ fontFamily: "system-ui, sans-serif" }}>Shopify</text>
+      <text x="0" y="21" fill="#96BF48" className="font-bold text-[7px] tracking-[0.2em]" style={{ fontFamily: "system-ui, sans-serif" }}>PARTNER</text>
+    </g>
+  </svg>
+);
+
+const TiktokPartnerLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* TikTok Glitch Note */}
+    <g transform="translate(6, 11) scale(1.05)">
+      {/* Cyan layer (top-left) */}
+      <path d="M17.1 0h-3.4v13.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .6 0 .9.1V5.7c-.3 0-.6-.1-.9-.1-4.7 0-8.5 3.8-8.5 8.5S4.1 22.6 8.8 22.6c4.5 0 8.1-3.5 8.3-8V6.8c1.9 1.4 4.2 2.2 6.7 2.3V5.7c-2.8-.1-5.3-1.6-6.7-3.7V0z" fill="#25F4EE" transform="translate(-0.8, -0.6)" />
+      {/* Magenta layer (bottom-right) */}
+      <path d="M17.1 0h-3.4v13.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .6 0 .9.1V5.7c-.3 0-.6-.1-.9-.1-4.7 0-8.5 3.8-8.5 8.5S4.1 22.6 8.8 22.6c4.5 0 8.1-3.5 8.3-8V6.8c1.9 1.4 4.2 2.2 6.7 2.3V5.7c-2.8-.1-5.3-1.6-6.7-3.7V0z" fill="#FE0979" transform="translate(0.8, 0.6)" />
+      {/* Black layer */}
+      <path d="M17.1 0h-3.4v13.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .6 0 .9.1V5.7c-.3 0-.6-.1-.9-.1-4.7 0-8.5 3.8-8.5 8.5S4.1 22.6 8.8 22.6c4.5 0 8.1-3.5 8.3-8V6.8c1.9 1.4 4.2 2.2 6.7 2.3V5.7c-2.8-.1-5.3-1.6-6.7-3.7V0z" fill="#161D26" />
+    </g>
+    {/* Wordmark and Partner text */}
+    <g transform="translate(36, 12)">
+      <text x="0" y="14" fill="#161D26" className="font-extrabold text-[19px] tracking-tight" style={{ fontFamily: "Inter, system-ui, sans-serif", fontWeight: 900, letterSpacing: "-0.04em" }}>TikTok</text>
+      <text x="0" y="24" fill="#FE0979" className="font-bold text-[7px] tracking-[0.2em]" style={{ fontFamily: "system-ui, sans-serif" }}>PARTNER</text>
+    </g>
+  </svg>
+);
+
+const GithubCertifiedLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(8, 8)">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z" fill="#24292F" />
+    </g>
+    <g transform="translate(38, 14)">
+      <text x="0" y="11" fill="#1E293B" className="font-extrabold text-[15px] tracking-tight" style={{ fontFamily: "system-ui, sans-serif" }}>GitHub</text>
+      <text x="0" y="21" fill="#24292F" className="font-bold text-[7px] tracking-[0.2em]" style={{ fontFamily: "system-ui, sans-serif" }}>CERTIFIED</text>
+    </g>
+  </svg>
+);
+
+const AwsCertifiedLogo = () => (
+  <svg viewBox="0 0 250 120" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="scale(0.62) translate(8, 6)">
+      {/* Official AWS 2025 Logo paths */}
+      <g transform="translate(-9.7006735,-78.530852)">
+        {/* Orange smile */}
+        <path
+           fill="#FF6200"
+           d="m 10.521436,158.58651 c -0.8639499,0.68218 -1.0458582,1.81869 -0.5456504,3.41042 0.4546904,1.40966 1.5232644,3.15991 3.2056994,5.25165 6.774981,8.36685 14.846046,15.32363 24.213078,20.87116 9.367011,5.54757 19.393561,9.63973 30.07919,12.27696 10.730944,2.68292 21.68927,4.02419 32.874997,4.02419 14.32341,0 27.96469,-2.09139 40.92381,-6.27503 12.95911,-4.1379 23.78106,-9.95814 32.46635,-17.46073 3.04626,-2.68254 4.56962,-4.81967 4.56962,-6.41138 0,-0.59114 -0.25004,-1.18228 -0.75013,-1.7734 -0.68217,-0.68173 -1.50071,-0.90913 -2.45559,-0.68173 -0.95487,0.22696 -2.29613,0.79544 -4.02421,1.70499 -8.32111,4.3653 -18.46089,7.84367 -30.41984,10.4356 -11.9132,2.63719 -24.34953,3.9558 -37.30866,3.9558 -16.051079,0 -31.556792,-2.18243 -46.516673,-6.54773 -14.959881,-4.36528 -28.21475,-11.18571 -39.764223,-20.46157 -1.682328,-1.3186 -3.046678,-2.1602 -4.092375,-2.52394 -1.000341,-0.36374 -1.818827,-0.29535 -2.455393,0.20474 z" />
+        {/* Orange arrow head */}
+        <path
+           fill="#FF6200"
+           d="m 162.07277,162.00078 c -0.95486,0.90957 -1.20492,1.86444 -0.75012,2.86499 0.31841,0.72745 0.93222,1.13648 1.84178,1.22752 0.90913,0.13638 2.20509,0.0454 3.88743,-0.27267 2.72824,-0.59113 5.57018,-1.00058 8.52582,-1.22797 2.95565,-0.1816 5.52493,-0.1364 7.70736,0.1364 2.18285,0.31842 3.54677,0.8642 4.0926,1.63697 0.81852,1.22797 0.52274,3.81943 -0.88691,7.77571 -1.36391,3.9558 -3.22837,7.79793 -5.59286,11.52678 -0.90957,1.50025 -1.45496,2.68251 -1.63703,3.54677 -0.18162,0.86382 0.0458,1.5913 0.68214,2.18242 0.40904,0.40906 0.86384,0.61379 1.3639,0.61379 1.31907,0 3.22879,-1.15961 5.72964,-3.47837 4.50166,-3.91052 7.66161,-8.54851 9.48075,-13.91399 1.00017,-2.77399 1.61393,-5.6839 1.84133,-8.73054 0.2274,-3.04617 -0.1137,-5.22904 -1.02325,-6.54765 -0.86383,-1.27329 -2.77356,-2.31919 -5.7292,-3.13728 -2.90991,-0.81853 -5.84292,-1.228 -8.79856,-1.228 -5.77494,0 -11.2541,1.36433 -16.4375,4.0926 -1.9097,1.0459 -3.342,2.02342 -4.29732,2.93255 z" />
+        {/* Letter 'a' */}
+        <path
+           fill="#161D26"
+           d="m 38.073132,137.60541 c -9.649207,0 -16.189218,-6.86166 -16.189218,-17.04692 0,-12.32954 9.649195,-20.0489 24.873493,-20.0489 2.68034,0 4.288537,0.10721 5.575101,0.42885 v -1.286561 c 0,-7.076077 -2.465907,-10.399692 -7.612154,-10.399692 -4.074104,0 -6.968866,2.358694 -8.040998,6.540015 -0.321644,1.28656 -1.072131,1.929836 -2.144263,1.715414 l -9.434784,-1.715414 c -1.286554,-0.214426 -1.82262,-1.072134 -1.500987,-2.358694 2.358696,-9.541988 10.399694,-14.902656 22.085953,-14.902656 13.830522,0 21.121032,7.612148 21.121032,21.871528 v 34.20105 c 0,1.07215 -0.750498,1.82263 -1.715408,1.82263 H 56.19218 c -1.072131,0 -1.715408,-0.64327 -1.92983,-1.82263 l -1.393776,-6.32559 h -0.643287 c -2.573118,6.00396 -7.612144,9.32757 -14.152155,9.32757 z m 5.575091,-10.82855 c 5.682312,0 8.684285,-5.14624 8.684285,-14.68822 v -3.43083 c -1.072142,-0.21443 -2.251485,-0.32165 -3.538049,-0.32165 -7.397721,0 -12.007892,3.9669 -12.007892,10.50691 0,4.8246 2.68034,7.93379 6.861656,7.93379 z" />
+        {/* Letter 'w' */}
+        <path
+           fill="#161D26"
+           d="m 129.74105,79.817412 c -0.7505,0 -1.39378,0.64328 -1.50099,1.28656 l -6.32559,38.275168 h -0.64329 l -7.07607,-38.275168 c -0.10721,-0.64328 -0.75049,-1.28656 -1.50099,-1.28656 h -10.93576 c -0.7505,0 -1.39377,0.64328 -1.50099,1.28656 L 93.074078,119.37914 H 92.430801 L 85.998,81.103972 c -0.107211,-0.64328 -0.750498,-1.28656 -1.500986,-1.28656 h -11.79347 c -1.179353,0 -1.929841,0.857707 -1.608197,2.037054 L 83.746515,135.1395 c 0.214433,0.7505 0.750499,1.28656 1.608209,1.28656 H 98.64918 c 0.750488,0 1.39376,-0.64327 1.50098,-1.28656 l 6.75444,-31.52073 h 0.53606 l 6.75445,31.52073 c 0.10721,0.64329 0.7505,1.28656 1.50098,1.28656 h 13.29446 c 0.85771,0 1.39378,-0.53606 1.6082,-1.28656 l 12.65118,-53.285034 c 0.32164,-1.179347 -0.42886,-2.037054 -1.6082,-2.037054 z" />
+        {/* Letter 's' */}
+        <path
+           fill="#161D26"
+           d="m 145.03872,119.27192 c -0.10721,-0.96492 0.53606,-1.7154 1.50098,-1.92984 l 9.54199,-1.82262 c 1.07214,-0.21443 1.92984,0.42885 2.03706,1.50099 0.8577,6.11116 3.85967,9.22034 8.89871,9.22034 4.50296,0 7.39772,-2.25147 7.39772,-5.89673 0,-3.2164 -2.03706,-5.46788 -6.32559,-6.4328 l -6.75444,-1.6082 c -10.18528,-2.46591 -15.33151,-7.93379 -15.33151,-16.510858 0,-10.292482 8.36264,-17.26135 20.47775,-17.26135 11.04298,0 18.22627,5.146241 20.79939,15.009869 0.2144,0.857708 -0.4288,1.715414 -1.1793,1.822627 l -10.5069,1.822624 c -0.6433,0.107222 -1.3938,-0.321636 -1.501,-1.072129 -0.8577,-4.181321 -3.4308,-6.218376 -7.6121,-6.218376 -3.7525,0 -6.4329,2.037055 -6.4329,5.039029 0,2.680331 2.1443,4.717383 6.3256,5.682304 l 7.0761,1.71542 c 10.1853,2.46591 15.0099,7.82658 15.0099,16.72528 0,10.72134 -9.0059,18.54791 -21.3355,18.54791 -12.4367,0 -20.9066,-7.18329 -22.0859,-18.33349 z" />
+      </g>
+    </g>
+    <g transform="translate(138, 14)">
+      <text x="0" y="11" fill="#1E293B" className="font-extrabold text-[15px] tracking-tight" style={{ fontFamily: "system-ui, sans-serif" }}>AWS</text>
+      <text x="0" y="21" fill="#FF6200" className="font-bold text-[7px] tracking-[0.2em]" style={{ fontFamily: "system-ui, sans-serif" }}>CERTIFIED</text>
+    </g>
+  </svg>
+);
+
+const MicrosoftCertifiedLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(6, 9)">
+      <rect x="0" y="0" width="9" height="9" fill="#F25022" />
+      <rect x="11" y="0" width="9" height="9" fill="#7FBA00" />
+      <rect x="0" y="11" width="9" height="9" fill="#00A4EF" />
+      <rect x="11" y="11" width="9" height="9" fill="#FFB900" />
+    </g>
+    <g transform="translate(36, 14)">
+      <text x="0" y="11" fill="#1E293B" className="font-extrabold text-[15px] tracking-tight" style={{ fontFamily: "system-ui, sans-serif" }}>Microsoft</text>
+      <text x="0" y="21" fill="#00A4EF" className="font-bold text-[7px] tracking-[0.2em]" style={{ fontFamily: "system-ui, sans-serif" }}>CERTIFIED</text>
+    </g>
+  </svg>
+);
+
+const CiscoCertifiedLogo = () => (
+  <svg viewBox="0 0 120 48" className="w-28 h-12 transition-all duration-500 affiliation-logo" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(6, 10)">
+      <line x1="1" y1="12" x2="1" y2="16" strokeWidth="2" strokeLinecap="round" stroke="#11A9E2" />
+      <line x1="4" y1="8" x2="4" y2="16" strokeWidth="2" strokeLinecap="round" stroke="#11A9E2" />
+      <line x1="7" y1="9" x2="7" y2="16" strokeWidth="2" strokeLinecap="round" stroke="#11A9E2" />
+      <line x1="10" y1="3" x2="10" y2="16" strokeWidth="2" strokeLinecap="round" stroke="#11A9E2" />
+      <line x1="13" y1="3" x2="13" y2="16" strokeWidth="2" strokeLinecap="round" stroke="#11A9E2" />
+      <line x1="16" y1="9" x2="16" y2="16" strokeWidth="2" strokeLinecap="round" stroke="#11A9E2" />
+      <line x1="19" y1="8" x2="19" y2="16" strokeWidth="2" strokeLinecap="round" stroke="#11A9E2" />
+      <line x1="22" y1="12" x2="22" y2="16" strokeWidth="2" strokeLinecap="round" stroke="#11A9E2" />
+    </g>
+    <g transform="translate(36, 14)">
+      <text x="0" y="11" fill="#1E293B" className="font-extrabold text-[15px] tracking-tight" style={{ fontFamily: "system-ui, sans-serif" }}>Cisco</text>
+      <text x="0" y="21" fill="#11A9E2" className="font-bold text-[7px] tracking-[0.2em]" style={{ fontFamily: "system-ui, sans-serif" }}>CERTIFIED</text>
+    </g>
+  </svg>
+);
+
+/* ---------- AFFILIATIONS & CERTIFICATIONS ---------- */
+const SecpImageLogo = () => (
+  <img
+    src="/affiliations/secp.png"
+    alt="SECP logo"
+    className="affiliation-logo affiliation-image-logo secp-logo-image"
+    loading="lazy"
+    decoding="async"
+  />
+);
+
+const PsebImageLogo = () => (
+  <img
+    src="/affiliations/pseb.png"
+    alt="PSEB logo"
+    className="affiliation-logo affiliation-image-logo pseb-logo-image"
+    loading="lazy"
+    decoding="async"
+  />
+);
+
+const PaflaImageLogo = () => (
+  <img
+    src="/affiliations/pafla.png"
+    alt="PAFLA logo"
+    className="affiliation-logo affiliation-image-logo pafla-logo-image"
+    loading="lazy"
+    decoding="async"
+  />
+);
+
+const ShopifyImageLogo = () => (
+  <img
+    src="/affiliations/shopify-icon.png"
+    alt="Shopify logo"
+    className="affiliation-logo affiliation-image-logo shopify-icon-image"
+    loading="lazy"
+    decoding="async"
+  />
+);
+
+const GoogleIconLogo = () => (
+  <img
+    src="/affiliations/google.png"
+    alt="Google logo"
+    className="affiliation-logo affiliation-image-logo google-logo-image"
+    loading="lazy"
+    decoding="async"
+  />
+);
+
+const MetaIconLogo = () => (
+  <img
+    src="/affiliations/meta.png"
+    alt="Meta logo"
+    className="affiliation-logo affiliation-image-logo meta-logo-image"
+    loading="lazy"
+    decoding="async"
+  />
+);
+
+const TiktokIconLogo = () => (
+  <svg viewBox="0 0 26 26" className="affiliation-logo brand-icon-logo tiktok-icon-logo" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TikTok logo">
+    <path d="M17.1 0h-3.4v13.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .6 0 .9.1V5.7c-.3 0-.6-.1-.9-.1-4.7 0-8.5 3.8-8.5 8.5S4.1 22.6 8.8 22.6c4.5 0 8.1-3.5 8.3-8V6.8c1.9 1.4 4.2 2.2 6.7 2.3V5.7c-2.8-.1-5.3-1.6-6.7-3.7V0z" fill="#25F4EE" transform="translate(-0.8, -0.6)" />
+    <path d="M17.1 0h-3.4v13.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .6 0 .9.1V5.7c-.3 0-.6-.1-.9-.1-4.7 0-8.5 3.8-8.5 8.5S4.1 22.6 8.8 22.6c4.5 0 8.1-3.5 8.3-8V6.8c1.9 1.4 4.2 2.2 6.7 2.3V5.7c-2.8-.1-5.3-1.6-6.7-3.7V0z" fill="#FE0979" transform="translate(0.8, 0.6)" />
+    <path d="M17.1 0h-3.4v13.5c0 2.5-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 2-4.5 4.5-4.5c.3 0 .6 0 .9.1V5.7c-.3 0-.6-.1-.9-.1-4.7 0-8.5 3.8-8.5 8.5S4.1 22.6 8.8 22.6c4.5 0 8.1-3.5 8.3-8V6.8c1.9 1.4 4.2 2.2 6.7 2.3V5.7c-2.8-.1-5.3-1.6-6.7-3.7V0z" fill="#161D26" />
+  </svg>
+);
+
+const GithubIconLogo = () => (
+  <svg viewBox="0 0 24 24" className="affiliation-logo brand-icon-logo github-icon-logo" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="GitHub logo">
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z" fill="#24292F" />
+  </svg>
+);
+
+const AwsIconLogo = () => (
+  <svg viewBox="0 0 92 54" className="affiliation-logo brand-icon-logo aws-icon-logo" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AWS logo">
+    <text x="8" y="30" fill="#161D26" style={{ fontFamily: "Arial, Helvetica, sans-serif", fontWeight: 800, fontSize: "27px", letterSpacing: "-0.08em" }}>aws</text>
+    <path d="M12 38c12.5 7.2 33.2 10.5 54.5-1.2" stroke="#FF9900" strokeWidth="4" strokeLinecap="round" />
+    <path d="M61.5 34.8c5.3-.9 10.1-.5 13.7 1.6-1.1 3.2-3.5 6.8-7.1 10.4" stroke="#FF9900" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const MicrosoftIconLogo = () => (
+  <svg viewBox="0 0 24 24" className="affiliation-logo brand-icon-logo microsoft-icon-logo" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Microsoft logo">
+    <rect x="2" y="2" width="9" height="9" fill="#F25022" />
+    <rect x="13" y="2" width="9" height="9" fill="#7FBA00" />
+    <rect x="2" y="13" width="9" height="9" fill="#00A4EF" />
+    <rect x="13" y="13" width="9" height="9" fill="#FFB900" />
+  </svg>
+);
+
+const CiscoIconLogo = () => (
+  <svg viewBox="0 0 60 38" className="affiliation-logo brand-icon-logo cisco-icon-logo" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cisco logo">
+    <line x1="8" y1="19" x2="8" y2="27" strokeWidth="4" strokeLinecap="round" stroke="#11A9E2" />
+    <line x1="14" y1="12" x2="14" y2="27" strokeWidth="4" strokeLinecap="round" stroke="#11A9E2" />
+    <line x1="20" y1="14" x2="20" y2="27" strokeWidth="4" strokeLinecap="round" stroke="#11A9E2" />
+    <line x1="26" y1="4" x2="26" y2="27" strokeWidth="4" strokeLinecap="round" stroke="#11A9E2" />
+    <line x1="34" y1="4" x2="34" y2="27" strokeWidth="4" strokeLinecap="round" stroke="#11A9E2" />
+    <line x1="40" y1="14" x2="40" y2="27" strokeWidth="4" strokeLinecap="round" stroke="#11A9E2" />
+    <line x1="46" y1="12" x2="46" y2="27" strokeWidth="4" strokeLinecap="round" stroke="#11A9E2" />
+    <line x1="52" y1="19" x2="52" y2="27" strokeWidth="4" strokeLinecap="round" stroke="#11A9E2" />
+  </svg>
+);
+
+export function Affiliations() {
+  const officialItems = [
+    { name: "SECP", logo: SecpImageLogo, cardClass: "secp-card" },
+    { name: "FBR", logo: FbrLogo, cardClass: "fbr-card" },
+    { name: "PSEB", logo: PsebImageLogo, cardClass: "pseb-card" },
+    { name: "PAFLA", logo: PaflaImageLogo, cardClass: "pafla-card" },
+  ];
+
+  const brandItems = [
+    { name: "Google", logo: GoogleIconLogo, cardClass: "google-card" },
+    { name: "Meta", logo: MetaIconLogo, cardClass: "meta-card" },
+    { name: "Shopify", logo: ShopifyImageLogo, cardClass: "shopify-card" },
+    { name: "TikTok", logo: TiktokIconLogo, cardClass: "tiktok-card" },
+    { name: "GitHub", logo: GithubIconLogo, cardClass: "github-card" },
+    { name: "AWS", logo: AwsIconLogo, cardClass: "aws-card" },
+    { name: "Microsoft", logo: MicrosoftIconLogo, cardClass: "microsoft-card" },
+    { name: "Cisco", logo: CiscoIconLogo, cardClass: "cisco-card" },
+  ];
+
+  const renderCard = (item: typeof officialItems[number] | typeof brandItems[number], idx: number) => {
+    const Logo = item.logo;
+    return (
+      <div
+        key={item.name}
+        className={`relative overflow-hidden rounded-lg border flex aspect-square items-center justify-center text-center cursor-pointer affiliation-card ${item.cardClass}`}
+        data-reveal="up"
+        style={{ 
+          '--reveal-delay': `${(idx % 4) * 80}`
+        } as React.CSSProperties}
+      >
+        <div className="glow-dot" />
+        <Logo />
+      </div>
+    );
+  };
+
+  return (
+    <RevealSection>
+      <section className="section-y bg-white text-slate-900 relative overflow-hidden border-t border-slate-100">
+        <div className="absolute inset-0 -z-10 grid-noise opacity-5" />
+        
+        <div className="container-x relative z-10">
+          <div className="text-center mb-12">
+            <span className="eyebrow justify-center" data-reveal="up">Authorized & Certified Standards</span>
+            <h2 className="headline-lg mt-4 text-slate-900" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
+              Compliance <span className="text-[var(--gold)]">You Can Trust</span>
+            </h2>
+            <p className="mt-4 text-slate-600 max-w-2xl mx-auto text-base" data-reveal="up" style={{ '--reveal-delay': '150' } as React.CSSProperties}>
+              We are officially registered, certified, and partnered with national regulators and global tech giants to deliver verified, high-performance solutions.
+            </p>
+          </div>
+
+          <div className="mx-auto grid max-w-4xl gap-4 grid-cols-2 md:grid-cols-4">
+            {officialItems.map(renderCard)}
+          </div>
+
+          <div className="mx-auto mt-4 grid max-w-4xl gap-4 grid-cols-2 md:grid-cols-4">
+            {brandItems.map(renderCard)}
+          </div>
+        </div>
+      </section>
+    </RevealSection>
   );
 }

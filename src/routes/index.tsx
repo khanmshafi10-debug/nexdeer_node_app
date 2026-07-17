@@ -23,6 +23,7 @@ import {
   Testimonials,
   SocialProof,
   FAQ,
+  Affiliations,
   FinalCTA,
   ContactStrip,
   ServicesCTAStrip,
@@ -73,6 +74,7 @@ function Index() {
         <Testimonials />
         <SocialProof />
         <FAQ />
+        <Affiliations />
         <FinalCTA />
         <ContactStrip />
       </main>

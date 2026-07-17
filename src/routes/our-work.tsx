@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { Portfolio as PortfolioSection, CASES } from "@/components/site/sections";
+import { Portfolio as PortfolioSection, CASES, Testimonials } from "@/components/site/sections";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/our-work")({
@@ -94,6 +94,7 @@ function OurWorkPage() {
         </div>
 
         <PortfolioSection hideHeader />
+        <Testimonials />
       </main>
       <Footer />
     </div>
