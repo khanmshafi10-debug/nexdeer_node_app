@@ -20,7 +20,14 @@ function PortfolioPage() {
       <main>
         <section className="relative isolate overflow-hidden grid-noise text-white pt-36 pb-24 md:pt-44 md:pb-32 mb-12">
           <div className="absolute inset-0 -z-10 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=2000&q=80" alt="" className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity" />
+            <img 
+              src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=70" 
+              alt="" 
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity" 
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink-deep)]/95 via-[var(--ink-deep)]/85 to-[var(--ink-deep)]" />
           </div>
           <div className="container-x text-center fade-up">

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Direct Fluent Forms Submit</title>
+</head>
+<body>
+    <h1>Test Direct Submit to Fluent Forms</h1>
+    
+    <form id="testForm" method="POST" action="https://go.nexdeer.com/wp-admin/admin-ajax.php">
+        <input type="hidden" name="action" value="fluentform_submit">
+        <input type="hidden" name="form_id" value="1">
+        <input type="hidden" name="__fluent_form_embded_post_id" value="23">
+        <input type="hidden" name="_wp_http_referer" value="/">
+        
+        <p>
+            <label>First Name:</label><br>
+            <input type="text" name="names[first_name]" value="Test">
+        </p>
+        
+        <p>
+            <label>Last Name:</label><br>
+            <input type="text" name="names[last_name]" value="User">
+        </p>
+        
+        <p>
+            <label>Email (try different names):</label><br>
+            <input type="email" name="email" value="test@example.com"><br>
+            <small>Field name: email</small>
+        </p>
+        
+        <p>
+            <label>Email copy 2:</label><br>
+            <input type="email" name="email_1" value="test@example.com"><br>
+            <small>Field name: email_1</small>
+        </p>
+        
+        <p>
+            <label>Subject:</label><br>
+            <input type="text" name="subject" value="Test Subject">
+        </p>
+        
+        <p>
+            <label>Message (try different names):</label><br>
+            <textarea name="message">Test Message</textarea><br>
+            <small>Field name: message</small>
+        </p>
+        
+        <p>
+            <textarea name="description">Test Message</textarea><br>
+            <small>Field name: description</small>
+        </p>
+        
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const result = document.getElementById('result');
+            
+            result.innerHTML = '<p>Submitting...</p>';
+            
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                });
+                
+                const text = await response.text();
+                result.innerHTML = `
+                    <h2>Response:</h2>
+                    <p>Status: ${response.status}</p>
+                    <pre>${text}</pre>
+                `;
+            } catch (error) {
+                result.innerHTML = `<p style="color:red">Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+    
+    <hr>
+    <h2>Instructions:</h2>
+    <ol>
+        <li>Open Chrome DevTools (F12)</li>
+        <li>Go to the Network tab</li>
+        <li>Click Submit button above</li>
+        <li>Look at the request that was sent</li>
+        <li>Check the response to see which field names are missing</li>
+    </ol>
+</body>
+</html>

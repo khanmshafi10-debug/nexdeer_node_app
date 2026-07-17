@@ -11,13 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as OurWorkRouteImport } from './routes/our-work'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesServiceIdRouteImport } from './routes/services_.$serviceId'
-import { Route as PortfolioProjectIdRouteImport } from './routes/portfolio.$projectId'
+import { Route as PortfolioProjectIdRouteImport } from './routes/portfolio_.$projectId'
 import { Route as IndustriesIndustryIdRouteImport } from './routes/industries_.$industryId'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -28,6 +29,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurWorkRoute = OurWorkRouteImport.update({
+  id: '/our-work',
+  path: '/our-work',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndustriesRoute = IndustriesRouteImport.update({
@@ -61,9 +67,9 @@ const ServicesServiceIdRoute = ServicesServiceIdRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioProjectIdRoute = PortfolioProjectIdRouteImport.update({
-  id: '/$projectId',
-  path: '/$projectId',
-  getParentRoute: () => PortfolioRoute,
+  id: '/portfolio_/$projectId',
+  path: '/portfolio/$projectId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const IndustriesIndustryIdRoute = IndustriesIndustryIdRouteImport.update({
   id: '/industries_/$industryId',
@@ -77,7 +83,8 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRoute
-  '/portfolio': typeof PortfolioRouteWithChildren
+  '/our-work': typeof OurWorkRoute
+  '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/industries/$industryId': typeof IndustriesIndustryIdRoute
   '/portfolio/$projectId': typeof PortfolioProjectIdRoute
@@ -89,7 +96,8 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRoute
-  '/portfolio': typeof PortfolioRouteWithChildren
+  '/our-work': typeof OurWorkRoute
+  '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/industries/$industryId': typeof IndustriesIndustryIdRoute
   '/portfolio/$projectId': typeof PortfolioProjectIdRoute
@@ -102,10 +110,11 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRoute
-  '/portfolio': typeof PortfolioRouteWithChildren
+  '/our-work': typeof OurWorkRoute
+  '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/industries_/$industryId': typeof IndustriesIndustryIdRoute
-  '/portfolio/$projectId': typeof PortfolioProjectIdRoute
+  '/portfolio_/$projectId': typeof PortfolioProjectIdRoute
   '/services_/$serviceId': typeof ServicesServiceIdRoute
 }
 export interface FileRouteTypes {
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/industries'
+    | '/our-work'
     | '/portfolio'
     | '/services'
     | '/industries/$industryId'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/industries'
+    | '/our-work'
     | '/portfolio'
     | '/services'
     | '/industries/$industryId'
@@ -140,10 +151,11 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/industries'
+    | '/our-work'
     | '/portfolio'
     | '/services'
     | '/industries_/$industryId'
-    | '/portfolio/$projectId'
+    | '/portfolio_/$projectId'
     | '/services_/$serviceId'
   fileRoutesById: FileRoutesById
 }
@@ -153,9 +165,11 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   IndustriesRoute: typeof IndustriesRoute
-  PortfolioRoute: typeof PortfolioRouteWithChildren
+  OurWorkRoute: typeof OurWorkRoute
+  PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRoute
   IndustriesIndustryIdRoute: typeof IndustriesIndustryIdRoute
+  PortfolioProjectIdRoute: typeof PortfolioProjectIdRoute
   ServicesServiceIdRoute: typeof ServicesServiceIdRoute
 }
 
@@ -173,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-work': {
+      id: '/our-work'
+      path: '/our-work'
+      fullPath: '/our-work'
+      preLoaderRoute: typeof OurWorkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/industries': {
@@ -217,12 +238,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesServiceIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/portfolio/$projectId': {
-      id: '/portfolio/$projectId'
-      path: '/$projectId'
+    '/portfolio_/$projectId': {
+      id: '/portfolio_/$projectId'
+      path: '/portfolio/$projectId'
       fullPath: '/portfolio/$projectId'
       preLoaderRoute: typeof PortfolioProjectIdRouteImport
-      parentRoute: typeof PortfolioRoute
+      parentRoute: typeof rootRouteImport
     }
     '/industries_/$industryId': {
       id: '/industries_/$industryId'
@@ -234,27 +255,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface PortfolioRouteChildren {
-  PortfolioProjectIdRoute: typeof PortfolioProjectIdRoute
-}
-
-const PortfolioRouteChildren: PortfolioRouteChildren = {
-  PortfolioProjectIdRoute: PortfolioProjectIdRoute,
-}
-
-const PortfolioRouteWithChildren = PortfolioRoute._addFileChildren(
-  PortfolioRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   IndustriesRoute: IndustriesRoute,
-  PortfolioRoute: PortfolioRouteWithChildren,
+  OurWorkRoute: OurWorkRoute,
+  PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRoute,
   IndustriesIndustryIdRoute: IndustriesIndustryIdRoute,
+  PortfolioProjectIdRoute: PortfolioProjectIdRoute,
   ServicesServiceIdRoute: ServicesServiceIdRoute,
 }
 export const routeTree = rootRouteImport

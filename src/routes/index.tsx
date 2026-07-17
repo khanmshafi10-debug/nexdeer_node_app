@@ -44,19 +44,6 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "/" },
-      {
-        rel: "preload",
-        as: "image",
-        href: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=70",
-        imagesrcset: [
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=640&q=70 640w",
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1024&q=70 1024w",
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=70 1600w",
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=70 2000w",
-        ].join(", "),
-        imagesizes: "100vw",
-        fetchpriority: "high",
-      },
     ],
   }),
   component: Index,
@@ -77,7 +64,6 @@ function Index() {
         <ServiceSEO />
         <ServiceAI />
         <ServicesCTAStrip />
-        <Portfolio limit={4} />
         <CaseStudies />
         <Industries />
         <WhyNexdeer />

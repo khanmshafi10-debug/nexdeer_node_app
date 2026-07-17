@@ -203,6 +203,8 @@ function About() {
                   <img 
                     src="/innovation_hub.webp" 
                     alt="NEXDEER Innovation Hub" 
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto aspect-square object-cover transform transition-transform duration-[3s] group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)] via-transparent to-transparent opacity-60"></div>

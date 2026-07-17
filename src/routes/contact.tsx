@@ -13,7 +13,41 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
+import { useState } from "react";
+import { toast } from "sonner";
+import { submitFluentForm } from "../lib/fluent-forms";
+
 function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await submitFluentForm({ name, email, message });
+      if (response.success) {
+        toast.success(response.message || "Message sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        toast.error(response.message || "Failed to send message.");
+      }
+    } catch (err) {
+      toast.error("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white text-[var(--ink-deep)]">
       <Header />
@@ -80,21 +114,23 @@ function Contact() {
               <div className="rounded-3xl border border-[var(--border)] bg-white p-8 lg:p-12 shadow-[0_20px_40px_rgba(0,0,0,0.03)] fade-up relative overflow-hidden group" style={{ animationDelay: '300ms' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 <h3 className="headline-md text-[var(--ink-deep)] mb-6 relative z-10">Send us a message</h3>
-                <form className="space-y-4 relative z-10" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-4 relative z-10" onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-[var(--ink-deep)] mb-1.5 ml-1">Name</label>
-                    <input type="text" id="name" className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-[15px] outline-none transition-all duration-300 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] focus:bg-white hover:border-[var(--gold)]/40" placeholder="John Doe" />
+                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-[15px] outline-none transition-all duration-300 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] focus:bg-white hover:border-[var(--gold)]/40" placeholder="John Doe" required disabled={loading} />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-[var(--ink-deep)] mb-1.5 ml-1">Email</label>
-                    <input type="email" id="email" className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-[15px] outline-none transition-all duration-300 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] focus:bg-white hover:border-[var(--gold)]/40" placeholder="john@company.com" />
+                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-[15px] outline-none transition-all duration-300 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] focus:bg-white hover:border-[var(--gold)]/40" placeholder="john@company.com" required disabled={loading} />
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-[var(--ink-deep)] mb-1.5 ml-1">Message</label>
-                    <textarea id="message" rows={4} className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-[15px] outline-none transition-all duration-300 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] focus:bg-white hover:border-[var(--gold)]/40 resize-none" placeholder="How can we help you scale?"></textarea>
+                    <textarea id="message" rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-[15px] outline-none transition-all duration-300 focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)] focus:bg-white hover:border-[var(--gold)]/40 resize-none" placeholder="How can we help you scale?" required disabled={loading}></textarea>
                   </div>
-                  <button className="btn-gold w-full justify-center group overflow-hidden relative">
-                    <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 inline-block">Send Message</span>
+                  <button type="submit" className="btn-gold w-full justify-center group overflow-hidden relative" disabled={loading}>
+                    <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 inline-block">
+                      {loading ? "Sending..." : "Send Message"}
+                    </span>
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                   </button>
                 </form>

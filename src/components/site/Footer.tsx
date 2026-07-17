@@ -24,8 +24,8 @@ const QUICK = ["Home", "About", "Services", "Portfolio", "Industries", "Contact"
 export function Footer() {
   return (
     <footer className="bg-[var(--ink-deep)] text-white/80">
-      <div className="container-x py-20">
-        <div className="grid gap-12 lg:grid-cols-12">
+      <div className="container-x py-14 md:py-20">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-3">
             <div className="flex items-center gap-2">
               <img src="/logo.png" alt="NEXDEER Logo" className="h-10 w-auto" />
@@ -78,17 +78,17 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-3">
             {[
-              { Icon: Linkedin, href: "https://www.linkedin.com/company/nexdeer/" },
-              { Icon: Instagram, href: "https://www.instagram.com/nexdeer?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
-              { Icon: Facebook, href: "https://www.facebook.com/nexdeer/" },
-              { Icon: Twitter, href: "https://x.com/nexdeer" }
-            ].map(({ Icon, href }, i) => (
+              { Icon: Linkedin, href: "https://www.linkedin.com/company/nexdeer/", label: "LinkedIn Profile" },
+              { Icon: Instagram, href: "https://www.instagram.com/nexdeer?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", label: "Instagram Profile" },
+              { Icon: Facebook, href: "https://www.facebook.com/nexdeer/", label: "Facebook Page" },
+              { Icon: Twitter, href: "https://x.com/nexdeer", label: "Twitter Profile" }
+            ].map(({ Icon, href, label }, i) => (
               <a
                 key={i}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="social"
+                aria-label={label}
                 className="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-white/75 hover:border-[var(--gold)] hover:text-[var(--gold)] transition"
               >
                 <Icon size={15} />

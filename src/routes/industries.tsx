@@ -31,7 +31,14 @@ function IndustriesPage() {
         <section className="relative isolate overflow-hidden bg-[var(--ink-deep)] text-white pt-32 pb-20 md:pt-48 md:pb-32">
           {/* Subtle architectural / abstract background */}
           <div className="absolute inset-0 -z-10 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2500&q=80" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.15] mix-blend-luminosity scale-105" />
+            <img 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=70" 
+              alt="" 
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              className="absolute inset-0 w-full h-full object-cover opacity-[0.15] mix-blend-luminosity scale-105" 
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink-deep)]/90 via-[var(--ink-deep)]/95 to-[var(--ink-deep)]" />
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[var(--gold)]/5 blur-[150px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
@@ -179,7 +186,13 @@ function IndustriesPage() {
                   </p>
                 </div>
                 <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3] fade-up">
-                  <img src="/enterprise_strategy.webp" alt="Team strategy planning" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                  <img 
+                    src="/enterprise_strategy.webp" 
+                    alt="Team strategy planning" 
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)]/40 to-transparent pointer-events-none" />
                 </div>
                 

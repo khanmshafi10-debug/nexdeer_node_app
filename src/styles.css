@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Qwitcher+Grypen:wght@400;700&display=swap');
 @import "tailwindcss" source(none);
 @import "tw-animate-css";
 @source "../src";
@@ -40,8 +40,8 @@
   --color-surface: var(--surface);
   --color-surface-alt: var(--surface-alt);
 
-  --font-display: "General Sans", "Inter", system-ui, sans-serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
 }
 
 :root {
@@ -74,6 +74,7 @@
   --border: oklch(0.92 0.008 260);
   --input: oklch(0.92 0.008 260);
   --ring: oklch(0.79 0.15 84);
+  --ease-reveal: cubic-bezier(.16, 1, .3, 1);
 }
 
 .dark {
@@ -110,15 +111,17 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden; /* prevent horizontal scroll on mobile */
+    -webkit-tap-highlight-color: transparent; /* remove tap flash on iOS */
   }
-  img, video { max-width: 100%; height: auto; }
+  img, video { max-width: 100%; height: auto; display: block; }
+  button, a { touch-action: manipulation; } /* prevent 300ms click delay on mobile */
   h1, h2, h3, h4, h5 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
-  /* MARQUEE ANIMATIONS */
+  /* ── MARQUEE ANIMATIONS ── */
   @keyframes marquee-left {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-50%); }
@@ -152,6 +155,67 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
+
+  /* ── SCROLL REVEAL SYSTEM ── */
+  /* Cinematic deceleration curve */
+
+  [data-reveal] {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition:
+      opacity 0.8s var(--ease-reveal),
+      transform 0.8s var(--ease-reveal);
+    transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+  }
+  [data-reveal="up"]    { transform: translateY(40px); }
+  [data-reveal="down"]  { transform: translateY(-40px); }
+  [data-reveal="left"]  { transform: translateX(50px); }
+  [data-reveal="right"] { transform: translateX(-50px); }
+  [data-reveal="scale"] { transform: scale(0.92); }
+  [data-reveal="fade"]  { transform: none; }
+
+  /* When visible */
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+
+  /* ── GOLD SHIMMER ── */
+  @keyframes nx-shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* ── BREATHING GLOW ── */
+  @keyframes nx-glow-breathe {
+    0%, 100% { box-shadow: 0 0 30px -10px rgba(232, 181, 4, 0.15); }
+    50%      { box-shadow: 0 0 50px -5px rgba(232, 181, 4, 0.3); }
+  }
+
+  /* ── GRADIENT ORB PULSE ── */
+  @keyframes nx-orb-pulse {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50%      { opacity: 0.25; transform: scale(1.08); }
+  }
+
+  /* ── PROCESS CONNECTOR LINE ── */
+  .process-step-connector {
+    position: relative;
+  }
+  .process-step-connector::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -12px;
+    width: 24px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0.3;
+  }
+  @media (max-width: 1023px) {
+    .process-step-connector::after { display: none; }
+  }
+  .process-step-connector:last-child::after { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -161,19 +225,26 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 @utility container-x {
   max-width: 1280px;
   margin-inline: auto;
-  padding-inline: 1.25rem;
+  padding-inline: 1rem;
+  @media (min-width: 480px) { padding-inline: 1.25rem; }
   @media (min-width: 768px) { padding-inline: 2rem; }
   @media (min-width: 1280px) { padding-inline: 2.5rem; }
 }
 
 @utility section-y {
-  padding-block: 4rem;
-  @media (min-width: 768px) { padding-block: 6rem; }
+  padding-block: 3rem;
+  @media (min-width: 480px) { padding-block: 4rem; }
+  @media (min-width: 768px) { padding-block: 5.5rem; }
   @media (min-width: 1280px) { padding-block: 7rem; }
 }
 
@@ -192,20 +263,20 @@
 }
 
 @utility headline-xl {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1.02;
-  font-weight: 700;
-  letter-spacing: -0.035em;
-}
-@utility headline-lg {
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw + 0.5rem, 5rem);
   line-height: 1.05;
   font-weight: 700;
   letter-spacing: -0.03em;
 }
+@utility headline-lg {
+  font-size: clamp(1.75rem, 4vw + 0.5rem, 3.5rem);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
 @utility headline-md {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  line-height: 1.15;
+  font-size: clamp(1.3rem, 2.5vw + 0.25rem, 2rem);
+  line-height: 1.18;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -221,18 +292,25 @@
   color: var(--ink-deep);
   font-weight: 600;
   font-size: 0.95rem;
-  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
-  box-shadow: 0 12px 28px -12px color-mix(in oklab, var(--gold) 55%, transparent);
+  position: relative;
+  overflow: hidden;
+  transition: transform 250ms cubic-bezier(.16,1,.3,1), box-shadow 250ms ease, background 200ms ease;
+  box-shadow:
+    0 12px 28px -12px color-mix(in oklab, var(--gold) 55%, transparent),
+    0 0 0 0 rgba(232, 181, 4, 0);
   &:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     background: color-mix(in oklab, var(--gold) 92%, white);
+    box-shadow:
+      0 18px 36px -14px color-mix(in oklab, var(--gold) 65%, transparent),
+      0 0 20px -5px rgba(232, 181, 4, 0.25);
   }
   &:active {
     background: var(--gold) !important;
     color: var(--ink-deep) !important;
     border-color: var(--gold) !important;
-    transform: scale(0.95) !important;
-    transition: none !important;
+    transform: scale(0.97) !important;
+    transition-duration: 80ms !important;
   }
 }
 @utility btn-ghost {
@@ -245,17 +323,18 @@
   border: 1px solid color-mix(in oklab, currentColor 25%, transparent);
   font-weight: 600;
   font-size: 0.95rem;
-  transition: background 200ms ease, border-color 200ms ease;
+  transition: all 250ms cubic-bezier(.16,1,.3,1);
   &:hover {
     background: color-mix(in oklab, currentColor 8%, transparent);
     border-color: color-mix(in oklab, currentColor 45%, transparent);
+    transform: translateY(-1px);
   }
   &:active {
     background: var(--gold) !important;
     color: var(--ink-deep) !important;
     border-color: var(--gold) !important;
-    transform: scale(0.95) !important;
-    transition: none !important;
+    transform: scale(0.97) !important;
+    transition-duration: 80ms !important;
   }
 }
 
@@ -288,4 +367,112 @@
 }
 @utility float {
   animation: nx-float 6s ease-in-out infinite;
+}
+
+/* ── PAGE ENTRANCE (fires on every route transition) ── */
+@keyframes nx-page-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+main {
+  animation: nx-page-enter 0.45s cubic-bezier(.16,1,.3,1) both;
+}
+
+/* ── STAGGER CHILDREN UTILITY ── */
+/* Apply to a grid/flex container — first 12 children get staggered reveals */
+@utility stagger-children {
+  & > *:nth-child(1)  { --reveal-delay: 0; }
+  & > *:nth-child(2)  { --reveal-delay: 80; }
+  & > *:nth-child(3)  { --reveal-delay: 160; }
+  & > *:nth-child(4)  { --reveal-delay: 240; }
+  & > *:nth-child(5)  { --reveal-delay: 320; }
+  & > *:nth-child(6)  { --reveal-delay: 400; }
+  & > *:nth-child(7)  { --reveal-delay: 480; }
+  & > *:nth-child(8)  { --reveal-delay: 560; }
+  & > *:nth-child(9)  { --reveal-delay: 640; }
+  & > *:nth-child(10) { --reveal-delay: 720; }
+  & > *:nth-child(11) { --reveal-delay: 800; }
+  & > *:nth-child(12) { --reveal-delay: 880; }
+}
+
+/* ── HOVER LIFT — sprinkle on any card ── */
+@utility card-hover {
+  transition: transform 0.35s cubic-bezier(.16,1,.3,1),
+              box-shadow 0.35s cubic-bezier(.16,1,.3,1),
+              border-color 0.3s ease;
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px -15px rgba(2,0,42,0.18),
+                0 0 0 1px rgba(232,181,4,0.15);
+  }
+}
+
+/* ── GOLD SHIMMER LINE — decorative accent under headings ── */
+@keyframes nx-line-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@utility gold-underline {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(.16,1,.3,1);
+  }
+  &:hover::after { transform: scaleX(1); }
+}
+
+/* ── COUNT-UP PULSE on stat numbers ── */
+@keyframes nx-count-pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* ── SCROLL-TRIGGERED REVEAL for hero sections ── */
+@keyframes nx-hero-word {
+  from { opacity: 0; transform: translateY(24px) skewY(2deg); }
+  to   { opacity: 1; transform: translateY(0) skewY(0deg); }
+}
+@utility hero-animate {
+  animation: nx-hero-word 0.7s cubic-bezier(.16,1,.3,1) both;
+}
+
+/* ── ICON BOUNCE on hover ── */
+@keyframes nx-icon-pop {
+  0%   { transform: scale(1) rotate(0); }
+  40%  { transform: scale(1.2) rotate(-8deg); }
+  70%  { transform: scale(0.95) rotate(4deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+@utility icon-pop {
+  &:hover { animation: nx-icon-pop 0.45s ease-out; }
+}
+
+/* ── BORDER GLOW on focus/hover (for form fields) ── */
+@keyframes nx-border-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,181,4,0); }
+  50%       { box-shadow: 0 0 0 3px rgba(232,181,4,0.2); }
+}
+
+/* ── TESTIMONIAL / CARD SLIDE IN ── */
+@keyframes nx-slide-up-in {
+  from { opacity: 0; transform: translateY(32px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@utility slide-up-in {
+  animation: nx-slide-up-in 0.6s cubic-bezier(.16,1,.3,1) both;
+}
+
+/* ── REDUCED MOTION — never animate if user prefers it ── */
+@media (prefers-reduced-motion: reduce) {
+  main { animation: none !important; }
+  .hero-animate, .slide-up-in, .icon-pop { animation: none !important; }
 }

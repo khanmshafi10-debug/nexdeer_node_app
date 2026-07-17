@@ -6,6 +6,7 @@ const NAV = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Our Work", href: "/our-work" },
   { label: "Industries", href: "/industries" },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
@@ -48,13 +49,24 @@ export function Header() {
           {NAV.map((n) => (
             n.label === "Services" ? (
               <div key={n.label} className="relative group">
-                <Link to={n.href} className="text-white/80 hover:text-white transition-colors py-4">
+                <Link
+                  to={n.href}
+                  activeProps={{ className: "text-[var(--gold)] font-semibold" }}
+                  inactiveProps={{ className: "text-white/80 hover:text-white" }}
+                  className="transition-colors py-4"
+                >
                   {n.label}
                 </Link>
                 <div className="absolute left-0 top-full mt-0 w-72 rounded-xl bg-[var(--ink-deep)] border border-white/10 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 overflow-hidden">
                   <div className="py-2">
                     {SERVICES_MENU.map((s) => (
-                      <Link key={s.label} to={s.href} className="block px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                      <Link
+                        key={s.label}
+                        to={s.href}
+                        activeProps={{ className: "text-[var(--gold)] bg-white/5 font-semibold" }}
+                        inactiveProps={{ className: "text-white/70 hover:text-white hover:bg-white/5" }}
+                        className="block px-6 py-3 transition-colors"
+                      >
                         {s.label}
                       </Link>
                     ))}
@@ -62,7 +74,13 @@ export function Header() {
                 </div>
               </div>
             ) : (
-              <Link key={n.label} to={n.href} className="text-white/80 hover:text-white transition-colors py-4">
+              <Link
+                key={n.label}
+                to={n.href}
+                activeProps={{ className: "text-[var(--gold)] font-semibold" }}
+                inactiveProps={{ className: "text-white/80 hover:text-white" }}
+                className="transition-colors py-4"
+              >
                 {n.label}
               </Link>
             )
@@ -94,7 +112,9 @@ export function Header() {
                 key={n.label}
                 to={n.href}
                 onClick={() => setOpen(false)}
-                className="min-h-11 flex items-center text-base font-medium text-white/85 hover:text-[var(--gold)]"
+                activeProps={{ className: "text-[var(--gold)] font-semibold" }}
+                inactiveProps={{ className: "text-white/85 hover:text-white" }}
+                className="min-h-11 flex items-center text-base font-medium transition-colors"
               >
                 {n.label}
               </Link>

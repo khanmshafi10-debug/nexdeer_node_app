@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { INDUSTRIES } from "@/data/industries";
 import { Link, useNavigate } from "@tanstack/react-router";
 import {
@@ -46,6 +46,46 @@ import {
   Play
 } from "lucide-react";
 
+/* ---------- Scroll Reveal System ---------- */
+function useRevealObserver() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    // Find all [data-reveal] children + self
+    const targets = el.querySelectorAll("[data-reveal]");
+    if (!targets.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    targets.forEach((t) => observer.observe(t));
+    return () => observer.disconnect();
+  }, []);
+
+  return ref;
+}
+
+/** Wrapper that auto-observes all [data-reveal] descendants */
+export function RevealSection({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  const ref = useRevealObserver();
+  return (
+    <div ref={ref} className={className} {...props}>
+      {children}
+    </div>
+  );
+}
+
 /* ---------- Helpers ---------- */
 const IMG = {
   hero: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1600&q=80",
@@ -54,14 +94,14 @@ const IMG = {
   analytics: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1400&q=80",
   marketing: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
   website: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1400&q=80",
-  seo: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1400&q=80",
+  seo: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=1400&q=80",
   ai: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80",
   exec: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80",
   city: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1600&q=80",
   portfolio1: "/projects/real estate website.webp",
   portfolio2: "/projects/Healthcare Clinics.webp",
-  portfolio3: "/projects/branding.png",
-  portfolio4: "/projects/collage.png",
+  portfolio3: "/projects/branding.webp",
+  portfolio4: "/projects/collage.webp",
 };
 
 const GoogleIcon = ({ size, className }: any) => (
@@ -110,29 +150,31 @@ const AVATARS = [
 export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden grid-noise text-white">
-      {/* Background - gradient and noise only */}
+      {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink-deep)]/80 via-[var(--ink-deep)]/90 to-[var(--ink-deep)]" />
         <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:64px_64px]" />
       </div>
+      {/* Pulsing gradient orb for depth */}
+      <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[min(600px,100vw)] h-[min(400px,60vw)] rounded-full bg-[var(--gold)]/10 blur-[120px] pointer-events-none" style={{ animation: 'nx-orb-pulse 8s ease-in-out infinite' }} />
 
-      <div className="container-x pt-24 pb-24 md:pt-32 md:pb-32">
-        <div className="mx-auto max-w-4xl text-center fade-up">
+      <div className="container-x pt-20 pb-16 md:pt-32 md:pb-32">
+        <div className="mx-auto max-w-4xl text-center px-2">
           <span className="eyebrow mx-auto"><Sparkles size={14} /> Full-Stack Digital Growth Agency</span>
-          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-bold leading-[1.1] tracking-tight mt-5 text-white">
+          <h1 className="text-[clamp(1.8rem,5vw+0.5rem,4.25rem)] font-bold leading-[1.08] tracking-tight mt-5 text-white hero-animate">
             Stop Wasting Money on <span className="text-white">Marketing</span> That <span className="text-[var(--gold)]">Doesn't Generate Revenue</span>
           </h1>
-          <p className="mt-7 mx-auto max-w-2xl text-base md:text-lg leading-relaxed text-white/75">
+          <p className="mt-7 mx-auto max-w-2xl text-base md:text-lg leading-relaxed text-white/75 hero-animate" style={{ animationDelay: '150ms' } as React.CSSProperties}>
             NEXDEER helps businesses scale faster through performance marketing, high-converting
             websites, SEO, local search optimization, and AI-powered automation — bringing your
             marketing, sales, and growth systems together under one roof.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3 hero-animate" style={{ animationDelay: '300ms' } as React.CSSProperties}>
             <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
               Get Your Custom Growth Plan
             </a>
-            <Link to="/portfolio" className="btn-ghost text-white group">
+            <Link to="/our-work" className="btn-ghost text-white group">
               View Our Work <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
@@ -175,28 +217,29 @@ export function Hero() {
 }
 
 function AnimatedNumber({ value }: { value: string }) {
-  const [displayValue, setDisplayValue] = useState("0");
+  const [displayValue, setDisplayValue] = useState(value);
   const nodeRef = useRef<HTMLSpanElement>(null);
   
   useEffect(() => {
     const match = value.match(/^(\d+)(.*)$/);
-    if (!match) {
-      setDisplayValue(value);
-      return;
-    }
+    if (!match) return;
+    
     const target = parseInt(match[1], 10);
     const suffix = match[2];
+    
+    // Set initial animate state to 0 on mount
+    setDisplayValue("0" + suffix);
     
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          let startTimestamp: number;
-          const duration = 2000;
+          let startTimestamp: number | null = null;
+          const duration = 1600;
           
           const step = (timestamp: number) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const easeOut = 1 - Math.pow(1 - progress, 4);
+            const easeOut = 1 - Math.pow(1 - progress, 4); // Quartic ease out
             const current = Math.floor(easeOut * target);
             setDisplayValue(current + suffix);
             
@@ -208,7 +251,7 @@ function AnimatedNumber({ value }: { value: string }) {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: "0px 0px -20px 0px" }
     );
     
     if (nodeRef.current) {
@@ -224,14 +267,15 @@ function AnimatedNumber({ value }: { value: string }) {
 /* ---------- TRUSTED ---------- */
 export function Trusted() {
   return (
+    <RevealSection>
     <section id="about" className="section-y bg-[var(--surface)]">
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:items-center">
-        <div className="lg:col-span-5 fade-up">
+        <div className="lg:col-span-5" data-reveal="left">
           <div className="relative group/img cursor-default">
             <div className="overflow-hidden rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-700 group-hover/img:shadow-[0_25px_50px_rgba(232,181,4,0.15)] group-hover/img:-translate-y-2">
               <img src="/process.webp" alt="Growth Process: Plan, Analyze, Execute, Review, Optimize" loading="lazy" decoding="async" className="aspect-[4/5] object-cover w-full transition-transform duration-[2s] ease-out group-hover/img:scale-105" />
             </div>
-            <div className="absolute -bottom-6 -right-6 hidden md:block max-w-[260px] rounded-2xl bg-[var(--ink-deep)] p-5 text-white shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_50px_rgba(232,181,4,0.3)] z-10 float">
+            <div className="absolute -bottom-6 -right-6 hidden sm:block max-w-[220px] md:max-w-[260px] rounded-2xl bg-[var(--ink-deep)] p-4 md:p-5 text-white shadow-xl transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_50px_rgba(232,181,4,0.3)] z-10 float" style={{ animation: 'nx-float 6s ease-in-out infinite, nx-glow-breathe 4s ease-in-out infinite' }}>
               <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none" />
               <div className="text-3xl font-bold transition-colors duration-300 group-hover/img:text-[var(--gold)]"><AnimatedNumber value="98%" /></div>
               <div className="text-xs uppercase tracking-wider text-white/65 mt-1">Client retention across multi-year engagements</div>
@@ -240,11 +284,11 @@ export function Trusted() {
         </div>
 
         <div className="lg:col-span-7">
-          <span className="eyebrow fade-up" style={{ animationDelay: '100ms' }}>Trusted by growing businesses</span>
-          <h2 className="text-3xl lg:text-4xl font-bold mt-4 text-[var(--ink-deep)] fade-up leading-[1.1] tracking-tight" style={{ animationDelay: '200ms' }}>
+          <span className="eyebrow" data-reveal="up">Trusted by growing businesses</span>
+          <h2 className="text-3xl lg:text-4xl font-bold mt-4 text-[var(--ink-deep)] leading-[1.1] tracking-tight" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
             Built to Help Businesses Grow Smarter and Scale Faster
           </h2>
-          <div className="mt-6 space-y-5 text-[15.5px] leading-relaxed text-[color:var(--muted-foreground)] fade-up" style={{ animationDelay: '300ms' }}>
+          <div className="mt-6 space-y-5 text-[15.5px] leading-relaxed text-[color:var(--muted-foreground)]" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
             <p>
               Businesses today face more competition, rising customer acquisition costs, and rapidly
               changing technology. Many struggle because their marketing, website, SEO, and
@@ -270,8 +314,8 @@ export function Trusted() {
             ].map(([n, l], idx) => (
               <div 
                 key={l} 
-                className="relative overflow-hidden rounded-xl border border-[var(--border)] bg-white px-4 py-5 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(232,181,4,0.12)] hover:border-[var(--gold)]/50 group cursor-default fade-up"
-                style={{ animationDelay: `${400 + (idx * 150)}ms` }}
+                className="relative overflow-hidden rounded-xl border border-[var(--border)] bg-white px-4 py-5 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(232,181,4,0.12)] hover:border-[var(--gold)]/50 group cursor-default"
+                data-reveal="scale" style={{ '--reveal-delay': `${300 + (idx * 120)}` } as React.CSSProperties}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 <div className="text-2xl font-bold text-[var(--ink-deep)] transition-all duration-500 group-hover:text-[var(--gold)] group-hover:scale-110 origin-left inline-block relative z-10"><AnimatedNumber value={n} /></div>
@@ -288,6 +332,7 @@ export function Trusted() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -302,20 +347,21 @@ export function Problem() {
     "Growth becomes unpredictable and difficult to scale",
   ];
   return (
+    <RevealSection>
     <section className="section-y bg-[var(--ink-deep)] text-white relative overflow-hidden">
       <div className="absolute inset-0 -z-10 opacity-[0.05] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:32px_32px]" />
       <div className="container-x grid gap-14 lg:grid-cols-12 relative z-10">
         <div className="lg:col-span-5">
-          <span className="eyebrow fade-up">The challenge</span>
-          <h2 className="headline-lg mt-4 text-white fade-up" style={{ animationDelay: '100ms' }}>
+          <span className="eyebrow" data-reveal="up">The challenge</span>
+          <h2 className="headline-lg mt-4 text-white" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
             The Problem Isn't Traffic. The Problem Is What Happens After.
           </h2>
-          <p className="mt-6 text-white/70 leading-relaxed max-w-md fade-up" style={{ animationDelay: '200ms' }}>
+          <p className="mt-6 text-white/70 leading-relaxed max-w-md" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
             Many businesses invest in websites, social media, SEO, or advertising without a clear
             growth strategy. Without a connected growth system, businesses often spend more while
             achieving less.
           </p>
-          <div className="mt-10 fade-up relative group overflow-hidden rounded-2xl" style={{ animationDelay: '300ms' }}>
+          <div className="mt-10 relative group overflow-hidden rounded-2xl" data-reveal="scale" style={{ '--reveal-delay': '300' } as React.CSSProperties}>
             <div className="absolute inset-0 bg-[var(--gold)]/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <img src={IMG.analytics} alt="Analytics dashboard" loading="lazy" decoding="async" className="border border-white/10 aspect-[16/10] object-cover w-full transition-transform duration-700 group-hover:scale-110" />
           </div>
@@ -326,8 +372,8 @@ export function Problem() {
             {items.map((t, i) => (
               <li
                 key={t}
-                className="group flex items-center gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:border-[var(--gold)]/50 hover:bg-[var(--gold)]/[0.03] hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(232,181,4,0.08)] cursor-default fade-up"
-                style={{ animationDelay: `${400 + (i * 100)}ms` }}
+                className="group flex items-center gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 hover:border-[var(--gold)]/50 hover:bg-[var(--gold)]/[0.03] hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(232,181,4,0.08)] cursor-default"
+                data-reveal={i % 2 === 0 ? 'left' : 'right'} style={{ '--reveal-delay': `${i * 80}` } as React.CSSProperties}
               >
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] font-bold text-sm transition-all duration-300 group-hover:bg-[var(--gold)] group-hover:text-black group-hover:rotate-6 group-hover:scale-110 shadow-lg">
                   {String(i + 1).padStart(2, "0")}
@@ -337,7 +383,7 @@ export function Problem() {
             ))}
           </ul>
 
-          <div className="mt-10 rounded-2xl border border-[var(--gold)]/40 bg-[var(--gold)]/[0.05] p-7 fade-up relative overflow-hidden group hover:border-[var(--gold)]/60 transition-colors duration-300" style={{ animationDelay: '1000ms' }}>
+          <div className="mt-10 rounded-2xl border border-[var(--gold)]/40 bg-[var(--gold)]/[0.05] p-7 relative overflow-hidden group hover:border-[var(--gold)]/60 transition-colors duration-300" data-reveal="scale" style={{ '--reveal-delay': '500' } as React.CSSProperties}>
             <div className="absolute -inset-2 bg-gradient-to-r from-[var(--gold)]/0 via-[var(--gold)]/10 to-[var(--gold)]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
             <p className="text-white text-xl font-semibold leading-relaxed relative z-10 italic">
               "You don't need more tools. You need one connected system that turns attention into revenue."
@@ -385,6 +431,7 @@ export function Problem() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -455,16 +502,17 @@ const SERVICES = [
 export function GrowthSystem({ limit }: { limit?: number }) {
   const displayServices = limit ? SERVICES.slice(0, limit) : SERVICES;
   return (
+    <RevealSection>
     <section id="services" className="section-y bg-[var(--surface)]">
       <div className="container-x">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <span className="eyebrow">The NEXDEER growth system</span>
-            <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">
+            <span className="eyebrow" data-reveal="up">The NEXDEER growth system</span>
+            <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
               One Partner. One Strategy. One Scalable Growth System.
             </h2>
           </div>
-          <p className="lg:col-span-5 text-[15.5px] leading-relaxed text-[color:var(--muted-foreground)]">
+          <p className="lg:col-span-5 text-[15.5px] leading-relaxed text-[color:var(--muted-foreground)]" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
             Instead of managing multiple vendors, freelancers, and disconnected tools, work with a
             team that handles every critical component of your digital growth — combining
             performance marketing, websites, SEO, and AI automation into systems that consistently
@@ -473,11 +521,12 @@ export function GrowthSystem({ limit }: { limit?: number }) {
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {displayServices.map(({ icon: Icon, title, image, items }) => (
+          {displayServices.map(({ icon: Icon, title, image, items }, idx) => (
             <Link
               to="/services"
               key={title}
               className="group relative overflow-hidden rounded-3xl border border-[var(--border)] bg-white transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_25px_60px_-25px_rgba(2,0,42,0.35)] block"
+              data-reveal="up" style={{ '--reveal-delay': `${idx * 80}` } as React.CSSProperties}
             >
               <div className="relative aspect-[16/9] overflow-hidden">
                 <img src={image} alt={title} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
@@ -512,14 +561,15 @@ export function GrowthSystem({ limit }: { limit?: number }) {
         )}
       </div>
     </section>
+    </RevealSection>
   );
 }
 
 const PROJECT_IMAGES = [
   "/projects/real estate website.webp",
   "/projects/travel website.webp",
-  "/projects/branding.png",
-  "/projects/collage.png",
+  "/projects/branding.webp",
+  "/projects/collage.webp",
   "/projects/Automotive Dealerships.webp",
   "/projects/Beauty Salons.webp",
   "/projects/Cafés.webp",
@@ -573,9 +623,9 @@ const PROJECT_IMAGES = [
 ];
 
 const REAL_PROJECT_DATA = [
-  { title: "Real Estate Website", tag: "Real Estate · Web Design", externalUrl: "https://www.boohoo.com" },
+  { title: "Aurora Realty", tag: "Local SEO · Case Study", externalUrl: "" },
   { title: "Travel Agency Website", tag: "Travel · Web Design", externalUrl: "https://www.assetvantage.com/?utm_source=chatgpt.com" },
-  { title: "Brand Identity Design", tag: "Branding & Identity", externalUrl: "https://www.assetvantage.com" },
+  { title: "Sandstone Co.", tag: "Local SEO · Case Study", externalUrl: "" },
   { title: "Social Media Creatives", tag: "Performance Marketing", externalUrl: "https://www.prisa.com" },
   { title: "Automotive Dealerships", tag: "B2B · Automation", externalUrl: "https://www.iacgroup.com" },
   { title: "Beauty Salons", tag: "E-Commerce · CRO", externalUrl: "https://www.boohoo.com" },
@@ -635,6 +685,60 @@ export const ALL_PORTFOLIO_PROJECTS = REAL_PROJECT_DATA.map((data, i) => {
     ? ["aurora-realty", "meridian-care", "sandstone-co", "bluepeak-tech"][i]
     : data.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") + `-${i}`;
     
+  if (id === "aurora-realty") {
+    return {
+      id,
+      title: "Aurora Realty",
+      tag: "Local SEO · Case Study",
+      img: "/projects/image-1.jpeg",
+      externalUrl: "",
+      challenge: `local SEO case study.
+Site age: 3 months.
+Domain: Fresh domain, .ca 🇨🇦
+Niche: Home Improvement.
+Location: Canada, Alberta 🇨🇦`,
+      solution: `Everything was handled by AI:
+- Website built with AI
+- Hosted on Cloudflare Workers
+- Content researched & written with Claude
+- Topics sourced from Reddit, competitors, and AI research
+- Structured for topical authority, E-E-A-T, NLP, and proper internal linking
+
+Off-page was simple:
+Relevant backlinks
+Local citations
+Entity building
+
+No aged domain. No huge team. Just a solid strategy and consistent execution.`,
+      results: [
+        { metric: "10 Days", label: "First Qualified Lead" },
+        { metric: "18.4K", label: "Impressions" },
+        { metric: "95", label: "Organic Clicks" }
+      ],
+      timeline: "3 Months",
+      services: ["Local SEO", "AI Content", "Cloudflare Workers", "Web Design"]
+    };
+  }
+
+  if (id === "sandstone-co") {
+    return {
+      id,
+      title: "Sandstone Co.",
+      tag: "Local SEO · Case Study",
+      img: "/projects/image-5.jpeg",
+      externalUrl: "",
+      challenge: `The client approached us with poor visibility on Google Maps. Their Google Business Profile (GMB) had limited optimization, weak service coverage, and lacked strong local SEO foundations. As a result, the business was barely showing in the top 10 search results outside its immediate area.`,
+      solution: `To transform the client’s local search presence, we implemented a comprehensive local SEO strategy including Google Business Profile optimization, website SEO enhancements, and local schema markup.`,
+      results: [
+        { metric: "13.40 → 8.20", label: "Average Rank Improvement" },
+        { metric: "1% → 31%", label: "Top 3 Map Pack Rankings" },
+        { metric: "26% → 4%", label: "Out of Map Pack Reduction" }
+      ],
+      timeline: "3 Weeks",
+      services: ["GMB Optimization", "Local SEO", "Schema Markup", "Content Strategy"]
+    };
+  }
+
   return {
     id,
     title: data.title,
@@ -653,75 +757,80 @@ export const ALL_PORTFOLIO_PROJECTS = REAL_PROJECT_DATA.map((data, i) => {
   };
 });
 
-export function Portfolio({ limit }: { limit?: number }) {
+export function Portfolio({ limit, hideHeader, darkTheme }: { limit?: number; hideHeader?: boolean; darkTheme?: boolean }) {
   const navigate = useNavigate();
-  const displayCards = limit ? ALL_PORTFOLIO_PROJECTS.slice(0, limit) : ALL_PORTFOLIO_PROJECTS;
+  const filteredProjects = ALL_PORTFOLIO_PROJECTS.filter(
+    p => p.title !== "Aurora Realty" && p.title !== "Sandstone Co." && p.title !== "Social Media Creatives"
+  );
+  const displayCards = limit ? filteredProjects.slice(0, limit) : filteredProjects;
   return (
-    <section id="portfolio" className="section-y bg-slate-50">
-      <div className="container-x">
-        <div className="fade-up">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="text-left">
-              <span className="eyebrow fade-up" style={{ animationDelay: '100ms' }}>Our work</span>
-              <h2 className="headline-lg mt-4 text-[var(--ink-deep)] fade-up" style={{ animationDelay: '200ms' }}>
-                Done for Real Businesses
-              </h2>
-            </div>
-            {limit && (
-              <div className="flex-shrink-0 mb-1">
-                <Link to="/portfolio" className="btn-ghost text-[var(--ink-deep)] fade-up group" style={{ animationDelay: '400ms' }}>
-                  <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View Portfolio <ArrowRight size={16} /></span>
-                </Link>
+    <RevealSection>
+    <section id="portfolio" className={`section-y relative overflow-hidden ${darkTheme ? 'bg-[var(--ink-deep)] text-white' : 'bg-slate-50 text-[var(--ink-deep)]'}`}>
+      {darkTheme && (
+        <div className="absolute inset-0 -z-10 opacity-[0.05] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:32px_32px]" />
+      )}
+      <div className="container-x relative z-10">
+        {!hideHeader && (
+          <div className="mb-14">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div className="text-left">
+                <span className="eyebrow" data-reveal="up">Our work</span>
+                <h2 className={`headline-lg mt-4 ${darkTheme ? 'text-white' : 'text-[var(--ink-deep)]'}`} data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
+                  Done for Real Businesses
+                </h2>
               </div>
-            )}
+              {limit && (
+                <div className="flex-shrink-0 mb-1" data-reveal="up" style={{ '--reveal-delay': '300' } as React.CSSProperties}>
+                  <Link to="/our-work" className={`btn-ghost ${darkTheme ? 'text-white' : 'text-[var(--ink-deep)]'} group`}>
+                    <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View Portfolio <ArrowRight size={16} /></span>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
-          <p className="mt-5 max-w-2xl text-left text-[color:var(--muted-foreground)] leading-relaxed fade-up" style={{ animationDelay: '300ms' }}>
-            Every business is different, which is why every solution we build is tailored to
-            specific goals, audiences, and growth objectives — across websites, branding,
-            campaigns, SEO, social, automation, and lead generation.
-          </p>
-        </div>
+        )}
 
         <div className={`mt-14 grid gap-6 ${limit ? 'md:grid-cols-2 lg:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
           {displayCards.map((c, i) => {
             return (
-              <div
-                onClick={() => navigate({ to: `/portfolio/${c.id}` })}
+              <Link
+                to={`/portfolio/${c.id}`}
                 key={c.id}
-                className="group relative overflow-hidden rounded-3xl fade-up border border-[var(--border)] shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700 cursor-pointer"
-                style={{ animationDelay: limit ? `${500 + (i * 100)}ms` : '0ms' }}
+                className={`group relative overflow-hidden rounded-3xl border ${darkTheme ? 'border-white/10' : 'border-[var(--border)]'} shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700 block`}
+                data-reveal="scale"
+                style={{ '--reveal-delay': `${(i % 3) * 100}` } as React.CSSProperties}
               >
-                <img
-                  src={c.img}
-                  alt={c.title}
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.08]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)] via-[var(--ink-deep)]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
-                <div className="absolute inset-x-0 bottom-0 p-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
-                  <div className="text-xs uppercase tracking-[0.18em] text-[var(--gold)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">{c.tag}</div>
-                  <div className="mt-2 flex items-center justify-between gap-4">
-                    <h3 className="text-xl md:text-3xl font-bold">{c.title}</h3>
-                    {c.externalUrl ? (
-                      <a
-                        href={c.externalUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-1 rounded-full hover:bg-[var(--gold)] hover:text-black transition-colors"
-                      >
-                        <ArrowUpRight className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 scale-125" />
-                      </a>
-                    ) : (
-                      <ArrowUpRight className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 scale-125" />
-                    )}
+                <div className="relative overflow-hidden aspect-[4/3] w-full">
+                  <img
+                    src={c.img}
+                    alt={c.title}
+                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+                  />
+                  {/* Default state gradient overlay - clean, covers bottom portion for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)]/95 via-[var(--ink-deep)]/65 to-[var(--ink-deep)]/10 opacity-85 group-hover:opacity-0 transition-opacity duration-500" />
+                  {/* Hover state gradient overlay - expands higher to completely cover the heading in a rich dark blue gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink-deep)]/98 via-[var(--ink-deep)]/92 to-[var(--ink-deep)]/45 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-gold/90 group-hover:text-gold transition-colors duration-300 block mb-1.5">
+                    {c.tag}
+                  </span>
+                  <div className="flex items-end justify-between gap-4">
+                    <h3 className="text-lg md:text-[22px] font-bold tracking-tight text-white leading-snug group-hover:text-white transition-colors duration-300">
+                      {c.title}
+                    </h3>
+                    <div className="h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white flex items-center justify-center transition-all duration-500 group-hover:bg-gold group-hover:border-gold group-hover:text-ink-deep group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(232,181,4,0.3)] shrink-0">
+                      <ArrowUpRight className="h-4 w-4 md:h-5 md:w-5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -731,13 +840,14 @@ export function Portfolio({ limit }: { limit?: number }) {
 export function Industries() {
   const displayIndustries = INDUSTRIES.slice(0, 12);
   return (
+    <RevealSection>
     <section id="industries" className="section-y bg-[var(--surface)]">
       <div className="container-x">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 fade-up">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-2xl">
-            <span className="eyebrow fade-up" style={{ animationDelay: '100ms' }}>Industries</span>
-            <h2 className="headline-lg mt-4 text-[var(--ink-deep)] fade-up" style={{ animationDelay: '200ms' }}>Industries We Help Scale</h2>
-            <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed fade-up" style={{ animationDelay: '300ms' }}>
+            <span className="eyebrow" data-reveal="up">Industries</span>
+            <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>Industries We Help Scale</h2>
+            <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
               Our strategies are customized to the unique challenges, customer behavior, and growth
               opportunities within each industry.
             </p>
@@ -748,8 +858,9 @@ export function Industries() {
           {displayIndustries.map(({ icon: Icon, label }, idx) => (
             <div
               key={label}
-              className="group flex flex-col items-center text-center justify-center gap-4 rounded-2xl border border-[var(--border)] bg-white p-6 transition-all duration-300 hover:border-[var(--gold)]/40 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] cursor-default fade-up overflow-hidden relative"
-              style={{ animationDelay: `${400 + (idx * 100)}ms` }}
+              className="group flex flex-col items-center text-center justify-center gap-4 rounded-2xl border border-[var(--border)] bg-white p-6 transition-all duration-300 hover:border-[var(--gold)]/40 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] cursor-default overflow-hidden relative"
+              data-reveal="scale"
+              style={{ '--reveal-delay': `${(idx % 6) * 70}` } as React.CSSProperties}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-[var(--ink-deep)] text-[var(--gold)] transition-all duration-500 group-hover:bg-[var(--gold)] group-hover:text-black group-hover:rotate-12 group-hover:scale-110 relative z-10 shadow-md">
@@ -767,6 +878,7 @@ export function Industries() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -780,6 +892,7 @@ export function WhyNexdeer() {
   ];
 
   return (
+    <RevealSection>
     <section className="section-y relative overflow-hidden bg-[var(--ink-deep)] text-white">
       <img src={IMG.city} loading="lazy" decoding="async" alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.12]" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--ink-deep)] via-[var(--ink-deep)]/95 to-[var(--ink-deep)]" />
@@ -787,22 +900,22 @@ export function WhyNexdeer() {
       <div className="container-x grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5 flex flex-col h-full">
           <div>
-            <span className="eyebrow">Why choose NEXDEER</span>
-            <h2 className="headline-lg mt-4 text-white">More Than a Marketing Agency</h2>
-            <p className="mt-6 text-white/75 leading-relaxed max-w-md">
+            <span className="eyebrow" data-reveal="up">Why choose NEXDEER</span>
+            <h2 className="headline-lg mt-4 text-white" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>More Than a Marketing Agency</h2>
+            <p className="mt-6 text-white/75 leading-relaxed max-w-md" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
               Most agencies focus on one part of your growth journey. We focus on the entire system —
               from first impression to closed customer to retained client.
             </p>
           </div>
           
-          <div className="flex-grow mt-10 relative rounded-3xl overflow-hidden border border-white/10">
+          <div className="flex-grow mt-10 relative rounded-3xl overflow-hidden border border-white/10" data-reveal="scale" style={{ '--reveal-delay': '300' } as React.CSSProperties}>
             <img src={IMG.exec} alt="Strategy session" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
           </div>
         </div>
         <div className="lg:col-span-7">
           <div className="grid sm:grid-cols-2 gap-5">
             {diff.map((d, i) => (
-              <div key={d.title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 transition hover:border-[var(--gold)]/50 fade-up" style={{ animationDelay: `${200 + (i * 100)}ms` }}>
+              <div key={d.title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 transition hover:border-[var(--gold)]/50" data-reveal="scale" style={{ '--reveal-delay': `${i * 100}` } as React.CSSProperties}>
                 <div className="text-xs font-mono text-[var(--gold)]">0{i + 1}</div>
                 <h3 className="mt-3 text-xl font-semibold text-white">{d.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-white/70">{d.desc}</p>
@@ -810,27 +923,26 @@ export function WhyNexdeer() {
             ))}
           </div>
 
-          <div className="mt-12 hidden lg:block fade-up" style={{ animationDelay: '800ms' }}>
-            <div className="flex items-center justify-between w-full">
-              <div>
-                <div className="text-5xl font-bold text-white">250<span className="text-[var(--gold)]">+</span></div>
-                <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Projects Completed</div>
-              </div>
-              <div className="h-16 w-px bg-white/10" />
-              <div>
-                <div className="text-5xl font-bold text-white">6<span className="text-[var(--gold)]">+</span></div>
-                <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Years Driving Growth</div>
-              </div>
-              <div className="h-16 w-px bg-white/10" />
-              <div>
-                <div className="text-5xl font-bold text-white">15<span className="text-[var(--gold)]">+</span></div>
-                <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Team Members</div>
-              </div>
+          <div className="mt-12 hidden lg:flex flex-wrap items-center justify-between w-full gap-8">
+            <div>
+              <div className="text-5xl font-bold text-white">250<span className="text-[var(--gold)]">+</span></div>
+              <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Projects Completed</div>
+            </div>
+            <div className="h-16 w-px bg-white/10" />
+            <div>
+              <div className="text-5xl font-bold text-white">6<span className="text-[var(--gold)]">+</span></div>
+              <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Years Driving Growth</div>
+            </div>
+            <div className="h-16 w-px bg-white/10" />
+            <div>
+              <div className="text-5xl font-bold text-white">15<span className="text-[var(--gold)]">+</span></div>
+              <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">Team Members</div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -844,18 +956,24 @@ const STEPS = [
 
 export function Process() {
   return (
+    <RevealSection>
     <section className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
       <div className="container-x">
-        <div className="max-w-2xl fade-up">
-          <span className="eyebrow">How we work</span>
-          <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">A Proven Process Designed for Growth</h2>
+        <div>
+          <span className="eyebrow" data-reveal="up">How we work</span>
+          <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>A Proven Process Designed for Growth</h2>
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => {
             const Icon = s.icon;
             return (
-              <div key={s.n} className="relative rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-7 group transition-all duration-300 hover:border-[var(--gold)]/50 hover:-translate-y-2 hover:shadow-xl fade-up" style={{ animationDelay: `${200 + (i * 100)}ms` }}>
+              <div
+                key={s.n}
+                className="relative rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-7 group transition-all duration-300 hover:border-[var(--gold)]/50 hover:-translate-y-2 hover:shadow-xl"
+                data-reveal="up"
+                style={{ '--reveal-delay': `${i * 100}` } as React.CSSProperties}
+              >
                 <div className="flex items-center justify-between">
                   <span className="text-5xl font-bold text-[var(--ink-deep)]/10 transition-colors duration-300 group-hover:text-[var(--gold)]/20">{s.n}</span>
                   <div className="grid h-12 w-12 place-items-center rounded-2xl bg-white shadow-sm text-[var(--ink-deep)] transition-all duration-300 group-hover:bg-[var(--ink-deep)] group-hover:text-[var(--gold)] group-hover:rotate-12 group-hover:scale-110 border border-[var(--border)]">
@@ -871,6 +989,7 @@ export function Process() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -912,27 +1031,28 @@ export function Testimonials() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIdx((curr) => (curr + 1) % TESTIMONIALS.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [idx]);
 
   const t = TESTIMONIALS[idx];
   return (
+    <RevealSection>
     <section className="section-y bg-[var(--surface)]">
       <div className="container-x">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <span className="eyebrow">Client voices</span>
-            <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">What Our Clients Say</h2>
+            <span className="eyebrow" data-reveal="up">Client voices</span>
+            <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>What Our Clients Say</h2>
           </div>
-          <p className="lg:col-span-5 text-[color:var(--muted-foreground)] leading-relaxed">
+          <p className="lg:col-span-5 text-[color:var(--muted-foreground)] leading-relaxed" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
             Businesses partner with NEXDEER because they need more than individual services — they
             need a team committed to helping them grow.
           </p>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:items-stretch">
-          <div className="lg:col-span-8 rounded-3xl bg-[var(--ink-deep)] p-8 md:p-12 text-white relative overflow-hidden">
+          <div className="lg:col-span-8 rounded-3xl bg-[var(--ink-deep)] p-8 md:p-12 text-white relative overflow-hidden" data-reveal="left">
             <div className="absolute right-8 top-6 text-[10rem] leading-none font-serif text-[var(--gold)]/15 select-none">"</div>
             <div key={idx} className="animate-slide-left">
               <div className="flex gap-1 text-[var(--gold)]">
@@ -949,7 +1069,7 @@ export function Testimonials() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 grid gap-3">
+          <div className="lg:col-span-4 grid gap-3" data-reveal="right">
             {TESTIMONIALS.map((tt, i) => (
               <button
                 key={tt.name}
@@ -974,6 +1094,7 @@ export function Testimonials() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -1000,17 +1121,18 @@ const FAQS = [
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
+    <RevealSection>
     <section className="section-y bg-white">
       <div className="container-x grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <span className="eyebrow">FAQ</span>
-          <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">Frequently Asked Questions</h2>
-          <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed max-w-sm">
+          <span className="eyebrow" data-reveal="up">FAQ</span>
+          <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>Frequently Asked Questions</h2>
+          <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed max-w-sm" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
             Everything you need to know before partnering with NEXDEER. Still curious? Reach out
             anytime — we respond fast.
           </p>
         </div>
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7" data-reveal="right" style={{ '--reveal-delay': '150' } as React.CSSProperties}>
           <div className="divide-y divide-[var(--border)] border-y border-[var(--border)]">
             {FAQS.map((f, i) => {
               const isOpen = open === i;
@@ -1042,25 +1164,27 @@ export function FAQ() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
 /* ---------- FINAL CTA ---------- */
 export function FinalCTA() {
   return (
+    <RevealSection>
     <section id="contact" className="relative overflow-hidden bg-[var(--ink-deep)] text-white">
       <div className="absolute inset-0 -z-10 grid-noise opacity-90" />
       <div className="container-x section-y text-center">
-        <span className="eyebrow justify-center">Let's build your growth system</span>
-        <h2 className="headline-xl mt-5 text-white max-w-4xl mx-auto">
+        <span className="eyebrow justify-center" data-reveal="up">Let's build your growth system</span>
+        <h2 className="headline-xl mt-5 text-white max-w-4xl mx-auto" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
           Ready to <span className="text-[var(--gold)]">Scale Faster?</span>
         </h2>
-        <p className="mt-7 mx-auto max-w-2xl text-white/75 text-lg leading-relaxed">
+        <p className="mt-7 mx-auto max-w-2xl text-white/75 text-lg leading-relaxed" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
           Whether you need more leads, a better website, stronger visibility, or smarter automation,
           NEXDEER can help you build a growth system designed for long-term success.
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <a href="https://wa.me/" target="_blank" rel="noreferrer" className="btn-gold">
+        <div className="mt-10 flex flex-wrap justify-center gap-3" data-reveal="up" style={{ '--reveal-delay': '300' } as React.CSSProperties}>
+          <a href="https://wa.me/923186662360" target="_blank" rel="noreferrer" className="btn-gold">
             <MessageCircle size={17} /> WhatsApp NEXDEER
           </a>
           <Link to="/contact" className="btn-ghost text-white group">
@@ -1068,7 +1192,7 @@ export function FinalCTA() {
           </Link>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto" data-reveal="scale" style={{ '--reveal-delay': '400' } as React.CSSProperties}>
           {[
             ["Pakistan", "Multan"],
             ["UAE", "Dubai"],
@@ -1083,6 +1207,7 @@ export function FinalCTA() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -1098,20 +1223,26 @@ const PAIN = [
 
 export function PainPoints() {
   return (
+    <RevealSection>
     <section className="section-y bg-white">
       <div className="container-x">
-        <div className="max-w-2xl">
-          <span className="eyebrow">Sound familiar?</span>
-          <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">
+        <div>
+          <span className="eyebrow" data-reveal="up">Sound familiar?</span>
+          <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
             The Friction Points Slowing Your Growth
           </h2>
-          <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed">
+          <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
             These are the silent revenue killers we eliminate inside the NEXDEER Growth System.
           </p>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {PAIN.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-7 transition hover:border-[var(--ink-deep)] hover:-translate-y-1">
+          {PAIN.map(({ icon: Icon, title, desc }, idx) => (
+            <div
+              key={title}
+              className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-7 transition hover:border-[var(--ink-deep)] hover:-translate-y-1"
+              data-reveal="up"
+              style={{ '--reveal-delay': `${(idx % 3) * 100}` } as React.CSSProperties}
+            >
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--ink-deep)] text-[var(--gold)]"><Icon size={18} /></div>
               <h3 className="mt-5 text-lg font-semibold text-[var(--ink-deep)]">{title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-[color:var(--muted-foreground)]">{desc}</p>
@@ -1119,28 +1250,30 @@ export function PainPoints() {
           ))}
         </div>
         
-        <div className="mt-14 text-center">
+        <div className="mt-14 text-center" data-reveal="up" style={{ '--reveal-delay': '300' } as React.CSSProperties}>
           <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
             Let's Fix Your Challenges
           </a>
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
 /* ---------- SOLUTION INTRO ---------- */
 export function SolutionIntro() {
   return (
+    <RevealSection>
     <section className="section-y bg-[var(--ink)] text-white relative overflow-hidden">
       <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-[var(--gold)]/20 blur-3xl" />
       <div className="container-x relative">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="eyebrow justify-center">Introducing</span>
-          <h2 className="headline-xl mt-5 text-white">
+          <span className="eyebrow justify-center" data-reveal="up">Introducing</span>
+          <h2 className="headline-xl mt-5 text-white" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
             The NEXDEER <span className="text-[var(--gold)]">Growth System</span>
           </h2>
-          <p className="mt-7 text-lg text-white/75 leading-relaxed">
+          <p className="mt-7 text-lg text-white/75 leading-relaxed" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
             A single operating system that unifies your marketing, website, search visibility, and
             AI automation into one accountable engine — built to compound revenue, not just deliver
             tactics.
@@ -1155,8 +1288,9 @@ export function SolutionIntro() {
           ].map(([k, v], i) => (
             <div 
               key={k} 
-              className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-300 hover:-translate-y-2 hover:border-[var(--gold)]/50 hover:bg-white/[0.08] hover:shadow-[0_15px_30px_rgba(232,181,4,0.1)] group cursor-default fade-up"
-              style={{ animationDelay: `${i * 150}ms` }}
+              className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-300 hover:-translate-y-2 hover:border-[var(--gold)]/50 hover:bg-white/[0.08] hover:shadow-[0_15px_30px_rgba(232,181,4,0.1)] group cursor-default"
+              data-reveal="up"
+              style={{ '--reveal-delay': `${300 + (i * 100)}` } as React.CSSProperties}
             >
               <div className="text-xs font-mono text-[var(--gold)] transition-transform duration-300 group-hover:scale-110 origin-left inline-block">0{i + 1}</div>
               <h3 className="mt-3 text-xl font-semibold transition-colors duration-300 group-hover:text-[var(--gold)]">{k}</h3>
@@ -1165,13 +1299,14 @@ export function SolutionIntro() {
           ))}
         </div>
         
-        <div className="mt-14 text-center">
+        <div className="mt-14 text-center" data-reveal="up" style={{ '--reveal-delay': '400' } as React.CSSProperties}>
           <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
             Build Your Custom Growth Plan
           </a>
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -1196,22 +1331,23 @@ function ServiceDetail({
   slug?: string;
 }) {
   return (
+    <RevealSection>
     <section className={`section-y ${bg ?? "bg-white"}`}>
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:items-center">
         <div className={`lg:col-span-6 ${reverse ? "lg:order-2" : ""}`}>
-          <div className="relative group overflow-hidden rounded-3xl fade-up" style={{ animationDelay: '100ms' }}>
+          <div className="relative group overflow-hidden rounded-3xl" data-reveal={reverse ? "left" : "right"}>
             <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-[var(--gold)]/20 to-transparent blur-2xl group-hover:from-[var(--gold)]/40 transition-colors duration-700" />
             <img src={image} alt={title} loading="lazy" decoding="async" className="rounded-3xl border border-[var(--border)] aspect-[4/3] object-cover w-full transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-[var(--gold)]/30 transition-colors duration-700 pointer-events-none" />
           </div>
         </div>
         <div className="lg:col-span-6">
-          <span className="eyebrow fade-up" style={{ animationDelay: '200ms' }}>{eyebrow}</span>
-          <h2 className="headline-lg mt-4 text-[var(--ink-deep)] fade-up" style={{ animationDelay: '300ms' }}>{title}</h2>
-          <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed fade-up" style={{ animationDelay: '400ms' }}>{desc}</p>
+          <span className="eyebrow" data-reveal="up">{eyebrow}</span>
+          <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>{title}</h2>
+          <p className="mt-5 text-[color:var(--muted-foreground)] leading-relaxed" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>{desc}</p>
           <ul className="mt-7 grid sm:grid-cols-2 gap-4">
             {items.map((i, idx) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-[var(--ink-deep)] font-medium group cursor-default fade-up transition-transform duration-300 hover:translate-x-1" style={{ animationDelay: `${500 + (idx * 100)}ms` }}>
+              <li key={i} className="flex items-start gap-3 text-sm text-[var(--ink-deep)] font-medium group cursor-default transition-transform duration-300 hover:translate-x-1" data-reveal="up" style={{ '--reveal-delay': `${300 + (idx * 50)}` } as React.CSSProperties}>
                 <div className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] transition-all duration-300 group-hover:bg-[var(--gold)] group-hover:text-black group-hover:rotate-12 mt-0.5">
                   <CheckCircle2 size={12} className="stroke-[3]" />
                 </div>
@@ -1219,7 +1355,7 @@ function ServiceDetail({
               </li>
             ))}
           </ul>
-          <div className="mt-10 fade-up" style={{ animationDelay: '600ms' }}>
+          <div className="mt-10" data-reveal="up" style={{ '--reveal-delay': '450' } as React.CSSProperties}>
             <Link to={slug ? `/services/${slug}` : "/contact"} className="btn-ghost text-[var(--ink-deep)] group">
               <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">Learn More <ArrowRight size={16} /></span>
             </Link>
@@ -1227,6 +1363,7 @@ function ServiceDetail({
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -1346,40 +1483,107 @@ export const ServiceAnalytics = () => (
 );
 
 /* ---------- CASE STUDIES ---------- */
-const CASES = [
-  { brand: "Aurora Realty", metric: "+312%", label: "Qualified leads in 90 days", desc: "Rebuilt funnel, paid strategy, and CRM automation across UAE & KSA." },
-  { brand: "Sandstone Co.", metric: "4.2x", label: "Organic traffic growth", desc: "Technical SEO + content engine + Local SEO across 18 service areas." },
-  { brand: "BluePeak Tech", metric: "-47%", label: "Cost per acquisition", desc: "CRO + new landing system + AI lead qualification reduced wasted spend." },
+export const CASES = [
+  { id: "aurora-realty", brand: "Home Improvement", metric: "10 Days", label: "To First Qualified Lead", desc: "Local SEO case study on a fresh .ca domain: ranking in AI Overviews, 18.4K impressions, and phone calls coming in." },
+  { id: "sandstone-co", brand: "Local SEO", metric: "31%", label: "In Top 3 Rankings (Map Pack)", desc: "From ranking struggles to dominating the Map Pack: average rank improved from 13.40 to 8.20 in just 3 weeks." },
+  { id: "bluepeak-tech", brand: "BluePeak Tech", metric: "-47%", label: "Cost per acquisition", desc: "CRO + new landing system + AI lead qualification reduced wasted spend." },
 ];
 
 export function CaseStudies() {
   return (
-    <section className="section-y bg-[var(--ink-deep)] text-white">
-      <div className="container-x">
-        <div className="max-w-2xl">
-          <span className="eyebrow">Case studies</span>
-          <h2 className="headline-lg mt-4 text-white">Real Numbers. Real Growth.</h2>
-          <p className="mt-5 text-white/70 leading-relaxed">
-            A few of the outcomes we've delivered across real estate, e-commerce, healthcare, and SaaS.
-          </p>
+    <RevealSection>
+    <section id="portfolio" className="section-y bg-[var(--ink-deep)] text-white relative overflow-hidden">
+      {/* Unified grid noise matching the branding */}
+      <div className="absolute inset-0 -z-10 opacity-[0.05] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:32px_32px]" />
+      
+      <div className="container-x relative z-10">
+        {/* HEADING AND BUTTON ALIGNED */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div className="text-left">
+            <span className="eyebrow text-[var(--gold)]" data-reveal="up">Our Work</span>
+            <h2 className="headline-lg mt-4 text-white" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
+              Real Numbers. Real Growth.
+            </h2>
+          </div>
+          <div className="flex-shrink-0" data-reveal="up" style={{ '--reveal-delay': '300' } as React.CSSProperties}>
+            <Link to="/our-work" className="btn-gold group">
+              <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">
+                View Portfolio <ArrowRight size={16} />
+              </span>
+            </Link>
+          </div>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {CASES.map((c) => (
-            <article key={c.brand} className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-[var(--gold)]/40">
-              <div className="text-xs uppercase tracking-[0.18em] text-[var(--gold)]">{c.brand}</div>
-              <div className="mt-5 text-5xl font-bold text-white">{c.metric}</div>
-              <div className="mt-2 text-sm text-white/65">{c.label}</div>
-              <p className="mt-6 text-[15px] leading-relaxed text-white/80">{c.desc}</p>
-              <div className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--gold)]">
-                Read case study <ArrowUpRight size={15} />
-              </div>
-            </article>
-          ))}
-        </div>
-        
 
+        {/* THREE CASE STUDY CARDS WELL-DESIGNED WITHOUT BACKGROUND IMAGES */}
+        <div className="grid gap-6 md:grid-cols-3">
+          {CASES.map((c, i) => {
+            return (
+              <Link 
+                to={`/portfolio/${c.id}`} 
+                key={c.brand} 
+                className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:p-8 lg:p-10 transition-all duration-500 hover:border-[var(--gold)]/40 hover:bg-white/[0.05] hover:shadow-[0_0_50px_rgba(212,175,55,0.05)] flex flex-col justify-between min-h-[320px] md:min-h-[380px] cursor-pointer"
+              >
+                {/* Decorative gold glow on hover */}
+                <div className="absolute -right-16 -top-16 -z-10 h-32 w-32 rounded-full bg-[var(--gold)]/10 blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Top Section */}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--gold)]">{c.brand}</span>
+                    <div className="rounded-full bg-white/[0.04] p-2 text-white/40 group-hover:text-[var(--gold)] group-hover:bg-[var(--gold)]/10 transition-all duration-300">
+                      <ArrowUpRight size={16} />
+                    </div>
+                  </div>
+                  
+                  {/* Metric & Label */}
+                  <div className="mt-8">
+                    <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight group-hover:text-[var(--gold)] transition-colors duration-300">
+                      {c.metric}
+                    </div>
+                    <div className="mt-2.5 text-xs text-white/50 font-bold uppercase tracking-wider">
+                      {c.label}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Divider, Description & Action */}
+                <div className="mt-10 pt-6 border-t border-white/5 flex-1 flex flex-col justify-between">
+                  <p className="text-[15px] leading-relaxed text-white/70 group-hover:text-white/90 transition-colors duration-300">
+                    {c.desc}
+                  </p>
+                  
+                  <div className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--gold)] transition-all duration-300 group-hover:translate-x-1">
+                    <span>Read case study</span>
+                    <ArrowRight size={14} />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* TWO STATIC IMAGES SHOWN BELOW THE THREE CARDS */}
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 aspect-[16/10] bg-slate-900 shadow-xl" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
+            <img 
+              src="/projects/real estate website.webp" 
+              alt="Real Estate Website Project" 
+              className="w-full h-full object-cover" 
+            />
+          </div>
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 aspect-[16/10] bg-slate-900 shadow-xl" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
+            <img 
+              src="/projects/branding.webp" 
+              alt="Branding Project" 
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover" 
+            />
+          </div>
+        </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -1410,75 +1614,75 @@ export function TechStack() {
             and integrate them into one accountable system.
           </p>
         </div>
+      </div>
 
-        <div className="relative flex flex-col gap-6 overflow-hidden py-4">
-          {/* Row 1: Moves Left */}
-          <div className="group flex w-max animate-marquee-left gap-6 px-4">
-            {[...row1, ...row1].map((filename, idx) => {
-              const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
-              const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
-              return (
-              <div key={`r1-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
-                <img 
-                  src={`/toolslogos/${filename}`} 
-                  alt="Tool logo" 
-                  className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
-                    isWhiteLogo 
-                      ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
-                      : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
-                  }`} 
-                  loading="lazy"
-                />
-              </div>
-            )})}
-          </div>
-
-          {/* Row 2: Moves Right */}
-          <div className="group flex w-max animate-marquee-right gap-6 px-4">
-            {[...row2, ...row2].map((filename, idx) => {
-              const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
-              const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
-              return (
-              <div key={`r2-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
-                <img 
-                  src={`/toolslogos/${filename}`} 
-                  alt="Tool logo" 
-                  className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
-                    isWhiteLogo 
-                      ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
-                      : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
-                  }`} 
-                  loading="lazy"
-                />
-              </div>
-            )})}
-          </div>
-
-          {/* Row 3: Moves Left */}
-          <div className="group flex w-max animate-marquee-left gap-6 px-4">
-            {[...row3, ...row3].map((filename, idx) => {
-              const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
-              const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
-              return (
-              <div key={`r3-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
-                <img 
-                  src={`/toolslogos/${filename}`} 
-                  alt="Tool logo" 
-                  className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
-                    isWhiteLogo 
-                      ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
-                      : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
-                  }`} 
-                  loading="lazy"
-                />
-              </div>
-            )})}
-          </div>
-          
-          {/* Gradients on edges to blend with white background */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent" />
+      <div className="relative flex flex-col gap-6 overflow-hidden py-4">
+        {/* Row 1: Moves Left */}
+        <div className="group flex w-max animate-marquee-left gap-6 px-4">
+          {[...row1, ...row1].map((filename, idx) => {
+            const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
+            const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
+            return (
+            <div key={`r1-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
+              <img 
+                src={`/toolslogos/${filename}`} 
+                alt="Tool logo" 
+                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
+                  isWhiteLogo 
+                    ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
+                    : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
+                }`} 
+                loading="lazy"
+              />
+            </div>
+          )})}
         </div>
+
+        {/* Row 2: Moves Right */}
+        <div className="group flex w-max animate-marquee-right gap-6 px-4">
+          {[...row2, ...row2].map((filename, idx) => {
+            const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
+            const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
+            return (
+            <div key={`r2-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
+              <img 
+                src={`/toolslogos/${filename}`} 
+                alt="Tool logo" 
+                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
+                  isWhiteLogo 
+                    ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
+                    : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
+                }`} 
+                loading="lazy"
+              />
+            </div>
+          )})}
+        </div>
+
+        {/* Row 3: Moves Left */}
+        <div className="group flex w-max animate-marquee-left gap-6 px-4">
+          {[...row3, ...row3].map((filename, idx) => {
+            const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
+            const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
+            return (
+            <div key={`r3-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
+              <img 
+                src={`/toolslogos/${filename}`} 
+                alt="Tool logo" 
+                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
+                  isWhiteLogo 
+                    ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
+                    : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
+                }`} 
+                loading="lazy"
+              />
+            </div>
+          )})}
+        </div>
+        
+        {/* Gradients on edges to blend with bg-gray-50 background */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-50 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-50 to-transparent" />
       </div>
     </section>
   );
@@ -1487,24 +1691,27 @@ export function TechStack() {
 /* ---------- CEO MESSAGE ---------- */
 export function CeoMessage() {
   return (
-    <section className="section-y relative overflow-hidden" style={{ background: "linear-gradient(to right, #ffffff 30%, var(--ink-deep) 30%)" }}>
+    <RevealSection>
+    <section className="section-y relative overflow-hidden bg-[var(--surface)]">
       <div className="container-x relative z-10">
-        <div className="fade-up" style={{ animationDelay: '100ms' }}>
+        <div data-reveal="up">
           
           <div className="rounded-2xl bg-gray-100 p-8 md:p-16 lg:p-20 text-[var(--ink-deep)] relative overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-[0_20px_50px_rgba(9,4,41,0.3)]">
             <div className="absolute right-12 top-16 text-[15rem] leading-none font-serif text-[var(--gold)]/10 select-none pointer-events-none hidden md:block">"</div>
             <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-[var(--gold)]/5 rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
-              <div className="md:col-span-3 lg:col-span-3">
+              <div className="md:col-span-3 lg:col-span-3" data-reveal="scale" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
                 <img 
-                  src="/ceo image.png" 
+                  src="/ceo image.webp" 
                   alt="Shahzad Rando" 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full aspect-[4/5] rounded-2xl object-cover object-top"
                 />
               </div>
               
-              <div className="md:col-span-9 lg:col-span-9 flex flex-col justify-center">
+              <div className="md:col-span-9 lg:col-span-9 flex flex-col justify-center" data-reveal="right" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
                 <span className="eyebrow text-[var(--ink-deep)]/70 mb-3">A MESSAGE FROM THE FOUNDER</span>
                 <h2 className="text-3xl md:text-5xl font-bold leading-tight text-[var(--ink-deep)] mb-4">
                   We Built The Agency
@@ -1528,6 +1735,7 @@ export function CeoMessage() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 
@@ -1541,23 +1749,24 @@ const TEAM = [
 
 export function Team() {
   return (
+    <RevealSection>
     <section className="section-y bg-[var(--surface)]">
       <div className="container-x">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <span className="eyebrow">The team</span>
-            <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">
+            <span className="eyebrow" data-reveal="up">The team</span>
+            <h2 className="headline-lg mt-4 text-[var(--ink-deep)]" data-reveal="up" style={{ '--reveal-delay': '100' } as React.CSSProperties}>
               Senior Specialists. Zero Account Managers.
             </h2>
           </div>
-          <p className="lg:col-span-5 text-[color:var(--muted-foreground)] leading-relaxed">
+          <p className="lg:col-span-5 text-[color:var(--muted-foreground)] leading-relaxed" data-reveal="up" style={{ '--reveal-delay': '200' } as React.CSSProperties}>
             You work directly with the strategists, designers, developers, and AI engineers building
             your growth system — no middle layers, no handoffs.
           </p>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {TEAM.map((m) => (
-            <div key={m.name} className="group overflow-hidden rounded-3xl bg-white border border-[var(--border)]">
+          {TEAM.map((m, idx) => (
+            <div key={m.name} className="group overflow-hidden rounded-3xl bg-white border border-[var(--border)]" data-reveal="up" style={{ '--reveal-delay': `${idx * 100}` } as React.CSSProperties}>
               <div className="aspect-[4/5] overflow-hidden">
                 <img src={m.img} alt={m.name} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
               </div>
@@ -1570,6 +1779,7 @@ export function Team() {
         </div>
       </div>
     </section>
+    </RevealSection>
   );
 }
 

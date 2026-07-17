@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { FinalCTA, ContactStrip } from "@/components/site/sections";
+import { FinalCTA, ContactStrip, RevealSection } from "@/components/site/sections";
 import { ArrowRight, CheckCircle2, MapPin, Code2, Search, Megaphone, Palette, Video, Users, Target, PhoneCall } from "lucide-react";
 
 export const Route = createFileRoute("/careers")({
@@ -34,23 +34,31 @@ function CareersPage() {
         {/* HERO SECTION */}
         <section className="relative isolate overflow-hidden bg-[var(--ink-deep)] text-white pt-36 pb-24 md:pt-48 md:pb-32">
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--ink-deep)]/80 via-[var(--ink-deep)]/90 to-[var(--ink-deep)]" />
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80" alt="NEXDEER Culture" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30 mix-blend-overlay scale-105" />
+          <img 
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=70" 
+            alt="NEXDEER Culture" 
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30 mix-blend-overlay scale-105" 
+          />
           
-          <div className="container-x relative z-10 text-center max-w-4xl mx-auto">
-            <span className="eyebrow mx-auto justify-center fade-up">Join The Engine</span>
-            <h1 className="headline-xl mt-5 text-white fade-up" style={{ animationDelay: '100ms' }}>
+          <div className="container-x relative z-10 text-center max-w-4xl mx-auto fade-up">
+            <span className="eyebrow mx-auto justify-center fade-up" style={{ animationDelay: '100ms' }}>Join The Engine</span>
+            <h1 className="headline-xl mt-5 text-white fade-up" style={{ animationDelay: '200ms' }}>
               Build The Future of <span className="text-[var(--gold)]">Digital Growth</span>
             </h1>
-            <p className="mt-7 text-lg md:text-xl text-white/80 leading-relaxed font-light fade-up" style={{ animationDelay: '200ms' }}>
+            <p className="mt-7 text-lg md:text-xl text-white/80 leading-relaxed font-light fade-up" style={{ animationDelay: '300ms' }}>
               We are a team of relentless problem solvers, engineers, and creatives building scalable revenue systems for enterprise clients globally. If you demand excellence, you belong here.
             </p>
           </div>
         </section>
 
         {/* WHY JOIN US */}
+        <RevealSection>
         <section className="section-y bg-white">
           <div className="container-x">
-            <div className="text-center max-w-3xl mx-auto mb-16 fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16" data-reveal="up">
               <span className="eyebrow justify-center">Life at NEXDEER</span>
               <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">Why build with us?</h2>
             </div>
@@ -61,7 +69,7 @@ function CareersPage() {
                 { title: "Elite Talent Density", desc: "You will be surrounded by the smartest marketers, designers, and engineers in the industry." },
                 { title: "Accelerated Growth", desc: "We push our team hard. You will learn more here in 6 months than 2 years anywhere else." }
               ].map((feature, i) => (
-                <div key={i} className="bg-[var(--surface)] border border-[var(--border)] rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 fade-up" style={{ animationDelay: `${(i % 3) * 100}ms` }}>
+                <div key={i} className="bg-[var(--surface)] border border-[var(--border)] rounded-3xl p-8 hover:-translate-y-2 hover:shadow-xl transition-all duration-300" data-reveal="up" style={{ '--reveal-delay': `${(i % 3) * 100}` } as React.CSSProperties}>
                   <div className="w-14 h-14 rounded-2xl bg-[var(--ink-deep)] flex items-center justify-center text-[var(--gold)] mb-6 shadow-md">
                     <CheckCircle2 size={24} strokeWidth={1.5} />
                   </div>
@@ -72,11 +80,13 @@ function CareersPage() {
             </div>
           </div>
         </section>
+        </RevealSection>
 
         {/* OPEN POSITIONS */}
+        <RevealSection>
         <section className="section-y bg-[var(--surface)] border-t border-[var(--border)]">
           <div className="container-x max-w-5xl">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 fade-up">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16" data-reveal="up">
               <div>
                 <span className="eyebrow">Open Roles</span>
                 <h2 className="headline-lg mt-4 text-[var(--ink-deep)]">Open Internships</h2>
@@ -88,7 +98,7 @@ function CareersPage() {
             
             <div className="space-y-4">
               {POSITIONS.map((job, idx) => (
-                <div key={idx} className="group bg-white border border-[var(--border)] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[var(--gold)]/50 hover:shadow-md transition-all fade-up" style={{ animationDelay: `${idx * 100}ms` }}>
+                <div key={idx} className="group bg-white border border-[var(--border)] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[var(--gold)]/50 hover:shadow-md transition-all" data-reveal="up" style={{ '--reveal-delay': `${idx * 50}` } as React.CSSProperties}>
                   <div className="flex items-start gap-6">
                     <div className="hidden sm:flex w-12 h-12 rounded-full bg-[var(--surface)] items-center justify-center text-[var(--ink-deep)] shrink-0">
                       <job.icon size={20} />
@@ -112,6 +122,7 @@ function CareersPage() {
             </div>
           </div>
         </section>
+        </RevealSection>
 
         <FinalCTA />
         <ContactStrip />
