@@ -176,11 +176,11 @@ export function Hero() {
             marketing, sales, and growth systems together under one roof.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3 hero-animate" style={{ animationDelay: '300ms' } as React.CSSProperties}>
-            <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold">
+          <div className="mx-auto mt-9 flex w-full max-w-sm flex-col items-stretch justify-center gap-3 hero-animate sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center" style={{ animationDelay: '300ms' } as React.CSSProperties}>
+            <a href="https://wa.me/447537171506" target="_blank" rel="noopener noreferrer" className="btn-gold w-full sm:w-auto">
               Get Your Custom Growth Plan
             </a>
-            <Link to="/our-work" className="btn-ghost text-white group">
+            <Link to="/our-work" className="btn-ghost w-full text-white group sm:w-auto">
               View Our Work <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
