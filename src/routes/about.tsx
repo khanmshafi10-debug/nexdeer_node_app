@@ -144,17 +144,17 @@ function About() {
         <section className="section-y bg-white">
           <div className="container-x">
             <div className="grid lg:grid-cols-12 gap-12 lg:items-center">
-              <div className="lg:col-span-4 fade-up">
+              <div className="lg:col-span-5 fade-up">
                 <span className="eyebrow">OUR VALUES</span>
                 <h2 className="headline-lg mt-4 text-[var(--ink-deep)] leading-tight">
-                  Built on Transparency & Performance.
+                  Built on <span className="text-[var(--gold)]">Transparency</span> & Performance.
                 </h2>
                 <p className="mt-6 text-[color:var(--muted-foreground)] text-lg leading-relaxed">
                   We don't hide behind complex jargon or opaque reporting dashboards. Our relationships are built on radical transparency and mutual financial alignment.
                 </p>
               </div>
               
-              <div className="lg:col-span-8 grid sm:grid-cols-2 gap-6">
+              <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
                 {[
                   { icon: <ShieldCheck />, title: "Radical Transparency", desc: "Full access to ad accounts, analytics, and source code. No hidden fees or locked ecosystems." },
                   { icon: <Zap />, title: "Engineering-First", desc: "We solve marketing problems with code and automation, not just ad spend." },
