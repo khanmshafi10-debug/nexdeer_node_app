@@ -88,16 +88,16 @@ export function RevealSection({ children, className, ...props }: React.HTMLAttri
 
 /* ---------- Helpers ---------- */
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1600&q=80",
-  team: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80",
-  meeting: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1400&q=80",
-  analytics: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1400&q=80",
-  marketing: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
-  website: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1400&q=80",
-  seo: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=1400&q=80",
-  ai: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80",
-  exec: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80",
-  city: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1600&q=80",
+  hero: "/images/unsplash/photo-1551434678-e076c223a692_w1600_q80.jpg",
+  team: "/images/unsplash/photo-1552664730-d307ca884978_w1400_q80.jpg",
+  meeting: "/images/unsplash/photo-1542744173-8e7e53415bb0_w1400_q80.jpg",
+  analytics: "/images/unsplash/photo-1543286386-713bdd548da4_w1400_q80.jpg",
+  marketing: "/images/unsplash/photo-1460925895917-afdab827c52f_w1400_q80.jpg",
+  website: "/images/unsplash/photo-1547658719-da2b51169166_w1400_q80.jpg",
+  seo: "/images/unsplash/photo-1432888498266-38ffec3eaf0a_w1400_q80.jpg",
+  ai: "/images/unsplash/photo-1677442136019-21780ecad995_w1400_q80.jpg",
+  exec: "/images/unsplash/photo-1556761175-5973dc0f32e7_w1400_q80.jpg",
+  city: "/images/unsplash/photo-1518684079-3c830dcef090_w1600_q80.jpg",
   portfolio1: "/projects/real estate website.webp",
   portfolio2: "/projects/Healthcare Clinics.webp",
   portfolio3: "/projects/branding.webp",
@@ -140,10 +140,10 @@ function MarqueeLogo({ name, icon: Icon }: { name: string; icon: any }) {
 }
 
 const AVATARS = [
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-  "https://images.unsplash.com/photo-1531123897727-8f129e1bfa82?auto=format&fit=crop&w=200&q=80",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+  "/images/unsplash/photo-1544005313-94ddf0286df2_w200_q80.jpg",
+  "/images/unsplash/photo-1507003211169-0a1dd7228f2d_w200_q80.jpg",
+  "/images/unsplash/photo-1531123897727-8f129e1bfa82_w200_q80.jpg",
+  "/images/unsplash/photo-1534528741775-53994a69daeb_w200_q80.jpg",
 ];
 
 /* ---------- HERO ---------- */
@@ -153,7 +153,7 @@ export function Hero() {
       {/* Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=70"
+          src="/images/unsplash/photo-1497366216548-37526070297c_w1200_q70.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-luminosity"
@@ -470,37 +470,37 @@ const SERVICES = [
   {
     icon: Megaphone,
     title: "Social Media Management",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+    image: "/images/unsplash/photo-1611162617474-5b21e879e113_w800_q80.jpg",
     items: ["Content Creation", "Community Management", "Social Strategy", "Influencer Marketing", "Analytics & Reporting"],
   },
   {
     icon: FileText,
     title: "Content Marketing",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+    image: "/images/unsplash/photo-1552664730-d307ca884978_w800_q80.jpg",
     items: ["Blog Articles", "Video Scripts", "Copywriting", "Whitepapers", "Email Newsletters"],
   },
   {
     icon: Palette,
     title: "Branding & Identity",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
+    image: "/images/unsplash/photo-1561070791-2526d30994b5_w800_q80.jpg",
     items: ["Logo Design", "Brand Guidelines", "Visual Identity", "Rebranding", "Brand Strategy"],
   },
   {
     icon: Users,
     title: "CRM Setup & Management",
-    image: "https://images.unsplash.com/photo-1552581234-26160822f37f?auto=format&fit=crop&w=800&q=80",
+    image: "/images/unsplash/photo-1552581234-26160822f37f_w800_q80.jpg",
     items: ["HubSpot Setup", "Salesforce Integration", "Pipeline Management", "Lead Scoring", "Sales Automation"],
   },
   {
     icon: Mail,
     title: "Email Marketing",
-    image: "https://images.unsplash.com/photo-1577563908411-50cb98976cfe?auto=format&fit=crop&w=800&q=80",
+    image: "/images/unsplash/photo-1577563908411-50cb98976cfe_w800_q80.jpg",
     items: ["Newsletter Campaigns", "Drip Sequences", "List Segmentation", "A/B Testing", "Performance Tracking"],
   },
   {
     icon: LineChart,
     title: "Analytics & Data Strategy",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    image: "/images/unsplash/photo-1551288049-bebda4e38f71_w800_q80.jpg",
     items: ["Google Analytics 4", "Custom Dashboards", "Conversion Tracking", "Data Visualization", "Growth Consulting"],
   },
 ];
@@ -1023,7 +1023,7 @@ const TESTIMONIALS = [
       "They don't just ship deliverables — they own outcomes. Our SEO traffic is up 4.2x and conversion rate doubled in two quarters.",
     name: "Hina Raza",
     role: "Marketing Lead, MeridianCare",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80",
+    avatar: "/images/unsplash/photo-1573496359142-b8d87734a5a2_w150_q80.jpg",
   },
   {
     quote:
@@ -1437,7 +1437,7 @@ export const ServiceSocialMedia = () => (
     title="Build Community, Drive Conversions"
     desc="Turn followers into customers with strategic content, community management, and influencer partnerships that amplify your brand's voice."
     items={["Content Creation", "Community Management", "Social Strategy", "Influencer Marketing", "Analytics & Reporting"]}
-    image="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80"
+    image="/images/unsplash/photo-1611162617474-5b21e879e113_w800_q80.jpg"
   />
 );
 
@@ -1447,7 +1447,7 @@ export const ServiceContent = () => (
     title="Words That Sell and Stories That Connect"
     desc="High-quality content tailored for your audience, designed to build authority, educate prospects, and drive organic inbound leads."
     items={["Blog Articles", "Video Scripts", "Copywriting", "Whitepapers", "Email Newsletters"]}
-    image="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80"
+    image="/images/unsplash/photo-1552664730-d307ca884978_w800_q80.jpg"
     reverse
     bg="bg-[var(--surface)]"
   />
@@ -1459,7 +1459,7 @@ export const ServiceBranding = () => (
     title="A Brand That Demands Attention"
     desc="Stand out in crowded markets with a strong visual identity, cohesive brand guidelines, and a compelling narrative that resonates."
     items={["Logo Design", "Brand Guidelines", "Visual Identity", "Rebranding", "Brand Strategy"]}
-    image="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80"
+    image="/images/unsplash/photo-1561070791-2526d30994b5_w800_q80.jpg"
     slug="branding"
   />
 );
@@ -1470,7 +1470,7 @@ export const ServiceCRM = () => (
     title="Turn Chaos Into a Predictable Pipeline"
     desc="Organize your leads, automate your sales process, and never lose another opportunity with custom CRM implementations."
     items={["HubSpot Setup", "Salesforce Integration", "Pipeline Management", "Lead Scoring", "Sales Automation"]}
-    image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+    image="/images/unsplash/photo-1551288049-bebda4e38f71_w800_q80.jpg"
     reverse
     bg="bg-[var(--surface)]"
   />
@@ -1482,7 +1482,7 @@ export const ServiceEmail = () => (
     title="Unlock Revenue from Your Existing List"
     desc="Segmented campaigns and automated drip sequences that nurture leads and drive repeat purchases on autopilot."
     items={["Newsletter Campaigns", "Drip Sequences", "List Segmentation", "A/B Testing", "Performance Tracking"]}
-    image="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80"
+    image="/images/unsplash/photo-1563986768609-322da13575f3_w800_q80.jpg"
   />
 );
 
@@ -1492,7 +1492,7 @@ export const ServiceAnalytics = () => (
     title="Decisions Based on Data, Not Guesswork"
     desc="Custom dashboards and deep tracking setups so you know exactly which campaigns are driving revenue and where your leaks are."
     items={["Google Analytics 4", "Custom Dashboards", "Conversion Tracking", "Data Visualization", "Growth Consulting"]}
-    image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+    image="/images/unsplash/photo-1551288049-bebda4e38f71_w800_q80.jpg"
     reverse
     bg="bg-[var(--surface)]"
   />
@@ -1758,7 +1758,7 @@ export function CeoMessage() {
 
 /* ---------- TEAM ---------- */
 const TEAM = [
-  { name: "Ayesha Tariq", role: "Growth Strategist", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" },
+  { name: "Ayesha Tariq", role: "Growth Strategist", img: "/images/unsplash/photo-1573496359142-b8d87734a5a2_w800_q80.jpg" },
   { name: "Bilal Ahmed", role: "Performance Lead", img: AVATARS[0] },
   { name: "Hassan Raza", role: "Design Director", img: AVATARS[1] },
   { name: "Noor Hassan", role: "AI Engineer", img: AVATARS[3] },

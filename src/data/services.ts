@@ -29,7 +29,7 @@ export const SERVICES_DATA = [
     label: "Performance Marketing",
     title: "Expert Performance Marketing Agency",
     description: "Looking for the best performance marketing agency? We provide data-driven B2B lead generation, PPC management, and paid social campaigns to scale your business globally.",
-    heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=80",
+    heroImage: "/images/unsplash/photo-1460925895917-afdab827c52f_w2000_q80.jpg",
     icon: TrendingUp,
     seo: {
       keywords: "performance marketing agency, B2B lead generation services, PPC management agency, Google Ads expert, Meta Ads agency, paid social marketing"
@@ -48,12 +48,12 @@ export const SERVICES_DATA = [
       {
         title: "Top-Rated Performance Marketing Agency for B2B Lead Generation",
         content: "As a leading performance marketing agency, we understand that clicks and impressions do not pay the bills. Our core focus is on B2B lead generation and driving high-quality, sales-qualified leads (SQLs) to your business. By leveraging advanced data analytics, AI-driven bidding strategies, and precise audience targeting across Google Ads, LinkedIn Ads, and Meta, we ensure that your marketing budget delivers a massive Return on Ad Spend (ROAS).",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1551288049-bebda4e38f71_w1200_q80.jpg"
       },
       {
         title: "Expert Google Ads & PPC Management Services",
         content: "Don't waste your budget on poor keyword targeting. Our expert PPC management services are designed to capture high-intent buyers exactly when they are searching for your solutions. We provide comprehensive search engine marketing (SEM) services, including keyword research, competitor analysis, A/B testing, and continuous campaign optimization to secure the lowest Cost Per Click (CPC) and highest conversion rates in your industry.",
-        image: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1533750516457-a7f992034fec_w1200_q80.jpg"
       }
     ],
     process: [
@@ -67,7 +67,7 @@ export const SERVICES_DATA = [
     label: "Website Design & Development",
     title: "Custom B2B Website Design & Development",
     description: "Award-winning website design and enterprise web development services. We build SEO-friendly, high-converting React and Next.js websites for growing businesses.",
-    heroImage: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=2000&q=80",
+    heroImage: "/images/unsplash/photo-1547658719-da2b51169166_w2000_q80.jpg",
     icon: MonitorSmartphone,
     seo: {
       keywords: "custom website design, enterprise web development company, B2B website design agency, Next.js development services, SEO friendly web design"
@@ -86,12 +86,12 @@ export const SERVICES_DATA = [
       {
         title: "Premium B2B Website Design Services That Drive Revenue",
         content: "Your website is your 24/7 digital storefront. As a top-tier B2B website design agency, we specialize in creating high-performance, custom web designs that do more than just look good—they convert visitors into paying clients. We implement the latest UI/UX best practices, ensuring your site offers an intuitive, frictionless journey that guides enterprise buyers straight to your contact forms and sales pipelines.",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1498050108023-c5249f4df085_w1200_q80.jpg"
       },
       {
         title: "Enterprise Web Development & Technical SEO Architecture",
         content: "A beautiful design is useless if it's slow or invisible to search engines. Our enterprise web development team builds blazing-fast, mobile-responsive websites using cutting-edge technologies like Next.js. We focus heavily on Core Web Vitals, schema markup, and technical SEO architecture so your custom website ranks higher on Google and provides a flawless user experience across all devices.",
-        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1555066931-4365d14bab8c_w1200_q80.jpg"
       }
     ],
     process: [
@@ -105,7 +105,7 @@ export const SERVICES_DATA = [
     label: "SEO & Local SEO",
     title: "Top Enterprise SEO & Local SEO Services",
     description: "Dominate Google search results with our expert enterprise SEO and local SEO services. Drive massive organic traffic and outrank your competitors.",
-    heroImage: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=2000&q=80",
+    heroImage: "/images/unsplash/photo-1432888498266-38ffec3eaf0a_w2000_q80.jpg",
     icon: Search,
     seo: {
       keywords: "enterprise SEO services, local SEO agency, best SEO company, B2B SEO optimization, technical SEO audit, organic traffic growth"
@@ -124,12 +124,12 @@ export const SERVICES_DATA = [
       {
         title: "Best Enterprise SEO Services for Organic Growth",
         content: "Securing the top spot on Google requires more than just basic keywords. As an expert SEO company, we provide enterprise SEO services designed to build absolute topical authority in your industry. Through meticulous on-page optimization, semantic keyword clustering, and high-DR backlink acquisition, we help B2B companies dominate organic search results and capture high-intent traffic without relying on paid ads.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1460925895917-afdab827c52f_w1200_q80.jpg"
       },
       {
         title: "Expert Local SEO Agency for Unmatched Visibility",
         content: "If you operate in specific geographic regions, Local SEO is critical. Our Local SEO services focus on hyper-local keyword targeting, Google Business Profile (GBP) optimization, and localized link building. Whether you want to dominate search results in Pakistan, the UAE, or any global metropolitan area, we ensure your business appears in the highly coveted Google Local Pack for maximum visibility.",
-        image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1504868584819-f8e8b4b6d7e3_w1200_q80.jpg"
       }
     ],
     process: [
@@ -143,7 +143,7 @@ export const SERVICES_DATA = [
     label: "GEO & AEO",
     title: "Generative Engine Optimization (GEO) & AEO",
     description: "Future-proof your business with Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO). Rank higher in ChatGPT, Perplexity, and AI search.",
-    heroImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=2000&q=80",
+    heroImage: "/images/unsplash/photo-1620712943543-bcc4688e7485_w2000_q80.jpg",
     icon: Globe2,
     seo: {
       keywords: "Generative Engine Optimization, GEO services, Answer Engine Optimization, AEO agency, ChatGPT SEO, AI search visibility"
@@ -162,12 +162,12 @@ export const SERVICES_DATA = [
       {
         title: "Pioneering Generative Engine Optimization (GEO) Services",
         content: "The future of search is here, and it's powered by AI. Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) are replacing traditional search behaviors. Users are increasingly turning to AI tools like ChatGPT, Perplexity, and Google's AI Overviews for direct answers. Our specialized AEO agency ensures that your brand's content is structured, cited, and optimized so that AI engines recommend you as the definitive solution.",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1677442136019-21780ecad995_w1200_q80.jpg"
       },
       {
         title: "Structuring Data for AI and Large Language Models",
         content: "AI models require highly structured data to understand your business. We implement advanced JSON-LD schema markup, optimize your content for Natural Language Processing (NLP), and build strong digital entities. By optimizing your website for Answer Engine Optimization (AEO), we help you capture featured snippets and become the primary source of truth for conversational AI platforms.",
-        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1620712943543-bcc4688e7485_w1200_q80.jpg"
       }
     ],
     process: [
@@ -181,7 +181,7 @@ export const SERVICES_DATA = [
     label: "Branding",
     title: "Premium B2B Branding & Corporate Identity",
     description: "Elevate your market position with our premium B2B branding agency. We specialize in corporate identity, logo design, and strategic brand positioning.",
-    heroImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=2000&q=80",
+    heroImage: "/images/unsplash/photo-1561070791-2526d30994b5_w2000_q80.jpg",
     icon: Palette,
     seo: {
       keywords: "B2B branding agency, corporate identity design, premium brand positioning, professional logo design, rebranding services company"
@@ -200,12 +200,12 @@ export const SERVICES_DATA = [
       {
         title: "Top-Tier B2B Branding Agency for Market Leaders",
         content: "In the B2B space, trust is your most valuable currency. A strong brand is what justifies premium pricing and shortens enterprise sales cycles. As a specialized B2B branding agency, we do more than design logos. We architect complete corporate identities that resonate with decision-makers. From your core messaging to your visual aesthetic, we ensure your brand commands absolute authority in your industry.",
-        image: "https://images.unsplash.com/photo-1542744094-24638ea0b5b5?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1542744094-24638ea0b5b5_w1200_q80.jpg"
       },
       {
         title: "Corporate Identity Design & Rebranding Services",
         content: "Whether you are a startup needing a ground-up brand strategy or an established enterprise seeking modern rebranding services, our expert design team delivers. We leverage psychological design principles to craft corporate visual identities that subconsciously communicate stability, innovation, and premium quality, setting the foundation for all your marketing efforts.",
-        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1558655146-d09347e92766_w1200_q80.jpg"
       }
     ],
     process: [
@@ -219,7 +219,7 @@ export const SERVICES_DATA = [
     label: "AI & CRM Automation",
     title: "AI Sales Agents & CRM Automation Services",
     description: "Streamline operations with our expert CRM automation agency. We build AI sales agents, Hubspot workflows, and custom business process automations.",
-    heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80",
+    heroImage: "/images/unsplash/photo-1551288049-bebda4e38f71_w2000_q80.jpg",
     icon: Bot,
     seo: {
       keywords: "CRM automation agency, AI sales agents, Hubspot implementation services, business process automation, B2B AI chatbots, sales automation company"
@@ -238,12 +238,12 @@ export const SERVICES_DATA = [
       {
         title: "Expert CRM Automation Agency for Scaling Businesses",
         content: "Manual data entry and slow follow-ups are destroying your conversion rates. As a premier CRM automation agency, we help businesses scale operations without scaling headcount. We specialize in Hubspot implementation and Salesforce configuration, building robust automated workflows that handle lead routing, personalized email nurturing sequences, and pipeline management automatically.",
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1518770660439-4636190af475_w1200_q80.jpg"
       },
       {
         title: "Next-Generation AI Sales Agents & Chatbots",
         content: "Don't let leads go cold after hours. We develop custom AI sales agents and B2B chatbots powered by advanced Large Language Models (LLMs). These are not basic rule-based bots; these AI agents can hold dynamic conversations, pre-qualify prospects based on your specific criteria, and instantly book appointments directly into your sales team's calendar, operating flawlessly 24/7.",
-        image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=80"
+        image: "/images/unsplash/photo-1555949963-aa79dcee981c_w1200_q80.jpg"
       }
     ],
     process: [

@@ -54,7 +54,7 @@ function Contact() {
       <main>
         <section className="relative isolate overflow-hidden grid-noise text-white pt-36 pb-24 md:pt-44 md:pb-32">
           <div className="absolute inset-0 -z-10 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&w=2000&q=80" alt="" className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity" />
+            <img src="/images/unsplash/photo-1516387938699-a93567ec168e_w2000_q80.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity" />
             <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink-deep)]/95 via-[var(--ink-deep)]/85 to-[var(--ink-deep)]" />
             <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:64px_64px]" />
           </div>

@@ -23,7 +23,7 @@ function OurWorkPage() {
         <section className="relative isolate overflow-hidden grid-noise text-white pt-28 pb-24 md:pt-44 md:pb-48">
           <div className="absolute inset-0 -z-10 overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=70" 
+              src="/images/unsplash/photo-1497215728101-856f4ea42174_w1200_q70.jpg" 
               alt="" 
               loading="eager"
               decoding="async"

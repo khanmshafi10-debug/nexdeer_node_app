@@ -35,7 +35,7 @@ function CareersPage() {
         <section className="relative isolate overflow-hidden bg-[var(--ink-deep)] text-white pt-36 pb-24 md:pt-48 md:pb-32">
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--ink-deep)]/80 via-[var(--ink-deep)]/90 to-[var(--ink-deep)]" />
           <img 
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=70" 
+            src="/images/unsplash/photo-1522071820081-009f0129c71c_w1200_q70.jpg" 
             alt="NEXDEER Culture" 
             loading="eager"
             decoding="async"

@@ -35,7 +35,7 @@ function ServicesPage() {
         <section className="relative isolate overflow-hidden grid-noise text-white pt-36 pb-24 md:pt-44 md:pb-32 mb-12">
           <div className="absolute inset-0 -z-10 overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=70" 
+              src="/images/unsplash/photo-1460925895917-afdab827c52f_w1200_q70.jpg" 
               alt="" 
               loading="eager"
               decoding="async"

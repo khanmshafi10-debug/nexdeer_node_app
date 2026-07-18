@@ -70,6 +70,6 @@ export const INDUSTRIES = [
   { icon: Rocket, label: "SpaceTech", desc: "B2B marketing and investor relations for space technology startups." }
 ].map((ind) => ({
   ...ind,
-  image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+  image: "/images/unsplash/photo-1460925895917-afdab827c52f_w800_q80.jpg",
   logo: `/logos/${ind.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}.png`
 }));

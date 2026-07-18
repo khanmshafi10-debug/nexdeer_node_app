@@ -32,7 +32,7 @@ function IndustriesPage() {
           {/* Subtle architectural / abstract background */}
           <div className="absolute inset-0 -z-10 overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=70" 
+              src="/images/unsplash/photo-1486406146926-c627a92ad1ab_w1200_q70.jpg" 
               alt="" 
               loading="eager"
               decoding="async"
