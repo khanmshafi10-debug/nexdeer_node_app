@@ -64,11 +64,11 @@ function Index() {
         <ServiceWebsite />
         <ServiceSEO />
         <ServiceAI />
-        <ServicesCTAStrip />
         <CaseStudies />
         <Industries />
         <WhyNexdeer />
         <Process />
+        <ServicesCTAStrip />
         <TechStack />
         <CeoMessage />
         <Testimonials />
