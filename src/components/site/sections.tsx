@@ -2193,11 +2193,11 @@ const GithubCertifiedLogo = () => (
 );
 
 const AwsCertifiedLogo = () => (
-  <div className="w-28 h-12 flex items-center justify-center transition-all duration-500 affiliation-logo">
+  <div className="w-24 h-12 flex items-center justify-center transition-all duration-500 affiliation-logo">
     <img 
       src="/aws_certified.png" 
       alt="AWS Certified" 
-      className="max-w-full max-h-full object-contain" 
+      className="max-w-full max-h-full object-contain mix-blend-multiply" 
     />
   </div>
 );
@@ -2355,7 +2355,7 @@ export function Affiliations() {
     { name: "Shopify", logo: ShopifyImageLogo, cardClass: "shopify-card" },
     { name: "TikTok", logo: TiktokIconLogo, cardClass: "tiktok-card" },
     { name: "GitHub", logo: GithubIconLogo, cardClass: "github-card" },
-    { name: "AWS", logo: AwsIconLogo, cardClass: "aws-card" },
+    { name: "AWS", logo: AwsCertifiedLogo, cardClass: "aws-card" },
     { name: "Microsoft", logo: MicrosoftIconLogo, cardClass: "microsoft-card" },
     { name: "Cisco", logo: CiscoIconLogo, cardClass: "cisco-card" },
   ];
