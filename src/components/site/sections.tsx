@@ -1847,15 +1847,19 @@ export function ContactStrip() {
 /* ---------- SERVICES CTA STRIP ---------- */
 export function ServicesCTAStrip() {
   return (
-    <section className="bg-[var(--ink-deep)] text-white py-12 relative overflow-hidden border-y border-white/5">
+    <section className="relative overflow-hidden border-y border-white/10 bg-[var(--ink-deep)] py-10 text-white sm:py-12 lg:py-14">
       <div className="absolute inset-0 -z-10 grid-noise opacity-30" />
-      <div className="container-x flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <h3 className="text-xl md:text-2xl font-bold">Ready to see our growth systems in action?</h3>
-          <p className="text-sm text-white/70 mt-1">Explore our latest case studies and real-world results.</p>
+      <div className="container-x flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+        <div className="max-w-2xl">
+          <h3 className="text-balance text-2xl font-bold leading-tight sm:text-3xl">
+            Ready to see our growth systems in action?
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-white/70 sm:text-base">
+            Explore our latest case studies and real-world results.
+          </p>
         </div>
-        <div>
-          <a href="https://wa.me/923186662360" target="_blank" rel="noreferrer" className="btn-gold inline-flex items-center gap-2">
+        <div className="w-full sm:w-auto md:shrink-0">
+          <a href="https://wa.me/923186662360" target="_blank" rel="noreferrer" className="btn-gold w-full sm:w-auto">
             Book a Strategy Call <ArrowRight size={16} />
           </a>
         </div>
