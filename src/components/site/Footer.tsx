@@ -25,8 +25,8 @@ export function Footer() {
   return (
     <footer className="bg-[var(--ink-deep)] text-white/80">
       <div className="container-x py-14 md:py-20">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="lg:col-span-3">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-12 sm:gap-10">
+          <div className="col-span-2 sm:col-span-1 lg:col-span-3 order-1 sm:order-1 lg:order-1">
             <div className="flex items-center gap-2">
               <img src="/logo.png" alt="NEXDEER Logo" className="h-10 w-auto" />
             </div>
@@ -37,35 +37,35 @@ export function Footer() {
             </p>
           </div>
 
-          <FooterCol title="Quick Links" items={QUICK} />
-          <FooterCol title="Services" items={SERVICES} />
-          <FooterCol title="Industries" items={INDUSTRIES} />
+          <FooterCol title="Quick Links" items={QUICK} className="col-span-1 sm:col-span-1 lg:col-span-2 order-2 sm:order-2 lg:order-2" />
+          <FooterCol title="Services" items={SERVICES} className="col-span-1 sm:col-span-1 lg:col-span-2 order-4 sm:order-3 lg:order-3" />
+          <FooterCol title="Industries" items={INDUSTRIES} className="col-span-1 sm:col-span-1 lg:col-span-2 order-5 sm:order-4 lg:order-4" />
 
-          <div className="lg:col-span-3">
-            <h4 className="mb-6 text-sm font-semibold uppercase tracking-[0.18em] text-white">Contact</h4>
+          <div className="col-span-1 sm:col-span-1 lg:col-span-3 order-3 sm:order-5 lg:order-5">
+            <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-white">Contact</h4>
             <ul className="space-y-4">
               <li>
                 <a href="mailto:hello@nexdeer.com" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
                   <Mail size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
-                  hello@nexdeer.com
+                  <span className="truncate">hello@nexdeer.com</span>
                 </a>
               </li>
               <li>
                 <a href="https://wa.me/447537171506" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
                   <MessageCircle size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
-                  +44 7537 171506
+                  <span className="truncate">+44 7537 171506</span>
                 </a>
               </li>
               <li>
                 <a href="tel:+923186662360" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
                   <Phone size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
-                  +92 318 6662360
+                  <span className="truncate">+92 318 6662360</span>
                 </a>
               </li>
               <li>
                 <a href="tel:+923062999700" className="group flex items-center gap-3 text-base text-white/80 transition-colors hover:text-[var(--gold)]">
                   <Phone size={20} className="text-white/60 transition-colors group-hover:text-[var(--gold)]" strokeWidth={1.5} />
-                  +92 306 2999700 (HR)
+                  <span className="truncate">+92 306 2999700 (HR)</span>
                 </a>
               </li>
             </ul>
@@ -105,7 +105,7 @@ function slugify(text: string) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-function FooterCol({ title, items }: { title: string; items: string[] }) {
+function FooterCol({ title, items, className = "" }: { title: string; items: string[]; className?: string }) {
   const getPath = (item: string) => {
     if (title === "Quick Links") {
       return item === "Home" ? "/" : `/${slugify(item)}`;
@@ -120,7 +120,7 @@ function FooterCol({ title, items }: { title: string; items: string[] }) {
   };
 
   return (
-    <div className="lg:col-span-2 min-w-0">
+    <div className={`min-w-0 ${className}`}>
       <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-white">{title}</h4>
       <ul className="mt-5 space-y-3 text-sm text-white/70">
         {items.map((i) => (
