@@ -37,11 +37,11 @@ export function Footer() {
             </p>
           </div>
 
-          <FooterCol title="Quick Links" items={QUICK} className="col-span-1 sm:col-span-1 lg:col-span-2 order-2 sm:order-2 lg:order-2" />
+          <FooterCol title="Quick Links" items={QUICK} className="hidden sm:block col-span-1 sm:col-span-1 lg:col-span-2 order-2 sm:order-2 lg:order-2" />
           <FooterCol title="Services" items={SERVICES} className="col-span-1 sm:col-span-1 lg:col-span-2 order-4 sm:order-3 lg:order-3" />
           <FooterCol title="Industries" items={INDUSTRIES} className="col-span-1 sm:col-span-1 lg:col-span-2 order-5 sm:order-4 lg:order-4" />
 
-          <div className="col-span-1 sm:col-span-1 lg:col-span-3 order-3 sm:order-5 lg:order-5">
+          <div className="hidden sm:block col-span-1 sm:col-span-1 lg:col-span-3 order-3 sm:order-5 lg:order-5">
             <h4 className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-white">Contact</h4>
             <ul className="space-y-4">
               <li>
