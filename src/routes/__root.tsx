@@ -117,14 +117,14 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 import { Toaster } from "../components/ui/sonner";
-import { initForceAnimations } from "../lib/force-animations";
+import { initReveals } from "../lib/init-reveals";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
-  // Initialize force animations on mount
+  // Initialize reveal animations on mount
   useEffect(() => {
-    initForceAnimations();
+    initReveals();
   }, []);
 
   return (
