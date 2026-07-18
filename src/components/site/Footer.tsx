@@ -1,5 +1,6 @@
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter, MessageCircle } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { Logo } from "./Logo";
 
 const SERVICES = [
   "Performance Marketing",
@@ -28,7 +29,7 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-12 sm:gap-10">
           <div className="col-span-2 sm:col-span-1 lg:col-span-3 order-1 sm:order-1 lg:order-1">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="NEXDEER Logo" className="h-10 w-auto" />
+              <Logo className="h-12 w-auto" />
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
               A full-stack digital growth agency helping businesses scale through performance

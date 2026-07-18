@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Logo } from "./Logo";
 
 const NAV = [
   { label: "Home", href: "/" },
@@ -42,7 +43,7 @@ export function Header() {
     >
       <div className="container-x flex h-20 items-center justify-between text-white">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.png" alt="NEXDEER Logo" className="h-6 md:h-8 w-auto" />
+          <Logo className="h-9 md:h-11 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.055] px-2 py-2 text-sm font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
