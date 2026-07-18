@@ -788,7 +788,7 @@ export function Portfolio({ limit, hideHeader, darkTheme }: { limit?: number; hi
               {limit && (
                 <div className="flex-shrink-0 mb-1" data-reveal="up" style={{ '--reveal-delay': '300' } as React.CSSProperties}>
                   <Link to="/our-work" className={`btn-ghost ${darkTheme ? 'text-white' : 'text-[var(--ink-deep)]'} group`}>
-                    <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View Portfolio <ArrowRight size={16} /></span>
+                    <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">View Our Work <ArrowRight size={16} /></span>
                   </Link>
                 </div>
               )}
@@ -800,7 +800,7 @@ export function Portfolio({ limit, hideHeader, darkTheme }: { limit?: number; hi
           {displayCards.map((c, i) => {
             return (
               <Link
-                to="/portfolio/$projectId"
+                to="/our-work/$projectId"
                 params={{ projectId: c.id }}
                 key={c.id}
                 className={`group relative overflow-hidden rounded-3xl border ${darkTheme ? 'border-white/10' : 'border-[var(--border)]'} shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(232,181,4,0.15)] hover:border-[var(--gold)]/30 transition-all duration-700 block`}
@@ -1524,7 +1524,7 @@ export function CaseStudies() {
           <div className="flex-shrink-0" data-reveal="up" style={{ '--reveal-delay': '300' } as React.CSSProperties}>
             <Link to="/our-work" className="btn-gold group">
               <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover:gap-4">
-                View Portfolio <ArrowRight size={16} />
+                View Our Work <ArrowRight size={16} />
               </span>
             </Link>
           </div>
@@ -1535,7 +1535,7 @@ export function CaseStudies() {
           {CASES.map((c, i) => {
             return (
               <Link 
-                to="/portfolio/$projectId" 
+                to="/our-work/$projectId" 
                 params={{ projectId: c.id }} 
                 key={c.brand} 
                 className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:p-8 lg:p-10 transition-all duration-500 hover:border-[var(--gold)]/40 hover:bg-white/[0.05] hover:shadow-[0_0_50px_rgba(212,175,55,0.05)] flex flex-col justify-between min-h-[320px] md:min-h-[380px] cursor-pointer"
@@ -1640,11 +1640,11 @@ export function TechStack() {
             const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
             const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
             return (
-            <div key={`r1-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
+            <div key={`r1-${idx}`} className="flex-shrink-0 flex items-center justify-center p-2 md:p-4 w-32 h-20 md:w-52 md:h-32 transition-transform duration-300 hover:scale-110">
               <img 
                 src={`/toolslogos/${filename}`} 
                 alt="Tool logo" 
-                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
+                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[100px] max-h-[60px] md:max-w-[180px] md:max-h-[110px] scale-110 md:scale-125' : 'max-w-[80px] max-h-[50px] md:max-w-[150px] md:max-h-[90px]'} ${
                   isWhiteLogo 
                     ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
                     : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
@@ -1661,11 +1661,11 @@ export function TechStack() {
             const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
             const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
             return (
-            <div key={`r2-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
+            <div key={`r2-${idx}`} className="flex-shrink-0 flex items-center justify-center p-2 md:p-4 w-32 h-20 md:w-52 md:h-32 transition-transform duration-300 hover:scale-110">
               <img 
                 src={`/toolslogos/${filename}`} 
                 alt="Tool logo" 
-                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
+                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[100px] max-h-[60px] md:max-w-[180px] md:max-h-[110px] scale-110 md:scale-125' : 'max-w-[80px] max-h-[50px] md:max-w-[150px] md:max-h-[90px]'} ${
                   isWhiteLogo 
                     ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
                     : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'
@@ -1682,11 +1682,11 @@ export function TechStack() {
             const isWhiteLogo = ['ahrefs.png', 'supabaselogo.png', 'whatsapplogo.png', 'typescriptlogo.png'].includes(filename);
             const isLargeLogo = ['supabaselogo.png', 'wordpresslogo.png', 'pythonlogo.png', 'typescriptlogo.png'].includes(filename);
             return (
-            <div key={`r3-${idx}`} className="flex-shrink-0 flex items-center justify-center p-4 w-52 h-32 transition-transform duration-300 hover:scale-110">
+            <div key={`r3-${idx}`} className="flex-shrink-0 flex items-center justify-center p-2 md:p-4 w-32 h-20 md:w-52 md:h-32 transition-transform duration-300 hover:scale-110">
               <img 
                 src={`/toolslogos/${filename}`} 
                 alt="Tool logo" 
-                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[180px] max-h-[110px] scale-125' : 'max-w-[150px] max-h-[90px]'} ${
+                className={`object-contain transition-all duration-300 ${isLargeLogo ? 'max-w-[100px] max-h-[60px] md:max-w-[180px] md:max-h-[110px] scale-110 md:scale-125' : 'max-w-[80px] max-h-[50px] md:max-w-[150px] md:max-h-[90px]'} ${
                   isWhiteLogo 
                     ? 'filter invert hue-rotate-180 opacity-60 hover:opacity-100' 
                     : 'filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100'

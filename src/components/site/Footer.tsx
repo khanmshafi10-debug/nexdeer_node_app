@@ -19,7 +19,7 @@ const INDUSTRIES = [
   "Corporate",
 ];
 
-const QUICK = ["Home", "About", "Services", "Portfolio", "Industries", "Contact"];
+const QUICK = ["Home", "About", "Services", "Our Work", "Industries", "Contact"];
 
 export function Footer() {
   return (

@@ -18,8 +18,9 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesServiceIdRouteImport } from './routes/services_.$serviceId'
-import { Route as PortfolioProjectIdRouteImport } from './routes/portfolio_.$projectId'
+import { Route as OurWorkProjectIdRouteImport } from './routes/our-work_.$projectId'
 import { Route as IndustriesIndustryIdRouteImport } from './routes/industries_.$industryId'
+import { Route as ApiContactRouteImport } from './routes/api.contact'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -66,14 +67,19 @@ const ServicesServiceIdRoute = ServicesServiceIdRouteImport.update({
   path: '/services/$serviceId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PortfolioProjectIdRoute = PortfolioProjectIdRouteImport.update({
-  id: '/portfolio_/$projectId',
-  path: '/portfolio/$projectId',
+const OurWorkProjectIdRoute = OurWorkProjectIdRouteImport.update({
+  id: '/our-work_/$projectId',
+  path: '/our-work/$projectId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndustriesIndustryIdRoute = IndustriesIndustryIdRouteImport.update({
   id: '/industries_/$industryId',
   path: '/industries/$industryId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -86,8 +92,9 @@ export interface FileRoutesByFullPath {
   '/our-work': typeof OurWorkRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
+  '/api/contact': typeof ApiContactRoute
   '/industries/$industryId': typeof IndustriesIndustryIdRoute
-  '/portfolio/$projectId': typeof PortfolioProjectIdRoute
+  '/our-work/$projectId': typeof OurWorkProjectIdRoute
   '/services/$serviceId': typeof ServicesServiceIdRoute
 }
 export interface FileRoutesByTo {
@@ -99,8 +106,9 @@ export interface FileRoutesByTo {
   '/our-work': typeof OurWorkRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
+  '/api/contact': typeof ApiContactRoute
   '/industries/$industryId': typeof IndustriesIndustryIdRoute
-  '/portfolio/$projectId': typeof PortfolioProjectIdRoute
+  '/our-work/$projectId': typeof OurWorkProjectIdRoute
   '/services/$serviceId': typeof ServicesServiceIdRoute
 }
 export interface FileRoutesById {
@@ -113,8 +121,9 @@ export interface FileRoutesById {
   '/our-work': typeof OurWorkRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
+  '/api/contact': typeof ApiContactRoute
   '/industries_/$industryId': typeof IndustriesIndustryIdRoute
-  '/portfolio_/$projectId': typeof PortfolioProjectIdRoute
+  '/our-work_/$projectId': typeof OurWorkProjectIdRoute
   '/services_/$serviceId': typeof ServicesServiceIdRoute
 }
 export interface FileRouteTypes {
@@ -128,8 +137,9 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/portfolio'
     | '/services'
+    | '/api/contact'
     | '/industries/$industryId'
-    | '/portfolio/$projectId'
+    | '/our-work/$projectId'
     | '/services/$serviceId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -141,8 +151,9 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/portfolio'
     | '/services'
+    | '/api/contact'
     | '/industries/$industryId'
-    | '/portfolio/$projectId'
+    | '/our-work/$projectId'
     | '/services/$serviceId'
   id:
     | '__root__'
@@ -154,8 +165,9 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/portfolio'
     | '/services'
+    | '/api/contact'
     | '/industries_/$industryId'
-    | '/portfolio_/$projectId'
+    | '/our-work_/$projectId'
     | '/services_/$serviceId'
   fileRoutesById: FileRoutesById
 }
@@ -168,8 +180,9 @@ export interface RootRouteChildren {
   OurWorkRoute: typeof OurWorkRoute
   PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRoute
+  ApiContactRoute: typeof ApiContactRoute
   IndustriesIndustryIdRoute: typeof IndustriesIndustryIdRoute
-  PortfolioProjectIdRoute: typeof PortfolioProjectIdRoute
+  OurWorkProjectIdRoute: typeof OurWorkProjectIdRoute
   ServicesServiceIdRoute: typeof ServicesServiceIdRoute
 }
 
@@ -238,11 +251,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesServiceIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/portfolio_/$projectId': {
-      id: '/portfolio_/$projectId'
-      path: '/portfolio/$projectId'
-      fullPath: '/portfolio/$projectId'
-      preLoaderRoute: typeof PortfolioProjectIdRouteImport
+    '/our-work_/$projectId': {
+      id: '/our-work_/$projectId'
+      path: '/our-work/$projectId'
+      fullPath: '/our-work/$projectId'
+      preLoaderRoute: typeof OurWorkProjectIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/industries_/$industryId': {
@@ -250,6 +263,13 @@ declare module '@tanstack/react-router' {
       path: '/industries/$industryId'
       fullPath: '/industries/$industryId'
       preLoaderRoute: typeof IndustriesIndustryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -264,8 +284,9 @@ const rootRouteChildren: RootRouteChildren = {
   OurWorkRoute: OurWorkRoute,
   PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRoute,
+  ApiContactRoute: ApiContactRoute,
   IndustriesIndustryIdRoute: IndustriesIndustryIdRoute,
-  PortfolioProjectIdRoute: PortfolioProjectIdRoute,
+  OurWorkProjectIdRoute: OurWorkProjectIdRoute,
   ServicesServiceIdRoute: ServicesServiceIdRoute,
 }
 export const routeTree = rootRouteImport

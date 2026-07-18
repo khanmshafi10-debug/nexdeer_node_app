@@ -5,12 +5,12 @@ import { FinalCTA } from "@/components/site/sections";
 import { ALL_PORTFOLIO_PROJECTS } from "@/components/site/sections";
 import { ArrowLeft, CheckCircle2, Calendar, Target, ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
 
-export const Route = createFileRoute("/portfolio_/$projectId")({
+export const Route = createFileRoute("/our-work_/$projectId")({
   component: PortfolioDetail,
 });
 
 function PortfolioDetail() {
-  const { projectId } = useParams({ from: "/portfolio_/$projectId" });
+  const { projectId } = useParams({ from: "/our-work_/$projectId" });
   const project = ALL_PORTFOLIO_PROJECTS.find(p => p.id === projectId);
 
   if (projectId === "home-improvement") {
@@ -470,7 +470,7 @@ function PortfolioDetail() {
           <h1 className="headline-lg">Project Not Found</h1>
           <p className="mt-4 text-[color:var(--muted-foreground)]">The project you are looking for does not exist.</p>
           <Link to="/our-work" className="mt-8 btn-gold">
-            Back to Portfolio
+            Back to Our Work
           </Link>
         </main>
         <Footer />
