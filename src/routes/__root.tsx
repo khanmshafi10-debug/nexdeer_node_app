@@ -117,9 +117,15 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 import { Toaster } from "../components/ui/sonner";
+import { initForceAnimations } from "../lib/force-animations";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  // Initialize force animations on mount
+  useEffect(() => {
+    initForceAnimations();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
