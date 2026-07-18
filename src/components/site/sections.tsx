@@ -164,7 +164,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink-deep)]/95 via-[var(--ink-deep)]/85 to-[var(--ink-deep)]" />
       </div>
 
-      <div className="container-x pt-20 pb-16 md:pt-32 md:pb-32">
+      <div className="container-x pt-28 pb-16 md:pt-32 md:pb-32">
         <div className="mx-auto max-w-4xl text-center px-2">
           <span className="eyebrow mx-auto border border-[color:var(--gold)]/30 bg-[color:var(--gold)]/10 px-4 py-1.5 rounded-full text-[var(--gold)]"><Sparkles size={14} className="animate-heartbeat" /> Full-Stack Digital Growth Agency</span>
           <h1 className="text-[clamp(1.8rem,5vw+0.5rem,4.25rem)] font-bold leading-[1.08] tracking-tight mt-5 text-white hero-animate">
