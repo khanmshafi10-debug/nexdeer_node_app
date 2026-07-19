@@ -166,10 +166,11 @@ export function Hero() {
 
       <div className="container-x pt-28 pb-16 md:pt-32 md:pb-32">
         <div className="mx-auto max-w-4xl text-center px-2">
-          <span className="eyebrow mx-auto border border-[color:var(--gold)]/30 bg-[color:var(--gold)]/10 px-4 py-1.5 rounded-full text-[var(--gold)]">
-            <span className="relative inline-flex items-center justify-center h-3.5 w-3.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[color:var(--gold)]/45 animate-heartbeat blur-[0.5px]"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[color:var(--gold)] shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
+          <span className="eyebrow mx-auto border border-[color:var(--gold)]/25 bg-[color:var(--gold)]/8 px-4.5 py-2 rounded-full text-[color:var(--gold)] shadow-[0_4px_12px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.05)] backdrop-blur-md hover:border-[color:var(--gold)]/45 transition-colors duration-300">
+            <span className="relative inline-flex items-center justify-center h-2 w-2 shrink-0">
+              <span className="absolute inline-flex h-4.5 w-4.5 rounded-full bg-[color:var(--gold)]/30 animate-ping opacity-70"></span>
+              <span className="absolute inline-flex h-3.5 w-3.5 rounded-full bg-[color:var(--gold)]/40 animate-heartbeat"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[color:var(--gold)] shadow-[0_0_8px_#d4af37]"></span>
             </span>
             Full-Stack Digital Growth Agency
           </span>
