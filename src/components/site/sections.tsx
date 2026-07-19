@@ -166,7 +166,12 @@ export function Hero() {
 
       <div className="container-x pt-28 pb-16 md:pt-32 md:pb-32">
         <div className="mx-auto max-w-4xl text-center px-2">
-          <span className="eyebrow mx-auto border border-[color:var(--gold)]/30 bg-[color:var(--gold)]/10 px-4 py-1.5 rounded-full text-[var(--gold)]"><Sparkles size={14} className="animate-heartbeat" /> Full-Stack Digital Growth Agency</span>
+          <span className="eyebrow mx-auto border border-[color:var(--gold)]/30 bg-[color:var(--gold)]/10 px-4 py-1.5 rounded-full text-[var(--gold)]">
+            <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color:var(--gold)]/20 border border-[color:var(--gold)]/35 shadow-[0_0_8px_rgba(212,175,55,0.2)] animate-heartbeat">
+              <Sparkles size={11} className="fill-[color:var(--gold)]" />
+            </span>
+            Full-Stack Digital Growth Agency
+          </span>
           <h1 className="text-[clamp(1.8rem,5vw+0.5rem,4.25rem)] font-bold leading-[1.08] tracking-tight mt-5 text-white hero-animate">
             Stop Wasting Money on <span className="text-white">Marketing</span> That <span className="text-[var(--gold)]">Doesn't Generate Revenue</span>
           </h1>
