@@ -167,8 +167,9 @@ export function Hero() {
       <div className="container-x pt-28 pb-16 md:pt-32 md:pb-32">
         <div className="mx-auto max-w-4xl text-center px-2">
           <span className="eyebrow mx-auto border border-[color:var(--gold)]/30 bg-[color:var(--gold)]/10 px-4 py-1.5 rounded-full text-[var(--gold)]">
-            <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color:var(--gold)]/20 border border-[color:var(--gold)]/35 shadow-[0_0_8px_rgba(212,175,55,0.2)] animate-heartbeat">
-              <Sparkles size={11} className="fill-[color:var(--gold)]" />
+            <span className="relative inline-flex items-center justify-center h-3.5 w-3.5 shrink-0">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[color:var(--gold)]/45 animate-heartbeat blur-[0.5px]"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[color:var(--gold)] shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
             </span>
             Full-Stack Digital Growth Agency
           </span>
